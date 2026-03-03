@@ -112,18 +112,20 @@ app.post("/api/chat", async (req, res) => {
 
     const reply = completion.choices?.[0]?.message?.content?.trim();
     return res.json({ reply: reply || "Registro insuficiente. Reintenta reformulando tu pregunta." });
- } catch (err) {
-  console.error("CHAT_ERROR status:", err?.status);
-  console.error("CHAT_ERROR message:", err?.message);
-  console.error("CHAT_ERROR body:", err?.error);
 
-  return res.status(err?.status || 500).json({
-    error: "Upstream error",
-    status: err?.status || 500,
-    message: err?.error?.message || err?.message || String(err),
-    code: err?.error?.code,
-    type: err?.error?.type
-  });
-}
+  } catch (err) {
+    console.error("CHAT_ERROR status:", err?.status);
+    console.error("CHAT_ERROR message:", err?.message);
+    console.error("CHAT_ERROR body:", err?.error);
+
+    return res.status(err?.status || 500).json({
+      error: "Upstream error",
+      status: err?.status || 500,
+      message: err?.error?.message || err?.message || String(err),
+      code: err?.error?.code,
+      type: err?.error?.type
+    });
+  }
+});
 
 app.listen(PORT, () => console.log(`Ecko-7 backend listening on :${PORT}`));
