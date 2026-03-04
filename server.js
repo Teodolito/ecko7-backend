@@ -303,26 +303,44 @@ app.post("/api/chat", async (req, res) => {
 
     return res.json({ reply });
   } catch (err) {
-    console.error("CHAT_ERROR:", err?.status, err?.message);
+  console.error("CHAT_ERROR:", err?.status, err?.message);
 
-    usage.last_error = {
-      at: new Date().toISOString(),
-      status: err?.status || null,
-      code: err?.error?.code || null,
-      type: err?.error?.type || null,
+  usage.last_error = {
+    at: new Date().toISOString(),
+    status: err?.status || null,
+    code: err?.error?.code || null,
+    type: err?.error?.type || null,
+    message: err?.error?.message || err?.message || String(err),
+  };
+
+  // ✅ Debug privado: SOLO si envías x-admin-key correcto
+  const adminHeader = req.get("x-admin-key") || "";
+  const isAdmin = ADMIN_KEY && adminHeader === ADMIN_KEY;
+
+  if (isAdmin) {
+    return res.status(err?.status || 500).json({
+      error: "debug",
+      status: err?.status || 500,
+      model_strong: MODEL_STRONG,
+      model_light: MODEL_LIGHT,
       message: err?.error?.message || err?.message || String(err),
-    };
-
-    if (err?.status === 429 && (err?.error?.code === "insufficient_quota" || err?.error?.type === "insufficient_quota")) {
-      return res.status(503).json({
-        reply: "Canal temporalmente restringido. El sistema requiere recalibración de recursos. Reintenta más tarde.",
-      });
-    }
-
-    return res.status(500).json({
-      reply: "Interferencia del sistema. Reintenta en unos segundos.",
+      code: err?.error?.code,
+      type: err?.error?.type,
+      stack: err?.stack,
     });
   }
+
+  // Público (bonito)
+  if (err?.status === 429 && (err?.error?.code === "insufficient_quota" || err?.error?.type === "insufficient_quota")) {
+    return res.status(503).json({
+      reply: "Canal temporalmente restringido. El sistema requiere recalibración de recursos. Reintenta más tarde.",
+    });
+  }
+
+  return res.status(500).json({
+    reply: "Interferencia del sistema. Reintenta en unos segundos.",
+  });
+}
 });
 
 app.listen(PORT, () => {
