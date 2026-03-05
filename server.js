@@ -100,7 +100,6 @@ app.use(
 // ======================
 // Prompt (Ecko-7)
 // ======================
-import fs from "fs";
 
 const CANON_PACK = fs.readFileSync("./canon_pack.txt", "utf8");
 
