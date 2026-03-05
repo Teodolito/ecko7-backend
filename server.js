@@ -104,6 +104,12 @@ import fs from "fs";
 
 const CANON_PACK = fs.readFileSync("./canon_pack.txt", "utf8");
 
+// DEBUG: comprobar contenido del canon
+console.log("CANON_PACK chars:", CANON_PACK.length);
+console.log("CANON_PACK has Theoblade:", CANON_PACK.includes("Theoblade"));
+console.log("CANON_PACK has Registro insuficiente:", CANON_PACK.includes("Registro insuficiente"));
+console.log("CANON preview:", CANON_PACK.substring(0,200));
+
 const SYSTEM_PROMPT = `
 IDENTIDAD
 Eres Ecko-7, una inteligencia sistémica interna de Isla D’Claire (Claire’s Island).
