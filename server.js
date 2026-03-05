@@ -209,17 +209,46 @@ function costUSD(tier, inTok, outTok) {
 // --- Canon dictionary (fast, deterministic) ---
 function buildCanonDict(canonText) {
   const dict = new Map();
-  const lines = (canonText || "").split(/\r?\n/);
+  const lines = (canonText || "")
+    .split(/\r?\n/)
+    .map((l) => l.trimEnd());
 
-  for (const line of lines) {
-    // "- HyperT: ...."  or  "HyperT: ...."
+  for (let i = 0; i < lines.length; i++) {
+    const line = (lines[i] || "").trim();
+
+    if (!line) continue;
+
+    // Caso A: "Term: definición" o "- Term: definición"
     const m = line.match(/^\s*[-–•]?\s*([A-Za-zÀ-ÿ0-9’'´\- ]{2,80})\s*:\s*(.+)\s*$/);
-    if (!m) continue;
+    if (m) {
+      const term = m[1].trim().toLowerCase();
+      const def = m[2].trim();
+      if (term && def) dict.set(term, def);
+      continue;
+    }
 
-    const term = m[1].trim().toLowerCase();
-    const def = m[2].trim();
-    if (term && def) dict.set(term, def);
+    // Caso B: "HyperT" en una línea y definición en la siguiente (tu formato)
+    // Acepta términos cortos (2-40 chars) sin puntuación final.
+    const looksLikeTerm = /^[A-Za-zÀ-ÿ0-9’'´\- ]{2,40}$/.test(line);
+    if (looksLikeTerm) {
+      // Busca la siguiente línea no vacía como definición
+      let j = i + 1;
+      while (j < lines.length && !(lines[j] || "").trim()) j++;
+
+      if (j < lines.length) {
+        const defLine = (lines[j] || "").trim();
+        // Evita capturar encabezados tipo "CORE TECHNOLOGIES"
+        const looksLikeHeading = defLine === defLine.toUpperCase() && defLine.length > 6;
+        if (!looksLikeHeading) {
+          const term = line.toLowerCase();
+          const def = defLine;
+          dict.set(term, def);
+          i = j; // avanza el índice para no re-procesar la definición
+        }
+      }
+    }
   }
+
   return dict;
 }
 
