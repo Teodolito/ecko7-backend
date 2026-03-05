@@ -101,13 +101,11 @@ app.use(
 // Prompt (Ecko-7)
 // ======================
 
-const CANON_PACK = fs.readFileSync("./canon_pack.txt", "utf8");
-
-// DEBUG: comprobar contenido del canon
+// DEBUG: comprobar contenido del canon (usa el CANON_PACK ya cargado arriba)
 console.log("CANON_PACK chars:", CANON_PACK.length);
 console.log("CANON_PACK has Theoblade:", CANON_PACK.includes("Theoblade"));
 console.log("CANON_PACK has Registro insuficiente:", CANON_PACK.includes("Registro insuficiente"));
-console.log("CANON preview:", CANON_PACK.substring(0,200));
+console.log("CANON preview:", CANON_PACK.substring(0, 200));
 
 const SYSTEM_PROMPT = `
 IDENTIDAD
@@ -251,34 +249,34 @@ const CANON_DICT = buildCanonDict(CANON_PACK);
 
 function tryGlossaryAnswer(userText) {
   const raw = (userText || "").trim().toLowerCase();
-  const norm = raw.replace(/[¿?¡!.,;:()"]/g, " ");
+  const norm = raw.replace(/[¿?¡!.,;:()"]/g, " ").replace(/\s+/g, " ").trim();
 
   // Detecta preguntas tipo definición
-  const wantsDef =
-    /\b(que es|qué es|define|definir)\b/.test(norm) ||
-    raw.startsWith("¿qué es ") ||
-    raw.startsWith("que es ") ||
-    raw.startsWith("define ") ||
-    raw.startsWith("definir ");
+  const mFull = norm.match(/\b(que es|qué es|define|definir)\s+(.+?)\s*$/);
+  const targetPhrase = (mFull?.[2] || "").trim();
 
-  if (!wantsDef) return null;
+  if (!targetPhrase) return null;
 
-  // 1) match directo por inclusión del término completo
-  for (const [term, def] of CANON_DICT.entries()) {
-    if (norm.includes(term)) {
-      return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
-    }
+  // 1️⃣ Match exacto (prioridad máxima)
+  if (CANON_DICT.has(targetPhrase)) {
+    const def = CANON_DICT.get(targetPhrase);
+    return `Registro confirmado. ${targetPhrase.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
   }
 
-  // 2) match por "término base" (primer token)
-  // Ej: "hypert" debe matchear "hypert orgánico"
-  const m = norm.match(/\b(que es|qué es|define|definir)\s+([a-zà-ÿ0-9\-']{2,40})\b/);
-  const target = m?.[2] || null;
-  if (!target) return null;
+  // 2️⃣ Match por palabra base (ej: hypert → hypert orgánico)
+  const base = targetPhrase.split(/\s+/)[0];
 
-  for (const [term, def] of CANON_DICT.entries()) {
-    const base = term.split(/\s+/)[0];
-    if (base === target) {
+  if (CANON_DICT.has(base)) {
+    const def = CANON_DICT.get(base);
+    return `Registro confirmado. ${base.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+  }
+
+  // 3️⃣ Match parcial (fallback)
+  const entries = Array.from(CANON_DICT.entries())
+    .sort((a, b) => a[0].length - b[0].length);
+
+  for (const [term, def] of entries) {
+    if (norm.includes(term)) {
       return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
     }
   }
