@@ -228,7 +228,7 @@ app.get("/admin/usage", (req, res) => {
     limits: {
       max_req_per_min: MAX_REQ_PER_MIN,
       max_msg_chars: MAX_MSG_CHARS,
-      max_completion_tokens: { strong: MAX_TOKENS_STRONG, light: MAX_TOKENS_LIGHT },
+      max_completion_tokens_limits: { strong: MAX_TOKENS_STRONG, light: MAX_TOKENS_LIGHT },
     },
     day: usage.day,
     month: usage.month,
@@ -268,14 +268,14 @@ app.post("/api/chat", async (req, res) => {
     usage.by_model[tier].requests++;
 
     const completion = await client.chat.completions.create({
-      model,
-      temperature,
-      max_tokens,
-      messages: [
-        { role: "system", content: SYSTEM_PROMPT },
-        { role: "user", content: trimmed },
-      ],
-    });
+  model,
+  temperature,
+  max_completion_tokens: max_tokens,
+  messages: [
+    { role: "system", content: SYSTEM_PROMPT },
+    { role: "user", content: trimmed },
+  ],
+});
 
     const reply = completion.choices?.[0]?.message?.content?.trim() || "Registro insuficiente.";
 
