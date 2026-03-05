@@ -283,6 +283,19 @@ function tryGlossaryAnswer(userText) {
 
   return null;
 }
+function tryCharacterAnswer(userText) {
+  const t = (userText || "").toLowerCase();
+
+  if (t.includes("theoblade")) {
+    return `Registro recuperado. 
+Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island.
+
+Clasificación sistémica: anomalía emergente.  
+Estado del archivo: parcialmente clasificado.`;
+  }
+
+  return null;
+}
 
 // Robust content extraction (algunos SDK/modelos devuelven content no-string)
 function extractTextFromCompletion(completion) {
@@ -384,12 +397,19 @@ app.post("/api/chat", async (req, res) => {
       return res.json({ reply: "Acceso denegado. Protocolo de integridad activo." });
     }
 
-    // ✅ Respuesta determinística desde canon (conceptos tipo “¿Qué es X?”)
-    const glossary = tryGlossaryAnswer(trimmed);
-    if (glossary) {
-      usage.last_error = null;
-      return res.json({ reply: glossary });
-    }
+    // Respuesta determinística desde canon (conceptos)
+const glossary = tryGlossaryAnswer(trimmed);
+if (glossary) {
+  usage.last_error = null;
+  return res.json({ reply: glossary });
+}
+
+// Respuesta determinística para personajes
+const character = tryCharacterAnswer(trimmed);
+if (character) {
+  usage.last_error = null;
+  return res.json({ reply: character });
+}
 
     const tier = chooseTier(trimmed);
     const model = tier === "strong" ? MODEL_STRONG : MODEL_LIGHT;
