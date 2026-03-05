@@ -256,25 +256,39 @@ function buildCanonDict(canonText) {
 const CANON_DICT = buildCanonDict(CANON_PACK);
 
 function tryGlossaryAnswer(userText) {
-  const t = (userText || "").trim().toLowerCase();
+  const raw = (userText || "").trim().toLowerCase();
+  const norm = raw.replace(/[¿?¡!.,;:()"]/g, " ");
 
   // Detecta preguntas tipo definición
   const wantsDef =
-    t.startsWith("¿qué es ") ||
-    t.startsWith("que es ") ||
-    t.startsWith("define ") ||
-    t.startsWith("definir ") ||
-    t.includes("¿qué es") ||
-    t.includes("que es");
+    /\b(que es|qué es|define|definir)\b/.test(norm) ||
+    raw.startsWith("¿qué es ") ||
+    raw.startsWith("que es ") ||
+    raw.startsWith("define ") ||
+    raw.startsWith("definir ");
 
   if (!wantsDef) return null;
 
-  // Busca si menciona alguno de los términos del canon
+  // 1) match directo por inclusión del término completo
   for (const [term, def] of CANON_DICT.entries()) {
-    if (t.includes(term)) {
+    if (norm.includes(term)) {
       return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
     }
   }
+
+  // 2) match por "término base" (primer token)
+  // Ej: "hypert" debe matchear "hypert orgánico"
+  const m = norm.match(/\b(que es|qué es|define|definir)\s+([a-zà-ÿ0-9\-']{2,40})\b/);
+  const target = m?.[2] || null;
+  if (!target) return null;
+
+  for (const [term, def] of CANON_DICT.entries()) {
+    const base = term.split(/\s+/)[0];
+    if (base === target) {
+      return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+    }
+  }
+
   return null;
 }
 
