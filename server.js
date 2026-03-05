@@ -326,16 +326,31 @@ app.get("/admin/usage", (req, res) => {
   rotateBucketsIfNeeded();
 
   return res.json({
+    // 🔎 Diagnóstico del canon
+    server: {
+      version: "2026-03-05 prompt_v2_glossaryfix",
+      canon_chars: CANON_PACK ? CANON_PACK.length : 0,
+      canon_dict_size: CANON_DICT ? CANON_DICT.size : 0,
+      canon_has_hypert: CANON_DICT ? CANON_DICT.has("hypert") : false,
+      sample_terms: CANON_DICT ? Array.from(CANON_DICT.keys()).slice(0, 12) : [],
+    },
+
     models: { strong: MODEL_STRONG, light: MODEL_LIGHT },
+
     pricing_usd_per_1m_tokens: {
       strong: { input: PRICE_IN_PER_M_STRONG, output: PRICE_OUT_PER_M_STRONG },
       light: { input: PRICE_IN_PER_M_LIGHT, output: PRICE_OUT_PER_M_LIGHT },
     },
+
     limits: {
       max_req_per_min: MAX_REQ_PER_MIN,
       max_msg_chars: MAX_MSG_CHARS,
-      max_completion_tokens_limits: { strong: MAX_TOKENS_STRONG, light: MAX_TOKENS_LIGHT },
+      max_completion_tokens_limits: {
+        strong: MAX_TOKENS_STRONG,
+        light: MAX_TOKENS_LIGHT,
+      },
     },
+
     day: usage.day,
     month: usage.month,
     lifetime: usage.lifetime,
