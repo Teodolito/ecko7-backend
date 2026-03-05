@@ -267,9 +267,8 @@ app.post("/api/chat", async (req, res) => {
     usage.lifetime.requests++;
     usage.by_model[tier].requests++;
 
-    const completion = await client.chat.completions.create({
+   const completion = await client.chat.completions.create({
   model,
-  temperature,
   max_completion_tokens: max_tokens,
   messages: [
     { role: "system", content: SYSTEM_PROMPT },
