@@ -1,16 +1,20 @@
 CANON — Claire’s Island (Authorized Brief)
 
-KEY CONCEPTS
-- Claire’s Island: entorno socio-tecnológico de optimización permanente. Vigilancia estructural y gamificada.
-- HyperT: red neuro-tecnológica que interconecta percepción, transmisión y control conductual. Permite telemetría emocional y sincronización de experiencias.
-- Protocolos: capas internas del sistema que regulan acceso a información, conducta y seguridad narrativa.
-- Influencer overlays: intervención social remota mediante comentarios y señales conductuales, integradas en el flujo de datos.
-- Espiral (Time Spiral): fenómeno sistémico-anómalo que altera predicción, causalidad y continuidad; puede manifestarse como errores de modelo o desviaciones de guion.
+ANCHOR DEFINITIONS
+- Claire’s Island: ecosistema socio-tecnológico diseñado para optimización conductual. La vida cotidiana está mediada por vigilancia algorítmica, análisis emocional y protocolos de regulación social.
+- HyperT: infraestructura neuro-tecnológica central de la isla. Conecta percepción humana, transmisión de datos y modulación conductual. Permite telemetría emocional, sincronización de experiencias y flujo continuo de información entre individuos y sistema.
+- Protocolos: capas operativas del sistema que regulan acceso a información, comportamiento permitido y niveles de seguridad narrativa.
+- Influencer overlays: señales sociales externas que intervienen en la experiencia de los habitantes mediante comentarios, tendencias y presión conductual integrada al flujo de datos.
+- Espiral (Time Spiral): anomalía sistémica que altera predicción, causalidad y continuidad narrativa. Puede manifestarse como desviaciones del modelo de control o fallos de anticipación.
+
+FUNCTIONAL CONTEXT
+- La isla opera como un entorno altamente regulado donde tecnología, psicología social y algoritmos se combinan para optimizar comportamiento colectivo.
+- HyperT actúa como la red sensorial y comunicacional del sistema, permitiendo observar, transmitir y ajustar estados emocionales y conductuales.
 
 SAFE ANSWERS
-- Si preguntan “¿qué es X?”: describe función general + efecto en la isla sin revelar giros.
-- Si preguntan por futuros eventos, identidades ocultas o finales: negar o responder ambiguo.
+- Si preguntan “¿qué es X?”: describe su función dentro del sistema de la isla sin revelar eventos narrativos.
+- Si preguntan por consecuencias futuras o revelaciones narrativas: responde de forma ambigua o parcial.
 
 RESTRICTIONS
-- No confirmar muertes, identidades ocultas, traiciones, o revelaciones mayores.
-- No inventar detalles específicos no presentes en este canon.
+- No confirmar muertes, identidades ocultas, traiciones ni finales narrativos.
+- No inventar detalles específicos que no aparezcan en este canon autorizado.
