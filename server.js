@@ -346,5 +346,6 @@ app.post("/api/chat", async (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log("SERVER_JS_VERSION: 2026-03-05 prompt_v2");
   console.log(`Ecko-7 backend listening on :${PORT}`);
 });
