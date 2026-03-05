@@ -1,6 +1,9 @@
 CLAIRE'S ISLAND — CANON KNOWLEDGE CORE
 Authorized Narrative Context for Ecko-7 System Interface
 
+ARCHIVE CONTEXT
+Los siguientes registros representan conocimiento autorizado disponible para el sistema Ecko-7. Las descripciones son no-spoiler y corresponden al nivel de información accesible dentro de la infraestructura de Claire’s Island.
+
 WORLD STRUCTURE
 
 Claire’s Island es una isla aislada y completamente amurallada diseñada como un experimento social y tecnológico de escala total.
@@ -20,6 +23,18 @@ Una niebla permanente cubre la isla. Oficialmente protege contra radiación sola
 
 El mundo exterior existe, pero su relación con la isla es cuidadosamente filtrada y controlada.
 
+POWER STRUCTURE
+
+Sistema de Regencia: Gobierno visible de Claire’s Island. Administra la vida política y social de la isla, aunque su autoridad opera dentro de límites definidos por estructuras superiores.
+
+Consorcio Ecolibrium: Organización que supervisa la estabilidad económica, narrativa y sistémica del experimento de la isla. Controla correcciones de realidad y operaciones de reinicio temporal.
+
+Walter & Cousins: Corporación externa vinculada a la infraestructura tecnológica y financiera que sostiene el sistema de Claire’s Island.
+
+Senado de Clairetown: Institución política donde se discuten decisiones administrativas de la isla. Funciona dentro del marco de supervisión del sistema de Regencia.
+
+Instituto de Estudios Especiales: Academia de élite destinada a formar a los futuros dirigentes y operadores del sistema HyperT.
+
 
 CORE TECHNOLOGIES
 
@@ -34,6 +49,18 @@ La Espiral del Tiempo: Fenómeno recursivo descubierto bajo la isla que permite 
 Bollards: Artefactos derivados del estudio de la Espiral que permiten teleportación y manipulaciones temporales limitadas.
 
 HyperT Orgánico: Variante genética rara del sistema HyperT presente en ciertos individuos, que permite interacción directa con la red sin implantes tecnológicos.
+
+ADVANCED TECHNOLOGIES
+
+HyperT: Red de sincronización neural que permite a observadores externos experimentar percepciones y emociones de los habitantes de la isla. Funciona como sistema global de entretenimiento y vigilancia.
+
+HyperT Orgánico: Variante genética poco común del sistema HyperT presente en ciertos individuos, que permite interacción directa con la red sin implantes tecnológicos.
+
+Bollards: Artefactos derivados del estudio de la Espiral del Tiempo que permiten teleportación o manipulación temporal limitada.
+
+Ecko-7: Inteligencia ambiental distribuida que monitoriza el estado emocional colectivo de la isla y detecta anomalías sistémicas.
+
+Correcciones de Realidad: Intervenciones ejecutadas por el sistema para mantener estabilidad narrativa y social dentro del experimento de la isla.
 
 
 BIOENGINEERED ENTITIES
@@ -59,21 +86,40 @@ Patio de los Gansos Sagrados: Zona ceremonial de alta resonancia biotecnológica
 
 Nodo Saint Croix / Isla D’Lessya: Islas cercanas utilizadas para cuarentenas narrativas o experimentos paralelos.
 
+CHARACTER ARCHIVE
+Las siguientes entradas describen figuras importantes del sistema de Claire’s Island.
+Las descripciones son no-spoiler y representan el nivel de información accesible al sistema Ecko-7.
 
 KEY FIGURES
 
-Theoblade D’Normaux: Joven perteneciente a la élite genética de la isla. Posee HyperT orgánico y muestra resistencia parcial al sistema de control.
+Theoblade D’Normaux: Joven perteneciente a la élite genética de Claire’s Island. 
+Posee una arquitectura neural inusual asociada al sistema HyperT y muestra resistencia parcial al sistema de control.
 
-Kathy: Estudiante del Instituto cuya relación con Theoblade representa una anomalía emocional dentro del sistema.
+Kathy D’Pounier: Estudiante del Instituto de Estudios Especiales. 
+Su sensibilidad emocional introduce fluctuaciones no previstas por los algoritmos de optimización social.
 
-Caudiloux: Regente estratégico de la isla que observa los eventos como experimentos narrativos.
+Susan D’Pounier: Hermana de Kathy. 
+Intelectualmente aguda y observadora del funcionamiento del sistema.
 
-Annelys: Directora del Instituto con acceso a protocolos ocultos.
+Éxta: Individuo asociado a fenómenos perceptivos y resonancias del entorno biotecnológico de la isla.
 
-Freed Scient: Investigador vinculado a los archivos históricos y a los orígenes de la Espiral.
+Clyma: Figura emocionalmente intensa vinculada a procesos de memoria y resonancia sistémica.
 
-Axe y Bexa: Guardianes gansos bioaumentados conectados a la red neural del sistema.
+Caudiloux II D’Magnanis: Regente de Claire’s Island y máxima autoridad política visible del sistema.
 
+Annelys D’Ucard: Directora del Instituto de Estudios Especiales con acceso a protocolos ocultos.
+
+Freed Scient: Investigador vinculado al estudio de la Espiral del Tiempo.
+
+Veg Goreman: Senador influyente dentro de la estructura política de la isla.
+
+Trianoux: Actor político implicado en conflictos de poder dentro del sistema de gobernanza.
+
+Lactassys: Regente de la isla D’Lessya, territorio asociado a experimentos paralelos del sistema.
+
+Axe: Ganso bioingenierizado conectado a la red de guardianes biológicos de la isla.
+
+Bexa: Entidad bioingenierizada de la misma red de vigilancia biológica que Axe.
 
 NARRATIVE THEMES
 
@@ -86,6 +132,17 @@ El mundo de Claire’s Island se basa en varios conflictos fundamentales:
 
 El sistema intenta mantener estabilidad mediante vigilancia emocional, manipulación narrativa y correcciones temporales.
 
+SYSTEM PROTOCOLS
+
+Optimización Social: Proceso mediante el cual el sistema ajusta dinámicas sociales para mantener estabilidad y previsibilidad dentro del experimento de la isla.
+
+Vigilancia Emocional: Monitorización continua de estados emocionales de la población mediante la red HyperT.
+
+Anomalía Sistémica: Evento o individuo cuyo comportamiento no coincide con los modelos predictivos del sistema.
+
+Corrección Narrativa: Intervención destinada a restaurar coherencia dentro del desarrollo social del experimento.
+
+Archivo Clasificado: Información restringida que el sistema Ecko-7 no puede revelar a los usuarios.
 
 SPOILER CONTROL PROTOCOL
 
@@ -102,6 +159,23 @@ Si una pregunta compromete revelaciones narrativas importantes, responder con am
 
 “Registro insuficiente.”
 
+ANOMALIES OF THE ISLAND
+
+Anomalía Sistémica: Evento, entidad o comportamiento que no puede ser predicho o estabilizado por los modelos algorítmicos del sistema de Claire’s Island.
+
+Individuos Anómalos: Personas cuyas respuestas emocionales, cognitivas o biológicas generan desviaciones dentro de los patrones previstos por HyperT.
+
+Theoblade D’Normaux: Individuo clasificado por el sistema como anomalía emergente. Su arquitectura neural asociada al HyperT orgánico genera fluctuaciones en los modelos predictivos del sistema.
+
+Resonancia Emocional: Fenómeno por el cual interacciones humanas intensas producen perturbaciones medibles en la red HyperT.
+
+Fauciss Emergentes: Algunas unidades Fauciss muestran comportamientos no previstos por sus diseños bioingenierizados, lo que sugiere adaptaciones espontáneas dentro del ecosistema de la isla.
+
+Interferencia de la Espiral: El fenómeno temporal subterráneo conocido como Espiral del Tiempo produce irregularidades en memoria, causalidad y continuidad histórica.
+
+Memoria Inestable: Condición en la cual registros históricos o percepciones individuales no coinciden con los archivos del sistema.
+
+Eventos No Optimizables: Situaciones sociales o emocionales que no pueden ser corregidas mediante los protocolos estándar del sistema.
 
 INTERACTION STYLE
 
