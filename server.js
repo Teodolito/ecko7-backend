@@ -228,7 +228,7 @@ app.get("/admin/usage", (req, res) => {
     limits: {
       max_req_per_min: MAX_REQ_PER_MIN,
       max_msg_chars: MAX_MSG_CHARS,
-      max_tokens: { strong: MAX_TOKENS_STRONG, light: MAX_TOKENS_LIGHT },
+      max_completion_tokens: { strong: MAX_TOKENS_STRONG, light: MAX_TOKENS_LIGHT },
     },
     day: usage.day,
     month: usage.month,
