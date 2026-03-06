@@ -351,6 +351,11 @@ function tryCharacterAnswer(userText) {
       reply:
         "Registro recuperado. Kathy D’vryans: Estudiante del Instituto de Estudios Especiales. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto."
     }
+    {
+     aliases: ["susan", "susan d'pounier", "susan d’pounier"],
+      reply:
+        "Registro recuperado. Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Clasificación sistémica: residente civil. Estado del archivo: abierto."
+    }
   ];
 
   for (const ch of characters) {
