@@ -321,15 +321,42 @@ function tryGlossaryAnswer(userText) {
 
   return null;
 }
+function normalizeText(s = "") {
+  return s
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘`´]/g, "'")
+    .replace(/[^a-zA-Z0-9'\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
 function tryCharacterAnswer(userText) {
-  const t = (userText || "").toLowerCase();
+  const q = normalizeText(userText);
 
-  if (t.includes("theoblade")) {
-    return `Registro recuperado. 
-Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island.
+  const characters = [
+    {
+      aliases: ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
+      reply:
+        "Registro recuperado. Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Clasificación sistémica: anomalía emergente. Estado del archivo: parcialmente clasificado."
+    },
+    {
+      aliases: ["caudiloux", "caudiloux ii", "caudiloux ii d'magnanis", "caudiloux ii d’magnanis"],
+      reply:
+        "Registro recuperado. Caudiloux II D’Magnanis: Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Clasificación sistémica: autoridad gubernamental. Estado del archivo: abierto."
+    },
+    {
+      aliases: ["kathy", "kathy d'vryans", "kathy d’vryans"],
+      reply:
+        "Registro recuperado. Kathy D’vryans: Estudiante del Instituto de Estudios Especiales. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto."
+    }
+  ];
 
-Clasificación sistémica: anomalía emergente.  
-Estado del archivo: parcialmente clasificado.`;
+  for (const ch of characters) {
+    if (ch.aliases.some(alias => q.includes(normalizeText(alias)))) {
+      return ch.reply;
+    }
   }
 
   return null;
