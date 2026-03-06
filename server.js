@@ -287,21 +287,31 @@ const CANON_DICT = buildCanonDict(CANON_PACK);
 
 function tryGlossaryAnswer(userText) {
   const raw = (userText || "").trim().toLowerCase();
-  const norm = raw.replace(/[¿?¡!.,;:()"]/g, " ").replace(/\s+/g, " ").trim();
+
+  const norm = raw
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")   // quita tildes
+    .replace(/[’‘`´]/g, "'")
+    .replace(/[¿?¡!.,;:()"]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
   // Detecta preguntas tipo definición
-  const mFull = norm.match(/\b(que es|qué es|define|definir)\s+(.+?)\s*$/);
-  const targetPhrase = (mFull?.[2] || "").trim();
+  const mFull = norm.match(/\b(que es|define|definir)\s+(.+?)\s*$/);
+  let targetPhrase = (mFull?.[2] || "").trim();
 
   if (!targetPhrase) return null;
 
-  // 1️⃣ Match exacto (prioridad máxima)
+  // Quita artículos iniciales: "un", "una", "el", "la", etc.
+  targetPhrase = targetPhrase.replace(/^(un|una|el|la|los|las)\s+/, "").trim();
+
+  // 1) Match exacto
   if (CANON_DICT.has(targetPhrase)) {
     const def = CANON_DICT.get(targetPhrase);
     return `Registro confirmado. ${targetPhrase.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
   }
 
-  // 2️⃣ Match por palabra base (ej: hypert → hypert orgánico)
+  // 2) Match por palabra base
   const base = targetPhrase.split(/\s+/)[0];
 
   if (CANON_DICT.has(base)) {
@@ -309,12 +319,12 @@ function tryGlossaryAnswer(userText) {
     return `Registro confirmado. ${base.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
   }
 
-  // 3️⃣ Match parcial (fallback)
+  // 3) Match parcial
   const entries = Array.from(CANON_DICT.entries())
     .sort((a, b) => a[0].length - b[0].length);
 
   for (const [term, def] of entries) {
-    if (norm.includes(term)) {
+    if (targetPhrase.includes(term) || norm.includes(term)) {
       return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
     }
   }
@@ -356,6 +366,31 @@ function tryCharacterAnswer(userText) {
       reply:
         "Registro recuperado. Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Clasificación sistémica: residente civil. Estado del archivo: abierto."
     }
+    {
+  aliases: ["exta", "éxta"],
+  reply:
+    "Registro recuperado. Éxta: Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema. Clasificación sistémica: entidad de interés sistémico. Estado del archivo: parcialmente clasificado."
+},
+{
+  aliases: ["scient", "freed scient"],
+  reply:
+    "Registro recuperado. Freed Scient: Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo. Clasificación sistémica: investigador senior. Estado del archivo: parcialmente clasificado."
+},
+{
+  aliases: ["goreman", "veg goreman"],
+  reply:
+    "Registro recuperado. Veg Goreman: Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado. Clasificación sistémica: autoridad política. Estado del archivo: abierto."
+},
+{
+  aliases: ["clyma"],
+  reply:
+    "Registro recuperado. Clyma: Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla. Clasificación sistémica: residente civil. Estado del archivo: parcialmente clasificado."
+},
+{
+  aliases: ["trianoux"],
+  reply:
+    "Registro recuperado. Trianoux: Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Clasificación sistémica: operador político. Efectivo de la Guardia Postirana. Estado del archivo: parcialmente clasificado."
+}
   ];
 
   for (const ch of characters) {
@@ -475,6 +510,7 @@ if (glossary) {
   usage.last_error = null;
   return res.json({ reply: glossary });
 }
+
 
 // Respuesta determinística para personajes
 const character = tryCharacterAnswer(trimmed);
