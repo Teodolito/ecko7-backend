@@ -1,12 +1,12 @@
-CLAIRE'S ISLAND — CANON KNOWLEDGE CORE
+Isla D'Claire (Claire's Island) — CANON KNOWLEDGE CORE
 Authorized Narrative Context for Ecko-7 System Interface
 
 ARCHIVE CONTEXT
-Los siguientes registros representan conocimiento autorizado disponible para el sistema Ecko-7. Las descripciones son no-spoiler y corresponden al nivel de información accesible dentro de la infraestructura de Claire’s Island.
+Los siguientes registros representan conocimiento autorizado disponible para el sistema Ecko-7. Las descripciones son no-spoiler y corresponden al nivel de información accesible dentro de la infraestructura de Isla D'Claire.
 
 WORLD STRUCTURE
 
-Claire’s Island es una isla aislada y completamente amurallada diseñada como un experimento social y tecnológico de escala total.
+Isla D'Claire es una isla aislada y completamente amurallada diseñada como un experimento social y tecnológico de escala total.
 
 Sus habitantes creen vivir en una sociedad autónoma, pero sus vidas son transmitidas y analizadas globalmente mediante la red HyperT.
 
@@ -25,11 +25,11 @@ El mundo exterior existe, pero su relación con la isla es cuidadosamente filtra
 
 POWER STRUCTURE
 
-Sistema de Regencia: Gobierno visible de Claire’s Island. Administra la vida política y social de la isla, aunque su autoridad opera dentro de límites definidos por estructuras superiores.
+Sistema de Regencia: Gobierno visible de Isla D'Claire. Administra la vida política y social de la isla, aunque su autoridad opera dentro de límites definidos por estructuras superiores.
 
 Consorcio Ecolibrium: Organización que supervisa la estabilidad económica, narrativa y sistémica del experimento de la isla. Controla correcciones de realidad y operaciones de reinicio temporal.
 
-Walter & Cousins: Corporación externa vinculada a la infraestructura tecnológica y financiera que sostiene el sistema de Claire’s Island.
+Walter & Cousins: Corporación externa vinculada a la infraestructura tecnológica y financiera que sostiene el sistema de Isla D'Claire.
 
 Senado de Clairetown: Institución política donde se discuten decisiones administrativas de la isla. Funciona dentro del marco de supervisión del sistema de Regencia.
 
@@ -38,23 +38,10 @@ Instituto de Estudios Especiales: Academia de élite destinada a formar a los fu
 
 CORE TECHNOLOGIES
 
-HyperT: Red de sincronización neural que permite a observadores externos experimentar las percepciones y emociones de los habitantes de la isla. Funciona simultáneamente como entretenimiento global y sistema de vigilancia.
-
-Ecko-7: Sistema ambiental-emocional distribuido que regula el ecosistema de la isla. Monitoriza fluctuaciones emocionales colectivas y reacciona a anomalías sistémicas.
-
-Ecolibrium: Consorcio que controla la estabilidad económica, narrativa y temporal del sistema. Puede ejecutar correcciones de realidad y reinicios temporales.
-
-La Espiral del Tiempo: Fenómeno recursivo descubierto bajo la isla que permite reinicios temporales del sistema. No es completamente comprendido y parece poseer propiedades emergentes.
-
 Bollards: Artefactos derivados del estudio de la Espiral que permiten teleportación y manipulaciones temporales limitadas.
 
-HyperT Orgánico: Variante genética rara del sistema HyperT presente en ciertos individuos, que permite interacción directa con la red sin implantes tecnológicos.
 
 ADVANCED TECHNOLOGIES
-
-HyperT: Red de sincronización neural que permite a observadores externos experimentar percepciones y emociones de los habitantes de la isla. Funciona como sistema global de entretenimiento y vigilancia.
-
-HyperT Orgánico: Variante genética poco común del sistema HyperT presente en ciertos individuos, que permite interacción directa con la red sin implantes tecnológicos.
 
 Bollards: Artefactos derivados del estudio de la Espiral del Tiempo que permiten teleportación o manipulación temporal limitada.
 
@@ -87,12 +74,12 @@ Patio de los Gansos Sagrados: Zona ceremonial de alta resonancia biotecnológica
 Nodo Saint Croix / Isla D’Lessya: Islas cercanas utilizadas para cuarentenas narrativas o experimentos paralelos.
 
 CHARACTER ARCHIVE
-Las siguientes entradas describen figuras importantes del sistema de Claire’s Island.
+Las siguientes entradas describen figuras importantes del sistema de Isla D'Claire.
 Las descripciones son no-spoiler y representan el nivel de información accesible al sistema Ecko-7.
 
 KEY FIGURES
 
-Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Su arquitectura neural muestra compatibilidad inusual con la red HyperT, generando fluctuaciones dentro de los modelos predictivos del sistema.
+Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Isla D'Claire. Su arquitectura neural muestra compatibilidad inusual con la red HyperT, generando fluctuaciones dentro de los modelos predictivos del sistema.
 
 Clasificación sistémica: anomalía emergente.
 Estado del archivo: parcialmente clasificado.
@@ -104,13 +91,13 @@ Clasificación sistémica: estudiante del Instituto.
 Estado del archivo: abierto.
 
 
-Susan D’Pounier: Hermana de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT.
+Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT,traviesa, sensual.
 
 Clasificación sistémica: residente civil.
 Estado del archivo: abierto.
 
 
-Éxta: Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Claire’s Island. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema.
+Éxta: Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema.
 
 Clasificación sistémica: entidad de interés sistémico.
 Estado del archivo: parcialmente clasificado.
@@ -122,7 +109,7 @@ Clasificación sistémica: residente civil.
 Estado del archivo: parcialmente clasificado.
 
 
-Caudiloux II D’Magnanis: Regente de Claire’s Island y máxima autoridad política visible dentro de la estructura de gobierno de la isla.
+Caudiloux II D’Magnanis: Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla.
 
 Clasificación sistémica: autoridad gubernamental.
 Estado del archivo: abierto.
@@ -158,7 +145,7 @@ Clasificación sistémica: autoridad territorial.
 Estado del archivo: parcialmente clasificado.
 
 
-Axe: Ganso bioingenierizado conectado a la red de vigilancia biológica de Claire’s Island.
+Axe: Ganso bioingenierizado conectado a la red de vigilancia biológica de Isla D'Claire.
 
 Clasificación sistémica: entidad bioingenierizada.
 Estado del archivo: abierto.
@@ -167,7 +154,121 @@ Estado del archivo: abierto.
 Bexa: Entidad bioingenierizada perteneciente a la misma red de vigilancia biológica que Axe.
 
 Clasificación sistémica: entidad bioingenierizada.
+
 Estado del archivo: abierto.
+
+Tom McKnow: Científico especializado en sistemas biotecnológicos y análisis de anomalías ambientales. Su experiencia en bioingeniería y observación de patrones lo coloca en contacto directo con fenómenos que escapan al control del sistema.
+
+Clasificación sistémica: investigador científico externo.
+Estado del archivo: parcialmente clasificado.
+
+Dra. Elena Vásquez: Investigadora en inteligencia artificial y arquitectura de sistemas complejos. Su trabajo se centra en comprender los límites éticos y técnicos de la automatización de la conciencia y de los sistemas de control algorítmico.
+
+Clasificación sistémica: investigadora científica.
+Estado del archivo: parcialmente clasificado.
+
+
+Clasificación sistémica: autoridad sistémica superior.
+Estado del archivo: restringido.
+
+H.P. Lander: Arquitecto tecnológico y programador pionero asociado al desarrollo de sistemas que permitieron la creación de infraestructuras neuronales avanzadas. Sus investigaciones influyeron directamente en tecnologías precursoras de la red HyperT.
+
+Clasificación sistémica: ingeniero fundador / arquitecto de sistemas.
+Estado del archivo: parcialmente clasificado.
+
+Marcus Chen: Ingeniero especializado en arquitectura de inteligencia artificial y sistemas de control algorítmico de gran escala. Participó en el diseño de infraestructuras técnicas vinculadas al consorcio Ecolibrium.
+
+Clasificación sistémica: ingeniero de inteligencia artificial.
+Estado del archivo: parcialmente clasificado.
+
+TT (Teddy Tannenbaum): Figura influyente dentro de redes corporativas y financieras vinculadas a las estructuras económicas que rodean el sistema de Isla D'Claire.
+
+Clasificación sistémica: operador corporativo externo.
+Estado del archivo: parcialmente clasificado.
+
+
+Nathaniel Wells: Director ejecutivo de Walter & Cousins Media, corporación que participa en la infraestructura tecnológica y mediática asociada a la transmisión global de Isla D'Claire.
+
+Clasificación sistémica: autoridad corporativa externa.
+Estado del archivo: abierto.
+
+Autiloux: Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema.
+
+Clasificación sistémica: operador estratégico.
+Estado del archivo: parcialmente clasificado.
+
+
+Ellinet D’Vryans: Miembro de una familia influyente vinculada a las estructuras sociales y políticas de Isla D'Claire. Madre de Kathy.
+
+Clasificación sistémica: residente de élite.
+Estado del archivo: parcialmente clasificado.
+
+Theofort: Figura histórica vinculada a los linajes que influyen en la estructura institucional y social de la isla. Padre de Theoblade.
+
+Clasificación sistémica: figura de linaje histórico.
+Estado del archivo: parcialmente clasificado.
+
+
+Clarize D’Normaux: Figura de alto rango dentro del entorno social de Isla D'Claire y miembro influyente del linaje D’Normaux.Madre de Theoblade.
+
+Clasificación sistémica: figura social de élite.
+Estado del archivo: parcialmente clasificado.
+
+
+Clark: Observador del mundo exterior que sigue los acontecimientos asociados a Isla D'Claire a través de transmisiones mediáticas.
+
+Clasificación sistémica: observador externo / audiencia.
+Estado del archivo: abierto.
+
+
+Kiera: Participante dentro del grupo de observadores externos que siguen los eventos transmitidos desde Isla D'Claire.
+
+Clasificación sistémica: observadora externa / audiencia.
+Estado del archivo: abierto.
+
+Sienna: Observadora del mundo exterior que participa en discusiones y reacciones sociales relacionadas con las transmisiones de Isla D'Claire.
+
+Clasificación sistémica: observadora externa / audiencia.
+Estado del archivo: abierto.
+
+Jordan: Observador crítico y escéptico del grupo externo que sigue el experimento de Isla D'Claire.
+
+Clasificación sistémica: observador externo / analista.
+Estado del archivo: abierto.
+
+Ben: Individuo veterano asociado a estructuras operativas dentro del ecosistema social y político de los Topper. Ingeniero tunelador.
+
+Clasificación sistémica: operador veterano.
+Estado del archivo: parcialmente clasificado.
+
+SYSTEM ENTITIES — METASTRUCTURE
+
+Ecolibrium: Consorcio que controla la estabilidad económica, narrativa y temporal del sistema. Puede ejecutar correcciones de realidad y reinicios temporales.
+
+HyperT: Red de sincronización neural que conecta a los habitantes de la Isla D'Claire con audiencias externas mediante transmisión directa de percepciones, emociones y experiencias sensoriales. Funciona simultáneamente como infraestructura de entretenimiento global y como sistema de vigilancia emocional que alimenta los modelos predictivos del experimento.
+
+HyperT Orgánico: También denominado InnerT. Variante genética poco común del sistema HyperT presente en ciertos individuos, que permite interacción directa con la red sin implantes tecnológicos.
+
+
+Clasificación sistémica: red de sincronización neural / infraestructura de transmisión sistémica.
+Estado del archivo: abierto.
+
+Antabadt: Autoridad vinculada a la supervisión de ciclos temporales dentro de las estructuras profundas del sistema Ecolibrium. Su función consiste en preservar la estabilidad de las líneas temporales cuando aparecen desviaciones críticas.
+EréboX: Protocolo avanzado de inteligencia artificial diseñado originalmente para detectar y eliminar anomalías que amenacen la estabilidad del sistema de Claire’s Island. Su arquitectura combina algoritmos de supresión predictiva con acceso profundo a la infraestructura de Ecolibrium, lo que le permite intervenir en procesos biotecnológicos, narrativos y temporales del sistema.
+
+Clasificación sistémica: entidad de control algorítmico / inteligencia artificial autónoma.
+Estado del archivo: parcialmente clasificado.
+
+Ecko-7: Sistema ambiental-emocional distribuido que regula el equilibrio ecológico, climático y emocional de Claire’s Island. Integrado en la infraestructura biotecnológica de la isla, monitoriza continuamente los estados emocionales colectivos y detecta anomalías sistémicas que puedan afectar la estabilidad del experimento.
+
+Clasificación sistémica: inteligencia ambiental distribuida / sistema de monitoreo sistémico.
+Estado del archivo: parcialmente clasificado.
+
+La Espiral del Tiempo: Fenómeno temporal de origen desconocido localizado en las profundidades de Claire’s Island. Su estructura presenta propiedades recursivas capaces de alterar continuidad histórica, memoria y causalidad, permitiendo reinicios o desviaciones dentro del sistema que sostiene el experimento de la isla. No es completamente comprendido y parece poseer propiedades emergentes.
+
+Clasificación sistémica: fenómeno temporal / infraestructura meta-sistémica.
+Estado del archivo: parcialmente clasificado.
+
 
 CHARACTER RESPONSE RULE
 
@@ -175,7 +276,7 @@ Cuando el usuario pregunte "¿Quién es [personaje]?" o solicite información so
 
 La respuesta debe incluir:
 
-• rol dentro del sistema de Claire's Island
+• rol dentro del sistema de Isla D'Claire
 • relación con el entorno de la isla
 • posible clasificación dentro del sistema (ej: anomalía, autoridad, estudiante)
 
@@ -192,7 +293,7 @@ Si la información es sensible indicar: "Archivo parcialmente clasificado."
 
 NARRATIVE THEMES
 
-El mundo de Claire’s Island se basa en varios conflictos fundamentales:
+El mundo de Isla D'Claire se basa en varios conflictos fundamentales:
 
 • control algorítmico vs libre albedrío
 • espectáculo global vs vida humana real
@@ -252,7 +353,7 @@ Estado del archivo: (abierto / parcialmente clasificado / restringido).
 
 ANOMALIES OF THE ISLAND
 
-Anomalía Sistémica: Evento, entidad o comportamiento que no puede ser predicho o estabilizado por los modelos algorítmicos del sistema de Claire’s Island.
+Anomalía Sistémica: Evento, entidad o comportamiento que no puede ser predicho o estabilizado por los modelos algorítmicos del sistema de Isla D'Claire.
 
 Individuos Anómalos: Personas cuyas respuestas emocionales, cognitivas o biológicas generan desviaciones dentro de los patrones previstos por HyperT.
 
