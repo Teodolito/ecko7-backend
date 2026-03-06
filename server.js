@@ -347,20 +347,22 @@ function tryCharacterAnswer(userText) {
         "Registro recuperado. Caudiloux II D’Magnanis: Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Clasificación sistémica: autoridad gubernamental. Estado del archivo: abierto."
     },
     {
-      aliases: ["kathy", "kathy d'vryans", "kathy d’vryans"],
+      aliases: ["kathy", "kathy d'pounier", "kathy d’pounier"],
       reply:
-        "Registro recuperado. Kathy D’vryans: Estudiante del Instituto de Estudios Especiales. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto."
-    }
+        "Registro recuperado. Kathy D’Pounier: Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto."
+    },
     {
-     aliases: ["susan", "susan d'pounier", "susan d’pounier"],
+      aliases: ["susan", "susan d'pounier", "susan d’pounier"],
       reply:
         "Registro recuperado. Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Clasificación sistémica: residente civil. Estado del archivo: abierto."
     }
   ];
 
   for (const ch of characters) {
-    if (ch.aliases.some(alias => q.includes(normalizeText(alias)))) {
-      return ch.reply;
+    for (const alias of ch.aliases) {
+      if (q.includes(normalizeText(alias))) {
+        return ch.reply;
+      }
     }
   }
 
