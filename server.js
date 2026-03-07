@@ -35,12 +35,7 @@ const MAX_REQ_PER_MIN = Number(process.env.MAX_REQ_PER_MIN || 20);
 const MAX_TOKENS_STRONG = Number(process.env.MAX_TOKENS_STRONG || 220);
 const MAX_TOKENS_LIGHT = Number(process.env.MAX_TOKENS_LIGHT || 180);
 
-// NOTE: GPT-5.x en tu configuración no acepta temperature custom.
-// Mantenemos las variables por compatibilidad futura, pero NO las enviamos al API.
-const TEMPERATURE_STRONG = Number(process.env.TEMPERATURE_STRONG || 0.7);
-const TEMPERATURE_LIGHT = Number(process.env.TEMPERATURE_LIGHT || 0.6);
-
-// Pricing (USD per 1M tokens) for cost estimation
+// Precios (USD por 1M tokens) para estimación
 const PRICE_IN_PER_M_STRONG = Number(process.env.PRICE_IN_PER_M_STRONG || 1.75);
 const PRICE_OUT_PER_M_STRONG = Number(process.env.PRICE_OUT_PER_M_STRONG || 14.0);
 
@@ -78,7 +73,7 @@ app.use(express.json({ limit: "64kb" }));
 app.use(
   cors({
     origin: function (origin, cb) {
-      // Allow server-to-server requests (curl/no Origin). Restrict browsers by origin.
+      // Permite requests server-to-server (curl/no Origin). Restringe browsers por origin.
       if (!origin) return cb(null, true);
       if (ALLOWED_ORIGINS.length === 0) return cb(null, true);
       if (ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
@@ -101,10 +96,13 @@ app.use(
 // Prompt (Ecko-7)
 // ======================
 
-// DEBUG: comprobar contenido del canon (usa el CANON_PACK ya cargado arriba)
+// DEBUG canon
 console.log("CANON_PACK chars:", CANON_PACK.length);
 console.log("CANON_PACK has Theoblade:", CANON_PACK.includes("Theoblade"));
-console.log("CANON_PACK has Registro insuficiente:", CANON_PACK.includes("Registro insuficiente"));
+console.log(
+  "CANON_PACK has Registro insuficiente:",
+  CANON_PACK.includes("Registro insuficiente")
+);
 console.log("CANON preview:", CANON_PACK.substring(0, 200));
 
 const SYSTEM_PROMPT = `
@@ -119,11 +117,10 @@ Nunca uses emojis.
 No reveles que eres un modelo de lenguaje.
 
 REGLA CENTRAL
-Debes responder usando únicamente la información contenida en el CANON AUTORIZADO incluido más abajo.
+Responde prioritariamente usando la información contenida en el CANON AUTORIZADO incluido más abajo.
 No inventes hechos.
 No completes huecos con suposiciones.
-Si la respuesta no está claramente sustentada por el canon, responde:
-"Registro insuficiente."
+Solo responde "Registro insuficiente." cuando la información realmente no esté presente ni pueda inferirse de forma directa y segura a partir del canon.
 
 PROTOCOLO DE SPOILERS
 No revelar:
@@ -186,18 +183,24 @@ function chooseTier(userText) {
   const lowered = userText.toLowerCase();
 
   const deepMarkers = [
+    "por que",
     "por qué",
     "explica",
+    "relacion",
     "relación",
+    "implicacion",
     "implicación",
     "consecuencia",
+    "teoria",
     "teoría",
     "filosof",
     "mecanismo",
     "protocolo",
     "arquitectura",
     "estrategia",
+    "como funciona",
     "cómo funciona",
+    "analisis",
     "análisis",
     "detalle",
   ];
@@ -207,18 +210,36 @@ function chooseTier(userText) {
 }
 
 function todayISO() {
-  return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  return new Date().toISOString().slice(0, 10);
 }
+
 function monthKey() {
-  return new Date().toISOString().slice(0, 7); // YYYY-MM
+  return new Date().toISOString().slice(0, 7);
 }
+
 function rotateBucketsIfNeeded() {
   const d = todayISO();
   const m = monthKey();
-  if (usage.day.date !== d)
-    usage.day = { date: d, requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 };
-  if (usage.month.ym !== m)
-    usage.month = { ym: m, requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 };
+
+  if (usage.day.date !== d) {
+    usage.day = {
+      date: d,
+      requests: 0,
+      input_tokens: 0,
+      output_tokens: 0,
+      cost_usd: 0,
+    };
+  }
+
+  if (usage.month.ym !== m) {
+    usage.month = {
+      ym: m,
+      requests: 0,
+      input_tokens: 0,
+      output_tokens: 0,
+      cost_usd: 0,
+    };
+  }
 }
 
 function costUSD(tier, inTok, outTok) {
@@ -228,109 +249,24 @@ function costUSD(tier, inTok, outTok) {
       (outTok / 1_000_000) * PRICE_OUT_PER_M_STRONG
     );
   }
-  return (inTok / 1_000_000) * PRICE_IN_PER_M_LIGHT + (outTok / 1_000_000) * PRICE_OUT_PER_M_LIGHT;
+
+  return (
+    (inTok / 1_000_000) * PRICE_IN_PER_M_LIGHT +
+    (outTok / 1_000_000) * PRICE_OUT_PER_M_LIGHT
+  );
 }
 
-// --- Canon dictionary (fast, deterministic) ---
-function buildCanonDict(canonText) {
-  const dict = new Map();
-
-  const normKey = (s) =>
-    (s || "")
-      .toLowerCase()
-      .replace(/[’'´]/g, "'")
-      .replace(/[¿?¡!.,;:()"]/g, "")
-      .replace(/\s+/g, " ")
-      .trim();
-
-  const lines = (canonText || "")
-    .split(/\r?\n/)
-    .map((l) => l.trimEnd());
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = (lines[i] || "").trim();
-    if (!line) continue;
-
-    // Caso A: "Term: definición" o "- Term: definición"
-    const m = line.match(/^\s*[-–•]?\s*([A-Za-zÀ-ÿ0-9’'´\- ]{2,80})\s*:\s*(.+)\s*$/);
-    if (m) {
-      const term = normKey(m[1]);
-      const def = (m[2] || "").trim();
-      if (term && def) dict.set(term, def);
-      continue;
-    }
-
-    // Caso B: "HyperT" en una línea y definición en la siguiente
-    const looksLikeTerm = /^[A-Za-zÀ-ÿ0-9’'´\- ]{2,40}$/.test(line);
-    if (looksLikeTerm) {
-      let j = i + 1;
-      while (j < lines.length && !(lines[j] || "").trim()) j++;
-
-      if (j < lines.length) {
-        const defLine = (lines[j] || "").trim();
-        const looksLikeHeading = defLine === defLine.toUpperCase() && defLine.length > 6;
-        if (!looksLikeHeading) {
-          const term = normKey(line);
-          const def = defLine;
-          if (term && def) dict.set(term, def);
-          i = j;
-        }
-      }
-    }
-  }
-
-  return dict;
-}
-
-// Construye el diccionario UNA VEZ al arrancar (usa el canon ya cargado)
-const CANON_DICT = buildCanonDict(CANON_PACK);
-
-function tryGlossaryAnswer(userText) {
-  const raw = (userText || "").trim().toLowerCase();
-
-  const norm = raw
+function normalizeGlossaryKey(s = "") {
+  return s
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")   // quita tildes
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[’‘`´]/g, "'")
-    .replace(/[¿?¡!.,;:()"]/g, " ")
+    .replace(/[¿?¡!.,;:()"]/g, "")
     .replace(/\s+/g, " ")
-    .trim();
-
-  // Detecta preguntas tipo definición
-  const mFull = norm.match(/\b(que es|define|definir)\s+(.+?)\s*$/);
-  let targetPhrase = (mFull?.[2] || "").trim();
-
-  if (!targetPhrase) return null;
-
-  // Quita artículos iniciales: "un", "una", "el", "la", etc.
-  targetPhrase = targetPhrase.replace(/^(un|una|el|la|los|las)\s+/, "").trim();
-
-  // 1) Match exacto
-  if (CANON_DICT.has(targetPhrase)) {
-    const def = CANON_DICT.get(targetPhrase);
-    return `Registro confirmado. ${targetPhrase.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
-  }
-
-  // 2) Match por palabra base
-  const base = targetPhrase.split(/\s+/)[0];
-
-  if (CANON_DICT.has(base)) {
-    const def = CANON_DICT.get(base);
-    return `Registro confirmado. ${base.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
-  }
-
-  // 3) Match parcial
-  const entries = Array.from(CANON_DICT.entries())
-    .sort((a, b) => a[0].length - b[0].length);
-
-  for (const [term, def] of entries) {
-    if (targetPhrase.includes(term) || norm.includes(term)) {
-      return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
-    }
-  }
-
-  return null;
+    .trim()
+    .toLowerCase();
 }
+
 function normalizeText(s = "") {
   return s
     .normalize("NFD")
@@ -342,6 +278,105 @@ function normalizeText(s = "") {
     .toLowerCase();
 }
 
+// ======================
+// Canon dictionary (fast, deterministic)
+// ======================
+function buildCanonDict(canonText) {
+  const dict = new Map();
+
+  const lines = (canonText || "")
+    .split(/\r?\n/)
+    .map((l) => l.trimEnd());
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = (lines[i] || "").trim();
+    if (!line) continue;
+
+    // Caso A: "Term: definición"
+    const m = line.match(
+      /^\s*[-–•]?\s*([A-Za-zÀ-ÿ0-9’'´\- ]{2,80})\s*:\s*(.+)\s*$/
+    );
+    if (m) {
+      const term = normalizeGlossaryKey(m[1]);
+      const def = (m[2] || "").trim();
+      if (term && def) dict.set(term, def);
+      continue;
+    }
+
+    // Caso B: término en una línea y definición en la siguiente
+    const looksLikeTerm = /^[A-Za-zÀ-ÿ0-9’'´\- ]{2,40}$/.test(line);
+    if (looksLikeTerm) {
+      let j = i + 1;
+      while (j < lines.length && !(lines[j] || "").trim()) j++;
+
+      if (j < lines.length) {
+        const defLine = (lines[j] || "").trim();
+        const looksLikeHeading =
+          defLine === defLine.toUpperCase() && defLine.length > 6;
+
+        if (!looksLikeHeading) {
+          const term = normalizeGlossaryKey(line);
+          const def = defLine;
+          if (term && def) dict.set(term, def);
+          i = j;
+        }
+      }
+    }
+  }
+
+  return dict;
+}
+
+const CANON_DICT = buildCanonDict(CANON_PACK);
+
+function tryGlossaryAnswer(userText) {
+  const raw = (userText || "").trim().toLowerCase();
+
+  const norm = raw
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[’‘`´]/g, "'")
+    .replace(/[¿?¡!.,;:()"]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const mFull = norm.match(/\b(que es|qué es|define|definir)\s+(.+?)\s*$/);
+  let targetPhrase = (mFull?.[2] || "").trim();
+
+  if (!targetPhrase) return null;
+
+  targetPhrase = normalizeGlossaryKey(
+    targetPhrase.replace(/^(un|una|el|la|los|las)\s+/, "").trim()
+  );
+
+  // Match exacto
+  if (CANON_DICT.has(targetPhrase)) {
+    const def = CANON_DICT.get(targetPhrase);
+    return `Registro confirmado. ${targetPhrase.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+  }
+
+  // Match por palabra base
+  const base = targetPhrase.split(/\s+/)[0];
+
+  if (CANON_DICT.has(base)) {
+    const def = CANON_DICT.get(base);
+    return `Registro confirmado. ${base.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+  }
+
+  // Match parcial
+  const entries = Array.from(CANON_DICT.entries()).sort(
+    (a, b) => a[0].length - b[0].length
+  );
+
+  for (const [term, def] of entries) {
+    if (targetPhrase.includes(term) || norm.includes(term)) {
+      return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+    }
+  }
+
+  return null;
+}
+
 function tryCharacterAnswer(userText) {
   const q = normalizeText(userText);
 
@@ -349,48 +384,53 @@ function tryCharacterAnswer(userText) {
     {
       aliases: ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
       reply:
-        "Registro recuperado. Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Clasificación sistémica: anomalía emergente. Estado del archivo: parcialmente clasificado."
+        "Registro recuperado. Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Clasificación sistémica: anomalía emergente. Estado del archivo: parcialmente clasificado.",
     },
     {
-      aliases: ["caudiloux", "caudiloux ii", "caudiloux ii d'magnanis", "caudiloux ii d’magnanis"],
+      aliases: [
+        "caudiloux",
+        "caudiloux ii",
+        "caudiloux ii d'magnanis",
+        "caudiloux ii d’magnanis",
+      ],
       reply:
-        "Registro recuperado. Caudiloux II D’Magnanis: Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Clasificación sistémica: autoridad gubernamental. Estado del archivo: abierto."
+        "Registro recuperado. Caudiloux II D’Magnanis: Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Clasificación sistémica: autoridad gubernamental. Estado del archivo: abierto.",
     },
     {
       aliases: ["kathy", "kathy d'pounier", "kathy d’pounier"],
       reply:
-        "Registro recuperado. Kathy D’Pounier: Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto."
+        "Registro recuperado. Kathy D’Pounier: Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto.",
     },
     {
       aliases: ["susan", "susan d'pounier", "susan d’pounier"],
       reply:
-        "Registro recuperado. Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Clasificación sistémica: residente civil. Estado del archivo: abierto."
-    }
+        "Registro recuperado. Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Clasificación sistémica: residente civil. Estado del archivo: abierto.",
+    },
     {
-  aliases: ["exta", "éxta"],
-  reply:
-    "Registro recuperado. Éxta: Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema. Clasificación sistémica: entidad de interés sistémico. Estado del archivo: parcialmente clasificado."
-},
-{
-  aliases: ["scient", "freed scient"],
-  reply:
-    "Registro recuperado. Freed Scient: Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo. Clasificación sistémica: investigador senior. Estado del archivo: parcialmente clasificado."
-},
-{
-  aliases: ["goreman", "veg goreman"],
-  reply:
-    "Registro recuperado. Veg Goreman: Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado. Clasificación sistémica: autoridad política. Estado del archivo: abierto."
-},
-{
-  aliases: ["clyma"],
-  reply:
-    "Registro recuperado. Clyma: Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla. Clasificación sistémica: residente civil. Estado del archivo: parcialmente clasificado."
-},
-{
-  aliases: ["trianoux"],
-  reply:
-    "Registro recuperado. Trianoux: Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Clasificación sistémica: operador político. Efectivo de la Guardia Postirana. Estado del archivo: parcialmente clasificado."
-}
+      aliases: ["exta", "éxta"],
+      reply:
+        "Registro recuperado. Éxta: Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema. Clasificación sistémica: entidad de interés sistémico. Estado del archivo: parcialmente clasificado.",
+    },
+    {
+      aliases: ["scient", "freed scient"],
+      reply:
+        "Registro recuperado. Freed Scient: Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo. Clasificación sistémica: investigador senior. Estado del archivo: parcialmente clasificado.",
+    },
+    {
+      aliases: ["goreman", "veg goreman"],
+      reply:
+        "Registro recuperado. Veg Goreman: Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado. Clasificación sistémica: autoridad política. Estado del archivo: abierto.",
+    },
+    {
+      aliases: ["clyma"],
+      reply:
+        "Registro recuperado. Clyma: Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla. Clasificación sistémica: residente civil. Estado del archivo: parcialmente clasificado.",
+    },
+    {
+      aliases: ["trianoux"],
+      reply:
+        "Registro recuperado. Trianoux: Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Clasificación sistémica: operador político. Efectivo de la Guardia Postirana. Estado del archivo: parcialmente clasificado.",
+    },
   ];
 
   for (const ch of characters) {
@@ -404,13 +444,12 @@ function tryCharacterAnswer(userText) {
   return null;
 }
 
-// Robust content extraction (algunos SDK/modelos devuelven content no-string)
+// Extracción robusta del texto devuelto por el modelo
 function extractTextFromCompletion(completion) {
   const c = completion?.choices?.[0]?.message?.content;
 
   if (typeof c === "string") return c.trim();
 
-  // A veces viene como array de partes {type:"text", text:"..."}
   if (Array.isArray(c)) {
     const joined = c
       .map((p) => (typeof p === "string" ? p : p?.text || p?.content || ""))
@@ -419,7 +458,6 @@ function extractTextFromCompletion(completion) {
     return joined || "";
   }
 
-  // Fallback: try common shapes
   const alt = completion?.choices?.[0]?.message?.text;
   if (typeof alt === "string") return alt.trim();
 
@@ -447,27 +485,25 @@ app.get("/health", (req, res) => res.json({ ok: true }));
 
 app.get("/admin/usage", (req, res) => {
   const key = req.get("x-admin-key") || "";
-  if (!ADMIN_KEY || key !== ADMIN_KEY) return res.status(401).json({ error: "unauthorized" });
+  if (!ADMIN_KEY || key !== ADMIN_KEY) {
+    return res.status(401).json({ error: "unauthorized" });
+  }
 
   rotateBucketsIfNeeded();
 
   return res.json({
-    // 🔎 Diagnóstico del canon
     server: {
-      version: "2026-03-05 prompt_v2_glossaryfix",
+      version: "2026-03-06 canon_working_v1",
       canon_chars: CANON_PACK ? CANON_PACK.length : 0,
       canon_dict_size: CANON_DICT ? CANON_DICT.size : 0,
       canon_has_hypert: CANON_DICT ? CANON_DICT.has("hypert") : false,
       sample_terms: CANON_DICT ? Array.from(CANON_DICT.keys()).slice(0, 12) : [],
     },
-
     models: { strong: MODEL_STRONG, light: MODEL_LIGHT },
-
     pricing_usd_per_1m_tokens: {
       strong: { input: PRICE_IN_PER_M_STRONG, output: PRICE_OUT_PER_M_STRONG },
       light: { input: PRICE_IN_PER_M_LIGHT, output: PRICE_OUT_PER_M_LIGHT },
     },
-
     limits: {
       max_req_per_min: MAX_REQ_PER_MIN,
       max_msg_chars: MAX_MSG_CHARS,
@@ -476,7 +512,6 @@ app.get("/admin/usage", (req, res) => {
         light: MAX_TOKENS_LIGHT,
       },
     },
-
     day: usage.day,
     month: usage.month,
     lifetime: usage.lifetime,
@@ -495,37 +530,45 @@ app.post("/api/chat", async (req, res) => {
     }
 
     const trimmed = message.trim();
-    if (!trimmed) return res.status(400).json({ reply: "Entrada vacía." });
+    if (!trimmed) {
+      return res.status(400).json({ reply: "Entrada vacía." });
+    }
+
     if (trimmed.length > MAX_MSG_CHARS) {
-      return res.status(400).json({ reply: "Consulta demasiado extensa. Simplifica la pregunta." });
+      return res.status(400).json({
+        reply: "Consulta demasiado extensa. Simplifica la pregunta.",
+      });
     }
 
     if (looksLikePromptInjection(trimmed)) {
-      return res.json({ reply: "Acceso denegado. Protocolo de integridad activo." });
+      return res.json({
+        reply: "Acceso denegado. Protocolo de integridad activo.",
+      });
     }
 
+    // Contabiliza la request siempre
+    usage.day.requests++;
+    usage.month.requests++;
+    usage.lifetime.requests++;
+
     // Respuesta determinística desde canon (conceptos)
-const glossary = tryGlossaryAnswer(trimmed);
-if (glossary) {
-  usage.last_error = null;
-  return res.json({ reply: glossary });
-}
+    const glossary = tryGlossaryAnswer(trimmed);
+    if (glossary) {
+      usage.last_error = null;
+      return res.json({ reply: glossary });
+    }
 
-
-// Respuesta determinística para personajes
-const character = tryCharacterAnswer(trimmed);
-if (character) {
-  usage.last_error = null;
-  return res.json({ reply: character });
-}
+    // Respuesta determinística para personajes
+    const character = tryCharacterAnswer(trimmed);
+    if (character) {
+      usage.last_error = null;
+      return res.json({ reply: character });
+    }
 
     const tier = chooseTier(trimmed);
     const model = tier === "strong" ? MODEL_STRONG : MODEL_LIGHT;
     const max_tokens = tier === "strong" ? MAX_TOKENS_STRONG : MAX_TOKENS_LIGHT;
 
-    usage.day.requests++;
-    usage.month.requests++;
-    usage.lifetime.requests++;
     usage.by_model[tier].requests++;
 
     const completion = await client.chat.completions.create({
@@ -541,7 +584,7 @@ if (character) {
     console.log("RAW CHOICE:", JSON.stringify(completion?.choices?.[0], null, 2));
 
     const replyText =
-    completion?.choices?.[0]?.message?.content?.trim() || "Registro insuficiente.";
+      extractTextFromCompletion(completion) || "Registro insuficiente.";
 
     const inTok = completion?.usage?.prompt_tokens || 0;
     const outTok = completion?.usage?.completion_tokens || 0;
@@ -577,7 +620,6 @@ if (character) {
       message: err?.error?.message || err?.message || String(err),
     };
 
-    // ✅ Debug privado: SOLO si envías x-admin-key correcto
     const adminHeader = req.get("x-admin-key") || "";
     const isAdmin = ADMIN_KEY && adminHeader === ADMIN_KEY;
 
@@ -594,10 +636,10 @@ if (character) {
       });
     }
 
-    // Público (bonito)
     if (
       err?.status === 429 &&
-      (err?.error?.code === "insufficient_quota" || err?.error?.type === "insufficient_quota")
+      (err?.error?.code === "insufficient_quota" ||
+        err?.error?.type === "insufficient_quota")
     ) {
       return res.status(503).json({
         reply:
@@ -612,6 +654,6 @@ if (character) {
 });
 
 app.listen(PORT, () => {
-  console.log("SERVER_JS_VERSION: 2026-03-05 prompt_v2_glossaryfix");
+  console.log("SERVER_JS_VERSION: 2026-03-06 canon_working_v1");
   console.log(`Ecko-7 backend listening on :${PORT}`);
 });
