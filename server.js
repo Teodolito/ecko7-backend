@@ -340,7 +340,7 @@ function tryGlossaryAnswer(userText) {
     .replace(/\s+/g, " ")
     .trim();
 
-  const mFull = norm.match(/\b(que es|qué es|define|definir)\s+(.+?)\s*$/);
+  const mFull = norm.match(/\b(que es|que son|define|definir)\s+(.+?)\s*$/);
   let targetPhrase = (mFull?.[2] || "").trim();
 
   if (!targetPhrase) return null;
