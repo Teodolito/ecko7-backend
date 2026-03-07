@@ -431,6 +431,21 @@ function tryCharacterAnswer(userText) {
       reply:
         "Registro recuperado. Trianoux: Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Clasificación sistémica: operador político. Efectivo de la Guardia Postirana. Estado del archivo: parcialmente clasificado.",
     },
+    
+    {
+  aliases: ["autiloux"],
+  reply:
+    "Registro recuperado. Autiloux: Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema. Clasificación sistémica: operador estratégico. Estado del archivo: parcialmente clasificado."
+    },
+
+    if (
+  targetPhrase.includes("fauciss") ||
+  norm.includes("fauciss") ||
+  targetPhrase.includes("un fauciss") ||
+  targetPhrase.includes("los fauciss")
+  ) {
+  return "Registro confirmado. FAUCISS son criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto. Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?";
+    }
   ];
 
   for (const ch of characters) {
