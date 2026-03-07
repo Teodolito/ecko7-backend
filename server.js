@@ -349,6 +349,14 @@ function tryGlossaryAnswer(userText) {
     targetPhrase.replace(/^(un|una|el|la|los|las)\s+/, "").trim()
   );
 
+  // Caso especial: Fauciss
+  if (
+    targetPhrase.includes("fauciss") ||
+    norm.includes("fauciss")
+  ) {
+    return "Registro confirmado. FAUCISS son criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto. Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?";
+  }
+
   // Match exacto
   if (CANON_DICT.has(targetPhrase)) {
     const def = CANON_DICT.get(targetPhrase);
@@ -438,15 +446,7 @@ function tryCharacterAnswer(userText) {
     "Registro recuperado. Autiloux: Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema. Clasificación sistémica: operador estratégico. Estado del archivo: parcialmente clasificado."
     },
 
-    if (
-  targetPhrase.includes("fauciss") ||
-  norm.includes("fauciss") ||
-  targetPhrase.includes("un fauciss") ||
-  targetPhrase.includes("los fauciss")
-  ) {
-  return "Registro confirmado. FAUCISS son criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto. Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?";
-    }
-  ];
+    ];
 
   for (const ch of characters) {
     for (const alias of ch.aliases) {
