@@ -6,6 +6,7 @@ import OpenAI from "openai";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import crypto from "crypto";
 
 const app = express();
 
@@ -23,6 +24,9 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .filter(Boolean);
 
 const ADMIN_KEY = process.env.ADMIN_KEY || "";
+const BOOK_ACCESS_CODE = process.env.BOOK_ACCESS_CODE || "";
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "";
+const NODE_LOG_URL = "https://www.claireisland.com/node-log";
 
 // Hybrid models
 const MODEL_STRONG = process.env.MODEL_STRONG || "gpt-5.2";
@@ -493,10 +497,93 @@ const usage = {
   last_error: null,
 };
 
+function makeAccessToken() {
+  const payload = {
+    ts: Date.now(),
+    nonce: crypto.randomBytes(8).toString("hex"),
+  };
+
+  const payloadB64 = Buffer.from(JSON.stringify(payload)).toString("base64url");
+
+  const sig = crypto
+    .createHmac("sha256", ACCESS_TOKEN_SECRET)
+    .update(payloadB64)
+    .digest("base64url");
+
+  return `${payloadB64}.${sig}`;
+}
+
+function verifyAccessToken(token, maxAgeMs = 1000 * 60 * 60 * 12) {
+  if (!token || typeof token !== "string" || !token.includes(".")) return false;
+
+  const [payloadB64, sig] = token.split(".");
+  if (!payloadB64 || !sig) return false;
+
+  const expectedSig = crypto
+    .createHmac("sha256", ACCESS_TOKEN_SECRET)
+    .update(payloadB64)
+    .digest("base64url");
+
+  if (sig !== expectedSig) return false;
+
+  try {
+    const payload = JSON.parse(Buffer.from(payloadB64, "base64url").toString("utf8"));
+    if (!payload.ts) return false;
+    if (Date.now() - payload.ts > maxAgeMs) return false;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // ======================
 // Routes
 // ======================
 app.get("/health", (req, res) => res.json({ ok: true }));
+
+app.post("/api/validate-access", (req, res) => {
+  try {
+    const code = (req.body?.code || "").trim();
+
+    if (!code) {
+      return res.status(400).json({ ok: false, error: "missing_code" });
+    }
+
+    if (!BOOK_ACCESS_CODE || !ACCESS_TOKEN_SECRET) {
+      return res.status(500).json({ ok: false, error: "server_not_configured" });
+    }
+
+    if (code !== BOOK_ACCESS_CODE) {
+      return res.status(401).json({ ok: false, error: "invalid_code" });
+    }
+
+    const token = makeAccessToken();
+
+    return res.json({
+      ok: true,
+      token,
+      redirectUrl: `${NODE_LOG_URL}?token=${encodeURIComponent(token)}`,
+    });
+  } catch {
+    return res.status(500).json({ ok: false, error: "server_error" });
+  }
+});
+
+app.post("/api/check-access-token", (req, res) => {
+  try {
+    const token = req.body?.token || req.get("x-access-token") || "";
+
+    if (!ACCESS_TOKEN_SECRET) {
+      return res.status(500).json({ ok: false, error: "server_not_configured" });
+    }
+
+    const valid = verifyAccessToken(token);
+
+    return res.json({ ok: valid });
+  } catch {
+    return res.status(500).json({ ok: false, error: "server_error" });
+  }
+});
 
 app.get("/admin/usage", (req, res) => {
   const key = req.get("x-admin-key") || "";
