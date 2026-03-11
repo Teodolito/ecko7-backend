@@ -350,13 +350,41 @@ function canonDef(term) {
   return CANON_DICT.get(normalizeGlossaryKey(term)) || null;
 }
 
+function cleanCanonSummary(text = "") {
+  return String(text || "")
+    .replace(/^Registro confirmado\.\s*/i, "")
+    .replace(/^Registro recuperado\.\s*/i, "")
+    .replace(/^Archivo parcialmente clasificado\.\s*/i, "")
+    .replace(/^Registro incompleto\.\s*/i, "")
+    .replace(/^Protocolo de confidencialidad activo\.\s*/i, "")
+    .trim();
+}
+
+function cleanCanonSummary(text = "") {
+  return String(text || "")
+    .replace(/^Registro confirmado\.\s*/i, "")
+    .replace(/^Registro recuperado\.\s*/i, "")
+    .replace(/^Archivo parcialmente clasificado\.\s*/i, "")
+    .replace(/^Registro incompleto\.\s*/i, "")
+    .replace(/^Protocolo de confidencialidad activo\.\s*/i, "")
+    .trim();
+}
+
 function mergeCanonIndex(staticEntries, dict) {
   return (Array.isArray(staticEntries) ? staticEntries : []).map((entry) => {
-    const aliases = Array.isArray(entry.aliases) ? entry.aliases : [entry.key];
+    const aliases = Array.isArray(entry.aliases) && entry.aliases.length
+      ? entry.aliases
+      : [entry.key];
 
     const aliasSummary = aliases
       .map((alias) => canonDef(alias))
       .find(Boolean);
+
+    const baseSummary =
+      aliasSummary ||
+      canonDef(entry.key) ||
+      entry.summary ||
+      "Registro insuficiente.";
 
     return {
       key: entry.key,
@@ -364,16 +392,12 @@ function mergeCanonIndex(staticEntries, dict) {
       type: entry.type || "concept",
       classification: entry.classification || "registro conceptual",
       status: entry.status || "abierto",
-      summary:
-        aliasSummary ||
-        canonDef(entry.key) ||
-        entry.summary ||
-        "Registro insuficiente.",
-      function_summary: entry.function_summary || null,
-      about_summary: entry.about_summary || null,
+      summary: cleanCanonSummary(baseSummary),
+      function_summary: entry.function_summary ? cleanCanonSummary(entry.function_summary) : null,
+      about_summary: entry.about_summary ? cleanCanonSummary(entry.about_summary) : null,
       relations: entry.relations || null,
-      public_summary: entry.public_summary || null,
-      restricted_summary: entry.restricted_summary || null,
+      public_summary: entry.public_summary ? cleanCanonSummary(entry.public_summary) : null,
+      restricted_summary: entry.restricted_summary ? cleanCanonSummary(entry.restricted_summary) : null,
       spoiler_risk: entry.spoiler_risk || "low",
       access_level: entry.access_level || "public",
       response_style: entry.response_style || "neutral"
@@ -547,7 +571,12 @@ function shouldRestrictEntry(entry, intent = "generic") {
 
   if (entry.access_level === "classified") return true;
 
-  if (entry.spoiler_risk === "high") return true;
+  if (
+    entry.spoiler_risk === "high" &&
+    (intent === "about" || intent === "function" || intent === "generic")
+  ) {
+    return true;
+  }
 
   if (
     entry.access_level === "restricted" &&
@@ -574,29 +603,22 @@ function stylePrefix(style = "neutral") {
   }
 }
 
-function restrictedReplyForEntry(entry) {
-  const style = stylePrefix(entry?.response_style || "neutral");
-  const name = (entry?.key || "archivo").toUpperCase();
-
-  if (entry?.access_level === "classified") {
-    return `${style} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
-  }
-
-  if (entry?.spoiler_risk === "high") {
-    return `${style} ${name}: Archivo parcialmente clasificado. La expansión de este registro excede el nivel de acceso actual.`;
-  }
-
-  return `${style} ${name}: Registro incompleto. Parte del contenido solicitado pertenece a capas restringidas del sistema.`;
-}
-
 function formatCanonReply(entry, intent = "generic") {
   const name = entry.key.toUpperCase();
-
-  if (shouldRestrictEntry(entry, intent)) {
-    return restrictedReplyForEntry(entry);
-  }
-
   const prefix = stylePrefix(entry.response_style);
+
+  // Restricción por acceso / spoiler
+  if (shouldRestrictEntry(entry, intent)) {
+    if (entry.access_level === "classified") {
+      return `${prefix} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
+    }
+
+    if (entry.spoiler_risk === "high") {
+      return `${prefix} ${name}: Archivo parcialmente clasificado. La expansión de este registro excede el nivel de acceso actual.`;
+    }
+
+    return `${prefix} ${name}: Registro incompleto. Parte del contenido solicitado pertenece a capas restringidas del sistema.`;
+  }
 
   const safeSummary =
     entry.public_summary ||
