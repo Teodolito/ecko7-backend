@@ -350,15 +350,6 @@ function canonDef(term) {
   return CANON_DICT.get(normalizeGlossaryKey(term)) || null;
 }
 
-function cleanCanonSummary(text = "") {
-  return String(text || "")
-    .replace(/^Registro confirmado\.\s*/i, "")
-    .replace(/^Registro recuperado\.\s*/i, "")
-    .replace(/^Archivo parcialmente clasificado\.\s*/i, "")
-    .replace(/^Registro incompleto\.\s*/i, "")
-    .replace(/^Protocolo de confidencialidad activo\.\s*/i, "")
-    .trim();
-}
 
 function cleanCanonSummary(text = "") {
   return String(text || "")
