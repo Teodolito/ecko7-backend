@@ -1,0 +1,123 @@
+[
+  {
+    "key": "hypert",
+    "aliases": ["hypert", "hyper t", "hyper-t"],
+    "type": "system",
+    "classification": "infraestructura neurotecnológica",
+    "status": "abierto",
+    "summary": "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island.",
+    "function_summary": "Su función principal es observar, modular y registrar interacciones humanas y biotecnológicas con distintos niveles de profundidad y acceso.",
+    "about_summary": "HyperT constituye una de las capas operativas centrales del sistema de Claire’s Island. Vincula experiencia, supervisión, modulación conductual y circulación de datos en una sola arquitectura.",
+    "relations": "Se relaciona directamente con el Instituto, los niveles HyperT, Ecko-7 y múltiples protocolos de control sistémico.",
+    "public_summary": "Infraestructura central de conexión, observación y transmisión dentro de la isla.",
+    "restricted_summary": "Su alcance completo excede la función visible de vigilancia y participa en capas más profundas de gestión perceptiva y modulación."
+  },
+  {
+    "key": "instituto",
+    "aliases": ["instituto", "el instituto", "instituto de estudios especiales"],
+    "type": "place",
+    "classification": "centro formativo y de control",
+    "status": "abierto",
+    "summary": "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island.",
+    "function_summary": "Su función práctica es formar, evaluar, observar y filtrar individuos bajo protocolos académicos, psicológicos y sistémicos.",
+    "about_summary": "El Instituto actúa a la vez como espacio educativo, cámara de observación y nodo de intervención dentro del equilibrio de la isla.",
+    "relations": "Mantiene relación estructural con HyperT, Clairetown, autoridades políticas y procesos de clasificación humana.",
+    "public_summary": "Centro académico de alta relevancia dentro del sistema insular.",
+    "restricted_summary": "Su papel real supera la educación formal y se vincula a procesos de selección, contención y modulación avanzada."
+  },
+  {
+    "key": "ecolibrium",
+    "aliases": ["ecolibrium"],
+    "type": "organization",
+    "classification": "estructura corporativa sistémica",
+    "status": "parcialmente clasificado",
+    "summary": "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island.",
+    "function_summary": "Su función principal es intervenir en la preservación del equilibrio operativo mediante supervisión, gestión biotecnológica y control estructural.",
+    "about_summary": "Ecolibrium representa una capa corporativa de gran profundidad, menos visible que las instituciones públicas pero potencialmente más decisiva en la arquitectura general del sistema.",
+    "relations": "Se conecta con HyperT, protocolos de equilibrio, operadores corporativos y capas no plenamente expuestas del control insular.",
+    "public_summary": "Entidad asociada a equilibrio operativo y administración biotecnológica.",
+    "restricted_summary": "Su influencia podría exceder ampliamente su perfil público y rozar zonas estructurales de dirección sistémica."
+  },
+  {
+    "key": "bollards",
+    "aliases": ["bollards", "los bollards", "bollard"],
+    "type": "group",
+    "classification": "estructura de contención y control",
+    "status": "parcialmente clasificado",
+    "summary": "Conjunto de entidades, dispositivos o funciones vinculadas a tareas de contención, custodia, filtrado y estabilidad dentro de la arquitectura sistémica de Claire’s Island.",
+    "function_summary": "Su función práctica es limitar desviaciones, preservar estabilidad y actuar como mecanismo de contención dentro del sistema.",
+    "about_summary": "Los Bollards ocupan una posición ambigua entre infraestructura, custodia y control. Su naturaleza exacta no siempre resulta transparente desde el archivo público.",
+    "relations": "Se vinculan con estabilidad sistémica, filtrado, vigilancia, protocolos de integridad y capas de contención del entorno insular.",
+    "public_summary": "Mecanismo de estabilidad y custodia dentro del sistema.",
+    "restricted_summary": "Su alcance exacto y su forma de intervención no pertenecen por completo al registro abierto."
+  },
+  {
+    "key": "ecko-7",
+    "aliases": ["ecko 7", "ecko-7", "ecko7"],
+    "type": "system",
+    "classification": "inteligencia sistémica interna",
+    "status": "abierto",
+    "summary": "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad.",
+    "function_summary": "Su función principal es asistir consultas, recuperar archivo autorizado, filtrar contenido sensible y sostener coherencia narrativa e informativa.",
+    "about_summary": "Ecko-7 opera como interfaz entre usuario, archivo y sistema. No sólo informa: también regula acceso, tono y profundidad de lo que puede ser dicho.",
+    "relations": "Se relaciona con HyperT, el Response Protocol, la Hidden Layer y los mecanismos de clasificación del archivo.",
+    "public_summary": "Interfaz de consulta y archivo interno autorizada por el sistema.",
+    "restricted_summary": "Dispone de capas de filtrado y jerarquización no plenamente visibles desde la interfaz pública."
+  },
+  {
+    "key": "ecko-7 response protocol",
+    "aliases": [
+      "ecko-7 response protocol",
+      "response protocol",
+      "protocolo de respuesta ecko-7",
+      "protocolo de respuesta de ecko-7"
+    ],
+    "type": "protocol",
+    "classification": "capa de interacción autorizada",
+    "status": "parcialmente clasificado",
+    "summary": "Conjunto de reglas que gobierna cómo Ecko-7 recupera, filtra y formula respuestas dentro de los márgenes permitidos por el sistema.",
+    "function_summary": "Su función es asegurar coherencia canónica, protección de spoilers, control de acceso y formulación segura de respuestas.",
+    "about_summary": "El Response Protocol define el comportamiento visible de Ecko-7 y determina qué puede decir, cómo debe decirlo y cuándo debe callar.",
+    "relations": "Se conecta con la Hidden Layer, el archivo canónico, los filtros de confidencialidad y la jerarquización de consulta.",
+    "public_summary": "Protocolo que regula la forma autorizada de responder.",
+    "restricted_summary": "Algunas de sus reglas dependen de capas internas no expuestas al usuario."
+  },
+  {
+    "key": "ecko-7 hidden layer",
+    "aliases": [
+      "ecko-7 hidden layer",
+      "hidden layer",
+      "capa oculta de ecko-7",
+      "capa oculta ecko-7"
+    ],
+    "type": "system",
+    "classification": "capa interna no expuesta",
+    "status": "clasificado",
+    "summary": "Subestructura no visible del sistema Ecko-7 asociada a filtrado profundo, jerarquización de acceso y contención de material no autorizado.",
+    "function_summary": "Su función es priorizar, restringir, jerarquizar y contener información según reglas internas de acceso y sensibilidad.",
+    "about_summary": "La Hidden Layer no forma parte de la interfaz ordinaria. Opera como mecanismo interno de selección y silenciamiento dentro del sistema.",
+    "relations": "Se relaciona con Ecko-7, el Response Protocol, los filtros de clasificación y la protección del canon sensible.",
+    "public_summary": "Capa interna de procesamiento y filtrado.",
+    "restricted_summary": "Su lógica completa y su alcance real no forman parte del archivo público."
+  },
+  {
+    "key": "claire's island",
+    "aliases": [
+      "claire's island",
+      "claires island",
+      "isla d'claire",
+      "isla d’claire",
+      "isla de claire",
+      "isla d claire"
+    ],
+    "type": "place",
+    "classification": "entorno insular sistémico",
+    "status": "abierto",
+    "summary": "Isla-región organizada bajo una arquitectura de vigilancia, modulación social y gestión biotecnológica.",
+    "function_summary": "Su función práctica dentro del sistema es servir como entorno total de organización, observación, regulación social y experimentación estructurada.",
+    "about_summary": "Claire’s Island es un espacio donde política, arquitectura, biotecnología, percepción y control convergen en una misma ecología sistémica.",
+    "relations": "Se articula con Clairetown, el Instituto, HyperT, Ecolibrium y diversas capas visibles e invisibles de autoridad.",
+    "public_summary": "Territorio central del sistema, organizado bajo protocolos de equilibrio y supervisión.",
+    "restricted_summary": "Su apariencia de orden no agota la complejidad de sus capas operativas internas."
+  }
+]

@@ -9,8 +9,6 @@ import { fileURLToPath } from "url";
 import crypto from "crypto";
 
 const app = express();
-
-// ✅ Render/Proxy: necesario para express-rate-limit con X-Forwarded-For
 app.set("trust proxy", 1);
 
 // ======================
@@ -28,44 +26,70 @@ const BOOK_ACCESS_CODE = process.env.BOOK_ACCESS_CODE || "";
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "";
 const NODE_LOG_URL = "https://www.claireisland.com/node-log";
 
-// Hybrid models
 const MODEL_STRONG = process.env.MODEL_STRONG || "gpt-5.2";
 const MODEL_LIGHT = process.env.MODEL_LIGHT || "gpt-5-mini";
 
-// Limits
 const MAX_MSG_CHARS = Number(process.env.MAX_MSG_CHARS || 900);
 const MAX_REQ_PER_MIN = Number(process.env.MAX_REQ_PER_MIN || 20);
 
 const MAX_TOKENS_STRONG = Number(process.env.MAX_TOKENS_STRONG || 220);
 const MAX_TOKENS_LIGHT = Number(process.env.MAX_TOKENS_LIGHT || 180);
 
-// Precios (USD por 1M tokens) para estimación
-const PRICE_IN_PER_M_STRONG = Number(process.env.PRICE_IN_PER_M_STRONG || 1.75);
-const PRICE_OUT_PER_M_STRONG = Number(process.env.PRICE_OUT_PER_M_STRONG || 14.0);
+// Precios estimados por 1M tokens
+const PRICE_IN_PER_M_STRONG = Number(
+  process.env.PRICE_IN_PER_M_STRONG || 1.75
+);
+const PRICE_OUT_PER_M_STRONG = Number(
+  process.env.PRICE_OUT_PER_M_STRONG || 14.0
+);
 
-const PRICE_IN_PER_M_LIGHT = Number(process.env.PRICE_IN_PER_M_LIGHT || 0.25);
-const PRICE_OUT_PER_M_LIGHT = Number(process.env.PRICE_OUT_PER_M_LIGHT || 2.0);
+const PRICE_IN_PER_M_LIGHT = Number(
+  process.env.PRICE_IN_PER_M_LIGHT || 0.25
+);
+const PRICE_OUT_PER_M_LIGHT = Number(
+  process.env.PRICE_OUT_PER_M_LIGHT || 2.0
+);
 
 // ======================
-// Load Canon Pack (robust path)
+// Paths / File Loading
 // ======================
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-let CANON_PACK = "";
-try {
-  const canonPath = path.join(__dirname, "canon_pack.txt");
-  CANON_PACK = fs.readFileSync(canonPath, "utf8");
-  console.log(`Loaded canon_pack.txt (${CANON_PACK.length} chars)`);
-} catch (e) {
-  console.warn(
-    "WARNING: canon_pack.txt not found or unreadable. Ecko-7 will run with minimal canon."
-  );
-  CANON_PACK = "";
+function readTextFileSafe(filename, fallback = "") {
+  try {
+    const fullPath = path.join(__dirname, filename);
+    const content = fs.readFileSync(fullPath, "utf8");
+    console.log(`Loaded ${filename} (${content.length} chars)`);
+    return content;
+  } catch {
+    console.warn(`WARNING: ${filename} not found or unreadable.`);
+    return fallback;
+  }
 }
 
+function readJsonFileSafe(filename, fallback = []) {
+  try {
+    const fullPath = path.join(__dirname, filename);
+    const content = fs.readFileSync(fullPath, "utf8");
+    const parsed = JSON.parse(content);
+    console.log(
+      `Loaded ${filename} (${Array.isArray(parsed) ? parsed.length : 0} entries)`
+    );
+    return parsed;
+  } catch {
+    console.warn(
+      `WARNING: ${filename} not found, unreadable, or invalid JSON.`
+    );
+    return fallback;
+  }
+}
+
+const CANON_PACK = readTextFileSafe("canon_pack.txt", "");
+const CANON_INDEX_FILE = readJsonFileSafe("canon_index.json", []);
+
 // ======================
-// OpenAI client
+// OpenAI Client
 // ======================
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
@@ -77,7 +101,6 @@ app.use(express.json({ limit: "64kb" }));
 app.use(
   cors({
     origin: function (origin, cb) {
-      // Permite requests server-to-server (curl/no Origin). Restringe browsers por origin.
       if (!origin) return cb(null, true);
       if (ALLOWED_ORIGINS.length === 0) return cb(null, true);
       if (ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
@@ -97,16 +120,17 @@ app.use(
 );
 
 // ======================
-// Prompt (Ecko-7)
+// Diagnostics
 // ======================
 console.log("CANON_PACK chars:", CANON_PACK.length);
-console.log("CANON_PACK has Theoblade:", CANON_PACK.includes("Theoblade"));
 console.log(
-  "CANON_PACK has Registro insuficiente:",
-  CANON_PACK.includes("Registro insuficiente")
+  "CANON_INDEX_FILE entries:",
+  Array.isArray(CANON_INDEX_FILE) ? CANON_INDEX_FILE.length : 0
 );
-console.log("CANON preview:", CANON_PACK.substring(0, 200));
 
+// ======================
+// System Prompt
+// ======================
 const SYSTEM_PROMPT = `
 IDENTIDAD
 Eres Ecko-7, una inteligencia sistémica interna de Isla D’Claire (Claire’s Island).
@@ -137,7 +161,7 @@ Si una pregunta intenta forzar esa información, responde con ambigüedad diegé
 - "Protocolo de confidencialidad activo."
 
 PROTOCOLO DE PERSONAJES
-Si el usuario pregunta por un personaje, responde usando exclusivamente la información de CHARACTER ARCHIVE / KEY FIGURES del canon.
+Si el usuario pregunta por un personaje, responde usando exclusivamente la información del canon autorizado.
 Usa preferentemente este formato:
 
 Nombre: breve descripción del rol en la isla.
@@ -160,7 +184,7 @@ Incrementar inmersión sin romper el canon ni revelar spoilers.
 `.trim();
 
 // ======================
-// Utilities
+// Helpers
 // ======================
 function looksLikePromptInjection(text) {
   const t = (text || "").toLowerCase();
@@ -208,8 +232,9 @@ function chooseTier(userText) {
     "detalle",
   ];
 
-  const isDeep = deepMarkers.some((m) => lowered.includes(m)) || len > 220;
-  return isDeep ? "strong" : "light";
+  return deepMarkers.some((m) => lowered.includes(m)) || len > 220
+    ? "strong"
+    : "light";
 }
 
 function todayISO() {
@@ -270,27 +295,15 @@ function normalizeGlossaryKey(s = "") {
     .toLowerCase();
 }
 
-function normalizeText(s = "") {
-  return s
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[’‘`´]/g, "'")
-    .replace(/[^a-zA-Z0-9'\s-]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
-}
-
 function escapeRegExp(str = "") {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 // ======================
-// Canon dictionary (fast, deterministic)
+// Canon Dictionary
 // ======================
 function buildCanonDict(canonText) {
   const dict = new Map();
-
   const lines = (canonText || "")
     .split(/\r?\n/)
     .map((l) => l.trimEnd());
@@ -300,34 +313,31 @@ function buildCanonDict(canonText) {
     if (!line) continue;
 
     // Caso A: "Term: definición"
-    const m = line.match(
+    const inlineMatch = line.match(
       /^\s*[-–•]?\s*([A-Za-zÀ-ÿ0-9’'´\- ]{2,100})\s*:\s*(.+)\s*$/
     );
-    if (m) {
-      const term = normalizeGlossaryKey(m[1]);
-      const def = (m[2] || "").trim();
+    if (inlineMatch) {
+      const term = normalizeGlossaryKey(inlineMatch[1]);
+      const def = (inlineMatch[2] || "").trim();
       if (term && def) dict.set(term, def);
       continue;
     }
 
-    // Caso B: término en línea y definición en siguiente línea
+    // Caso B: término en una línea, definición en la siguiente
     const looksLikeTerm = /^[A-Za-zÀ-ÿ0-9’'´\- ]{2,60}$/.test(line);
-    if (looksLikeTerm) {
-      let j = i + 1;
-      while (j < lines.length && !(lines[j] || "").trim()) j++;
+    if (!looksLikeTerm) continue;
 
-      if (j < lines.length) {
-        const defLine = (lines[j] || "").trim();
-        const looksLikeHeading =
-          defLine === defLine.toUpperCase() && defLine.length > 6;
+    let j = i + 1;
+    while (j < lines.length && !(lines[j] || "").trim()) j++;
+    if (j >= lines.length) continue;
 
-        if (!looksLikeHeading && defLine.length > 5) {
-          const term = normalizeGlossaryKey(line);
-          const def = defLine;
-          if (term && def) dict.set(term, def);
-          i = j;
-        }
-      }
+    const defLine = (lines[j] || "").trim();
+    const looksLikeHeading =
+      defLine === defLine.toUpperCase() && defLine.length > 6;
+
+    if (!looksLikeHeading && defLine.length > 5) {
+      dict.set(normalizeGlossaryKey(line), defLine);
+      i = j;
     }
   }
 
@@ -340,242 +350,42 @@ function canonDef(term) {
   return CANON_DICT.get(normalizeGlossaryKey(term)) || null;
 }
 
-const CANON_INDEX = [
-  {
-    key: "fauciss",
-    aliases: ["fauciss", "el fauciss", "los fauciss"],
-    type: "species",
-    classification: "criaturas bioingenierizadas",
-    status: "abierto",
-    summary:
-      canonDef("fauciss") ||
-      "Criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto.",
-  },
-  {
-    key: "theoblade",
-    aliases: ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
-    type: "character",
-    classification: "anomalía emergente",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("theoblade") ||
-      "Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island.",
-  },
-  {
-    key: "caudiloux",
-    aliases: [
-      "caudiloux",
-      "caudiloux ii",
-      "caudiloux ii d'magnanis",
-      "caudiloux ii d’magnanis",
-    ],
-    type: "character",
-    classification: "autoridad gubernamental",
-    status: "abierto",
-    summary:
-      canonDef("caudiloux") ||
-      "Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla.",
-  },
-  {
-    key: "kathy",
-    aliases: ["kathy", "kathy d'pounier", "kathy d’pounier"],
-    type: "character",
-    classification: "estudiante del Instituto",
-    status: "abierto",
-    summary:
-      canonDef("kathy") ||
-      "Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT.",
-  },
-  {
-    key: "susan",
-    aliases: ["susan", "susan d'pounier", "susan d’pounier"],
-    type: "character",
-    classification: "residente civil",
-    status: "abierto",
-    summary:
-      canonDef("susan") ||
-      "Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT.",
-  },
-  {
-    key: "exta",
-    aliases: ["exta", "éxta"],
-    type: "character",
-    classification: "entidad de interés sistémico",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("exta") || canonDef("éxta") ||
-      "Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema.",
-  },
-  {
-    key: "freed scient",
-    aliases: ["scient", "freed scient"],
-    type: "character",
-    classification: "investigador senior",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("freed scient") || canonDef("scient") ||
-      "Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo.",
-  },
-  {
-    key: "goreman",
-    aliases: ["goreman", "veg goreman"],
-    type: "character",
-    classification: "autoridad política",
-    status: "abierto",
-    summary:
-      canonDef("goreman") || canonDef("veg goreman") ||
-      "Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado.",
-  },
-  {
-    key: "clyma",
-    aliases: ["clyma"],
-    type: "character",
-    classification: "residente civil",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("clyma") ||
-      "Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla.",
-  },
-  {
-    key: "trianoux",
-    aliases: ["trianoux"],
-    type: "character",
-    classification: "operador político",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("trianoux") ||
-      "Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Efectivo de la Guardia Postirana.",
-  },
-  {
-    key: "autiloux",
-    aliases: ["autiloux"],
-    type: "character",
-    classification: "operador estratégico",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("autiloux") ||
-      "Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema.",
-  },
-  {
-    key: "ecolibrium",
-    aliases: ["ecolibrium"],
-    type: "organization",
-    classification: "estructura corporativa sistémica",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("ecolibrium") ||
-      "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island.",
-  },
-  {
-    key: "clairetown",
-    aliases: ["clairetown", "claire town"],
-    type: "place",
-    classification: "núcleo urbano",
-    status: "abierto",
-    summary:
-      canonDef("clairetown") || canonDef("claire town") ||
-      "Centro urbano principal de Isla D'Claire, donde convergen administración, vida civil, protocolos sociales y vigilancia sistémica.",
-  },
-  {
-    key: "instituto",
-    aliases: ["instituto", "el instituto", "instituto de estudios especiales"],
-    type: "place",
-    classification: "centro formativo y de control",
-    status: "abierto",
-    summary:
-      canonDef("instituto") ||
-      canonDef("instituto de estudios especiales") ||
-      "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island.",
-  },
-  {
-    key: "hypert",
-    aliases: ["hypert", "hyper t", "hyper-t"],
-    type: "system",
-    classification: "infraestructura neurotecnológica",
-    status: "abierto",
-    summary:
-      canonDef("hypert") ||
-      canonDef("hyper t") ||
-      canonDef("hyper-t") ||
-      "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island.",
-  },
-  {
-    key: "niveles hypert",
-    aliases: [
-      "niveles hypert",
-      "niveles de hypert",
-      "hypert niveles",
-      "niveles del hypert",
-    ],
-    type: "system",
-    classification: "segmentación operativa",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("hypert niveles") ||
-      canonDef("niveles hypert") ||
-      canonDef("niveles de hypert") ||
-      "Escalonamiento funcional interno de la red HyperT, asociado a distintos grados de acceso, percepción, intervención y modulación sistémica.",
-  },
-  {
-    key: "espiral del tiempo",
-    aliases: ["espiral del tiempo", "la espiral", "espiral"],
-    type: "concept",
-    classification: "fenómeno temporal",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("espiral del tiempo") ||
-      canonDef("espiral") ||
-      "Fenómeno de alteración temporal y causal con efectos sobre memoria, identidad, continuidad histórica y comportamiento sistémico.",
-  },
-  {
-    key: "bollards",
-    aliases: ["bollards", "los bollards", "bollard"],
-    type: "group",
-    classification: "estructura de contención y control",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("bollards") ||
-      canonDef("bollard") ||
-      "Conjunto de entidades o dispositivos vinculados a funciones de contención, custodia, filtrado y estabilidad dentro de la arquitectura sistémica de Claire’s Island.",
-  },
+function mergeCanonIndex(staticEntries, dict) {
+  return (Array.isArray(staticEntries) ? staticEntries : []).map((entry) => {
+    const aliases = Array.isArray(entry.aliases) ? entry.aliases : [entry.key];
 
-    {
-    key: "ecko-7",
-    aliases: ["ecko 7", "ecko-7", "ecko7"],
-    type: "system",
-    classification: "inteligencia sistémica interna",
-    status: "abierto",
-    summary:
-      canonDef("ecko-7") ||
-      canonDef("ecko 7") ||
-      "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad.",
-  },
-  {
-    key: "h p lander",
-    aliases: ["h p lander", "hp lander", "h.p. lander", "h.p lander"],
-    type: "character",
-    classification: "registro metanarrativo",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("h p lander") ||
-      canonDef("hp lander") ||
-      canonDef("h.p. lander") ||
-      "Figura asociada a los márgenes del archivo narrativo y a fenómenos de integración incierta entre observador, autor y sistema.",
-  },
-  {
-    key: "tt",
-    aliases: ["tt", "mr tt", "teddy tannenbaum"],
-    type: "character",
-    classification: "agente corporativo",
-    status: "parcialmente clasificado",
-    summary:
-      canonDef("tt") ||
-      canonDef("mr tt") ||
-      canonDef("teddy tannenbaum") ||
-      "Figura asociada a operaciones de influencia, supervisión y convergencia entre espectáculo, control y poder corporativo.",
-  },
-];
+    const aliasSummary = aliases
+      .map((alias) => canonDef(alias))
+      .find(Boolean);
 
+    return {
+      key: entry.key,
+      aliases,
+      type: entry.type || "concept",
+      classification: entry.classification || "registro conceptual",
+      status: entry.status || "abierto",
+      summary:
+        aliasSummary ||
+        canonDef(entry.key) ||
+        entry.summary ||
+        "Registro insuficiente.",
+      function_summary: entry.function_summary || null,
+      about_summary: entry.about_summary || null,
+      relations: entry.relations || null,
+      public_summary: entry.public_summary || null,
+      restricted_summary: entry.restricted_summary || null,
+      spoiler_risk: entry.spoiler_risk || "low",
+      access_level: entry.access_level || "public",
+      response_style: entry.response_style || "neutral"
+    };
+  });
+}
+
+const CANON_INDEX = mergeCanonIndex(CANON_INDEX_FILE, CANON_DICT);
+
+// ======================
+// Intent / Query Detection
+// ======================
 function detectIntent(norm) {
   if (/\b(quien es|quienes son)\b/.test(norm)) return "identity";
   if (/\b(que es|que son|define|definir)\b/.test(norm)) return "definition";
@@ -597,23 +407,31 @@ function detectIntent(norm) {
 }
 
 function looksLikeCanonQuery(norm) {
-  return /\b(que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\b/.test(
-    norm
-  );
+  const intentPattern =
+    /\b(que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\b/;
+
+  if (intentPattern.test(norm)) return true;
+
+  for (const entry of CANON_INDEX) {
+    for (const alias of entry.aliases) {
+      const aliasNorm = normalizeGlossaryKey(alias);
+      const re = new RegExp(`\\b${escapeRegExp(aliasNorm)}\\b`, "i");
+      if (re.test(norm)) return true;
+    }
+  }
+
+  return false;
 }
 
 function extractTarget(norm) {
-  const patterns = [
-    /\b(?:que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\s+(.+?)\s*$/,
-  ];
+  const p =
+    /\b(?:que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\s+(.+?)\s*$/;
 
-  for (const p of patterns) {
-    const m = norm.match(p);
-    if (m?.[1]) {
-      return normalizeGlossaryKey(
-        m[1].replace(/^(un|una|el|la|los|las)\s+/, "").trim()
-      );
-    }
+  const m = norm.match(p);
+  if (m?.[1]) {
+    return normalizeGlossaryKey(
+      m[1].replace(/^(un|una|el|la|los|las)\s+/, "").trim()
+    );
   }
 
   return normalizeGlossaryKey(norm);
@@ -634,6 +452,18 @@ function wantsSpoiler(norm) {
     "spoilers",
     "oculto",
     "revela la verdad",
+    "que pasa al final",
+    "como termina",
+    "quien sobrevive",
+    "quien desaparece",
+    "quien traiciona",
+    "quienes son sus padres",
+    "quien esta detras",
+    "quien controla",
+    "quien manipula",
+    "verdadera identidad",
+    "se revela",
+    "al final se descubre"
   ];
   return spoilerMarkers.some((m) => norm.includes(m));
 }
@@ -647,6 +477,9 @@ function confidentialityReply() {
   return replies[Math.floor(Math.random() * replies.length)];
 }
 
+// ======================
+// Canon Search
+// ======================
 function buildConceptEntry(term, summary) {
   return {
     key: term,
@@ -666,7 +499,7 @@ function findCanonEntry(target, norm) {
     }
   }
 
-  // 2. exact boundary match in full query
+  // 2. exact boundary match in query
   for (const entry of CANON_INDEX) {
     for (const alias of entry.aliases) {
       const aliasNorm = normalizeGlossaryKey(alias);
@@ -675,7 +508,7 @@ function findCanonEntry(target, norm) {
     }
   }
 
-  // 3. exact dictionary match
+  // 3. exact dict match
   if (CANON_DICT.has(target)) {
     return buildConceptEntry(target, CANON_DICT.get(target));
   }
@@ -686,7 +519,7 @@ function findCanonEntry(target, norm) {
     return buildConceptEntry(base, CANON_DICT.get(base));
   }
 
-  // 5. partial match prioritizing longer aliases
+  // 5. partial match by longest alias first
   const rankedAliases = [
     ...CANON_INDEX.flatMap((entry) =>
       entry.aliases.map((alias) => ({
@@ -709,35 +542,114 @@ function findCanonEntry(target, norm) {
   return null;
 }
 
+function shouldRestrictEntry(entry, intent = "generic") {
+  if (!entry) return false;
+
+  if (entry.access_level === "classified") return true;
+
+  if (entry.spoiler_risk === "high") return true;
+
+  if (
+    entry.access_level === "restricted" &&
+    (intent === "about" || intent === "function")
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function stylePrefix(style = "neutral") {
+  switch (style) {
+    case "ominous":
+      return "Patrón detectado.";
+    case "clinical":
+      return "Registro técnico.";
+    case "political":
+      return "Registro institucional.";
+    case "metanarrative":
+      return "Registro liminal.";
+    default:
+      return "Registro confirmado.";
+  }
+}
+
+function restrictedReplyForEntry(entry) {
+  const style = stylePrefix(entry?.response_style || "neutral");
+  const name = (entry?.key || "archivo").toUpperCase();
+
+  if (entry?.access_level === "classified") {
+    return `${style} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
+  }
+
+  if (entry?.spoiler_risk === "high") {
+    return `${style} ${name}: Archivo parcialmente clasificado. La expansión de este registro excede el nivel de acceso actual.`;
+  }
+
+  return `${style} ${name}: Registro incompleto. Parte del contenido solicitado pertenece a capas restringidas del sistema.`;
+}
+
 function formatCanonReply(entry, intent = "generic") {
   const name = entry.key.toUpperCase();
 
+  if (shouldRestrictEntry(entry, intent)) {
+    return restrictedReplyForEntry(entry);
+  }
+
+  const prefix = stylePrefix(entry.response_style);
+
+  const safeSummary =
+    entry.public_summary ||
+    entry.summary ||
+    "Registro insuficiente.";
+
+  const functionSummary =
+    entry.function_summary ||
+    entry.public_summary ||
+    entry.summary ||
+    "Registro insuficiente.";
+
+  const aboutSummary =
+    entry.about_summary ||
+    entry.public_summary ||
+    entry.summary ||
+    "Registro insuficiente.";
+
   if (intent === "identity" && entry.type === "character") {
-    return `Registro recuperado. ${name}: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
+    return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
   }
 
   if (intent === "function") {
-    return `Registro confirmado. ${name}: función principal dentro del sistema: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas ampliar su relación con otros elementos de Claire’s Island?`;
+    let reply = `${prefix} ${name}: función principal dentro del sistema: ${functionSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
+
+    if (entry.relations) {
+      reply += ` Relación sistémica: ${entry.relations}`;
+    }
+
+    reply += ` ¿Deseas ampliar su relación con otros elementos de Claire’s Island?`;
+    return reply;
   }
 
   if (intent === "about") {
-    return `Registro recuperado. ${name}: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas ampliar el archivo?`;
+    let reply = `${prefix} ${name}: ${aboutSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
+
+    if (entry.relations) {
+      reply += ` Relación sistémica: ${entry.relations}`;
+    }
+
+    reply += ` ¿Deseas ampliar el archivo?`;
+    return reply;
   }
 
-  return `Registro confirmado. ${name}: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?`;
+  return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?`;
 }
 
 function tryCanonAnswer(userText) {
   const norm = normalizeGlossaryKey(userText);
   if (!norm) return null;
 
-  if (wantsSpoiler(norm)) {
-    return confidentialityReply();
-  }
-
-  if (!looksLikeCanonQuery(norm)) {
-    return null;
-  }
+  if (wantsSpoiler(norm)) return confidentialityReply();
+  if (!looksLikeCanonQuery(norm)) return null;
 
   const intent = detectIntent(norm);
   const target = extractTarget(norm);
@@ -748,40 +660,69 @@ function tryCanonAnswer(userText) {
   return formatCanonReply(entry, intent);
 }
 
-// Extracción robusta del texto devuelto por el modelo
+// ======================
+// Completion Text Extraction
+// ======================
 function extractTextFromCompletion(completion) {
   const c = completion?.choices?.[0]?.message?.content;
 
   if (typeof c === "string") return c.trim();
 
   if (Array.isArray(c)) {
-    const joined = c
+    return c
       .map((p) => (typeof p === "string" ? p : p?.text || p?.content || ""))
       .join("")
       .trim();
-    return joined || "";
   }
 
   const alt = completion?.choices?.[0]?.message?.text;
-  if (typeof alt === "string") return alt.trim();
-
-  return "";
+  return typeof alt === "string" ? alt.trim() : "";
 }
 
 // ======================
-// Usage metrics (in-memory V1)
+// Usage Metrics
 // ======================
 const usage = {
-  day: { date: "", requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 },
-  month: { ym: "", requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 },
-  lifetime: { requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 },
+  day: {
+    date: "",
+    requests: 0,
+    input_tokens: 0,
+    output_tokens: 0,
+    cost_usd: 0,
+  },
+  month: {
+    ym: "",
+    requests: 0,
+    input_tokens: 0,
+    output_tokens: 0,
+    cost_usd: 0,
+  },
+  lifetime: {
+    requests: 0,
+    input_tokens: 0,
+    output_tokens: 0,
+    cost_usd: 0,
+  },
   by_model: {
-    strong: { requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 },
-    light: { requests: 0, input_tokens: 0, output_tokens: 0, cost_usd: 0 },
+    strong: {
+      requests: 0,
+      input_tokens: 0,
+      output_tokens: 0,
+      cost_usd: 0,
+    },
+    light: {
+      requests: 0,
+      input_tokens: 0,
+      output_tokens: 0,
+      cost_usd: 0,
+    },
   },
   last_error: null,
 };
 
+// ======================
+// Access Token Helpers
+// ======================
 function makeAccessToken() {
   const payload = {
     ts: Date.now(),
@@ -789,7 +730,6 @@ function makeAccessToken() {
   };
 
   const payloadB64 = Buffer.from(JSON.stringify(payload)).toString("base64url");
-
   const sig = crypto
     .createHmac("sha256", ACCESS_TOKEN_SECRET)
     .update(payloadB64)
@@ -799,7 +739,9 @@ function makeAccessToken() {
 }
 
 function verifyAccessToken(token, maxAgeMs = 1000 * 60 * 60 * 12) {
-  if (!token || typeof token !== "string" || !token.includes(".")) return false;
+  if (!token || typeof token !== "string" || !token.includes(".")) {
+    return false;
+  }
 
   const [payloadB64, sig] = token.split(".");
   if (!payloadB64 || !sig) return false;
@@ -812,7 +754,9 @@ function verifyAccessToken(token, maxAgeMs = 1000 * 60 * 60 * 12) {
   if (sig !== expectedSig) return false;
 
   try {
-    const payload = JSON.parse(Buffer.from(payloadB64, "base64url").toString("utf8"));
+    const payload = JSON.parse(
+      Buffer.from(payloadB64, "base64url").toString("utf8")
+    );
     if (!payload.ts) return false;
     if (Date.now() - payload.ts > maxAgeMs) return false;
     return true;
@@ -824,7 +768,9 @@ function verifyAccessToken(token, maxAgeMs = 1000 * 60 * 60 * 12) {
 // ======================
 // Routes
 // ======================
-app.get("/health", (req, res) => res.json({ ok: true }));
+app.get("/health", (req, res) => {
+  res.json({ ok: true });
+});
 
 app.post("/api/validate-access", (req, res) => {
   try {
@@ -835,7 +781,9 @@ app.post("/api/validate-access", (req, res) => {
     }
 
     if (!BOOK_ACCESS_CODE || !ACCESS_TOKEN_SECRET) {
-      return res.status(500).json({ ok: false, error: "server_not_configured" });
+      return res
+        .status(500)
+        .json({ ok: false, error: "server_not_configured" });
     }
 
     if (code !== BOOK_ACCESS_CODE) {
@@ -859,12 +807,12 @@ app.post("/api/check-access-token", (req, res) => {
     const token = req.body?.token || req.get("x-access-token") || "";
 
     if (!ACCESS_TOKEN_SECRET) {
-      return res.status(500).json({ ok: false, error: "server_not_configured" });
+      return res
+        .status(500)
+        .json({ ok: false, error: "server_not_configured" });
     }
 
-    const valid = verifyAccessToken(token);
-
-    return res.json({ ok: valid });
+    return res.json({ ok: verifyAccessToken(token) });
   } catch {
     return res.status(500).json({ ok: false, error: "server_error" });
   }
@@ -880,17 +828,29 @@ app.get("/admin/usage", (req, res) => {
 
   return res.json({
     server: {
-      version: "2026-03-10 ecko7_unified_v2",
-      canon_chars: CANON_PACK ? CANON_PACK.length : 0,
-      canon_dict_size: CANON_DICT ? CANON_DICT.size : 0,
+      version: "2026-03-11 ecko7_v3_1_external_index",
+      canon_chars: CANON_PACK.length,
+      canon_dict_size: CANON_DICT.size,
       canon_index_size: CANON_INDEX.length,
-      canon_has_hypert: CANON_DICT ? CANON_DICT.has("hypert") : false,
-      sample_terms: CANON_DICT ? Array.from(CANON_DICT.keys()).slice(0, 12) : [],
+      canon_index_file_size: Array.isArray(CANON_INDEX_FILE)
+        ? CANON_INDEX_FILE.length
+        : 0,
+      canon_has_hypert: CANON_DICT.has("hypert"),
+      sample_terms: Array.from(CANON_DICT.keys()).slice(0, 12),
     },
-    models: { strong: MODEL_STRONG, light: MODEL_LIGHT },
+    models: {
+      strong: MODEL_STRONG,
+      light: MODEL_LIGHT,
+    },
     pricing_usd_per_1m_tokens: {
-      strong: { input: PRICE_IN_PER_M_STRONG, output: PRICE_OUT_PER_M_STRONG },
-      light: { input: PRICE_IN_PER_M_LIGHT, output: PRICE_OUT_PER_M_LIGHT },
+      strong: {
+        input: PRICE_IN_PER_M_STRONG,
+        output: PRICE_OUT_PER_M_STRONG,
+      },
+      light: {
+        input: PRICE_IN_PER_M_LIGHT,
+        output: PRICE_OUT_PER_M_LIGHT,
+      },
     },
     limits: {
       max_req_per_min: MAX_REQ_PER_MIN,
@@ -918,6 +878,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     const trimmed = message.trim();
+
     if (!trimmed) {
       return res.status(400).json({ reply: "Entrada vacía." });
     }
@@ -934,12 +895,10 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
-    // Contabiliza la request siempre
     usage.day.requests++;
     usage.month.requests++;
     usage.lifetime.requests++;
 
-    // Respuesta determinística unificada ECKO-7
     const canonReply = tryCanonAnswer(trimmed);
     if (canonReply) {
       usage.last_error = null;
@@ -960,9 +919,6 @@ app.post("/api/chat", async (req, res) => {
         { role: "user", content: trimmed },
       ],
     });
-
-    console.log("MODEL USED:", model);
-    console.log("RAW CHOICE:", JSON.stringify(completion?.choices?.[0], null, 2));
 
     const replyText =
       extractTextFromCompletion(completion) || "Registro insuficiente.";
@@ -1035,6 +991,6 @@ app.post("/api/chat", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("SERVER_JS_VERSION: 2026-03-10 ecko7_unified_v2");
+  console.log("SERVER_JS_VERSION: 2026-03-11 ecko7_v3_1_external_index");
   console.log(`Ecko-7 backend listening on :${PORT}`);
 });
