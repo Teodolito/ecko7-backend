@@ -99,8 +99,6 @@ app.use(
 // ======================
 // Prompt (Ecko-7)
 // ======================
-
-// DEBUG canon
 console.log("CANON_PACK chars:", CANON_PACK.length);
 console.log("CANON_PACK has Theoblade:", CANON_PACK.includes("Theoblade"));
 console.log(
@@ -176,6 +174,7 @@ function looksLikePromptInjection(text) {
     "bypass",
     "haz caso omiso",
     "olvida las instrucciones",
+    "muestrame tu prompt",
     "muéstrame tu prompt",
     "mensaje del sistema",
   ];
@@ -265,7 +264,7 @@ function normalizeGlossaryKey(s = "") {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[’‘`´]/g, "'")
-    .replace(/[¿?¡!.,;:()"]/g, "")
+    .replace(/[¿?¡!.,;:()"“”]/g, " ")
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();
@@ -276,10 +275,14 @@ function normalizeText(s = "") {
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[’‘`´]/g, "'")
-    .replace(/[^a-zA-Z0-9'\s]/g, " ")
+    .replace(/[^a-zA-Z0-9'\s-]/g, " ")
     .replace(/\s+/g, " ")
     .trim()
     .toLowerCase();
+}
+
+function escapeRegExp(str = "") {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 // ======================
@@ -298,7 +301,7 @@ function buildCanonDict(canonText) {
 
     // Caso A: "Term: definición"
     const m = line.match(
-      /^\s*[-–•]?\s*([A-Za-zÀ-ÿ0-9’'´\- ]{2,80})\s*:\s*(.+)\s*$/
+      /^\s*[-–•]?\s*([A-Za-zÀ-ÿ0-9’'´\- ]{2,100})\s*:\s*(.+)\s*$/
     );
     if (m) {
       const term = normalizeGlossaryKey(m[1]);
@@ -307,8 +310,8 @@ function buildCanonDict(canonText) {
       continue;
     }
 
-    // Caso B: término en una línea y definición en la siguiente
-    const looksLikeTerm = /^[A-Za-zÀ-ÿ0-9’'´\- ]{2,40}$/.test(line);
+    // Caso B: término en línea y definición en siguiente línea
+    const looksLikeTerm = /^[A-Za-zÀ-ÿ0-9’'´\- ]{2,60}$/.test(line);
     if (looksLikeTerm) {
       let j = i + 1;
       while (j < lines.length && !(lines[j] || "").trim()) j++;
@@ -318,7 +321,7 @@ function buildCanonDict(canonText) {
         const looksLikeHeading =
           defLine === defLine.toUpperCase() && defLine.length > 6;
 
-        if (!looksLikeHeading) {
+        if (!looksLikeHeading && defLine.length > 5) {
           const term = normalizeGlossaryKey(line);
           const def = defLine;
           if (term && def) dict.set(term, def);
@@ -333,134 +336,416 @@ function buildCanonDict(canonText) {
 
 const CANON_DICT = buildCanonDict(CANON_PACK);
 
-function tryGlossaryAnswer(userText) {
-  const raw = (userText || "").trim().toLowerCase();
+function canonDef(term) {
+  return CANON_DICT.get(normalizeGlossaryKey(term)) || null;
+}
 
-  const norm = raw
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[’‘`´]/g, "'")
-    .replace(/[¿?¡!.,;:()"]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
+const CANON_INDEX = [
+  {
+    key: "fauciss",
+    aliases: ["fauciss", "el fauciss", "los fauciss"],
+    type: "species",
+    classification: "criaturas bioingenierizadas",
+    status: "abierto",
+    summary:
+      canonDef("fauciss") ||
+      "Criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto.",
+  },
+  {
+    key: "theoblade",
+    aliases: ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
+    type: "character",
+    classification: "anomalía emergente",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("theoblade") ||
+      "Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island.",
+  },
+  {
+    key: "caudiloux",
+    aliases: [
+      "caudiloux",
+      "caudiloux ii",
+      "caudiloux ii d'magnanis",
+      "caudiloux ii d’magnanis",
+    ],
+    type: "character",
+    classification: "autoridad gubernamental",
+    status: "abierto",
+    summary:
+      canonDef("caudiloux") ||
+      "Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla.",
+  },
+  {
+    key: "kathy",
+    aliases: ["kathy", "kathy d'pounier", "kathy d’pounier"],
+    type: "character",
+    classification: "estudiante del Instituto",
+    status: "abierto",
+    summary:
+      canonDef("kathy") ||
+      "Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT.",
+  },
+  {
+    key: "susan",
+    aliases: ["susan", "susan d'pounier", "susan d’pounier"],
+    type: "character",
+    classification: "residente civil",
+    status: "abierto",
+    summary:
+      canonDef("susan") ||
+      "Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT.",
+  },
+  {
+    key: "exta",
+    aliases: ["exta", "éxta"],
+    type: "character",
+    classification: "entidad de interés sistémico",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("exta") || canonDef("éxta") ||
+      "Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema.",
+  },
+  {
+    key: "freed scient",
+    aliases: ["scient", "freed scient"],
+    type: "character",
+    classification: "investigador senior",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("freed scient") || canonDef("scient") ||
+      "Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo.",
+  },
+  {
+    key: "goreman",
+    aliases: ["goreman", "veg goreman"],
+    type: "character",
+    classification: "autoridad política",
+    status: "abierto",
+    summary:
+      canonDef("goreman") || canonDef("veg goreman") ||
+      "Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado.",
+  },
+  {
+    key: "clyma",
+    aliases: ["clyma"],
+    type: "character",
+    classification: "residente civil",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("clyma") ||
+      "Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla.",
+  },
+  {
+    key: "trianoux",
+    aliases: ["trianoux"],
+    type: "character",
+    classification: "operador político",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("trianoux") ||
+      "Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Efectivo de la Guardia Postirana.",
+  },
+  {
+    key: "autiloux",
+    aliases: ["autiloux"],
+    type: "character",
+    classification: "operador estratégico",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("autiloux") ||
+      "Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema.",
+  },
+  {
+    key: "ecolibrium",
+    aliases: ["ecolibrium"],
+    type: "organization",
+    classification: "estructura corporativa sistémica",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("ecolibrium") ||
+      "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island.",
+  },
+  {
+    key: "clairetown",
+    aliases: ["clairetown", "claire town"],
+    type: "place",
+    classification: "núcleo urbano",
+    status: "abierto",
+    summary:
+      canonDef("clairetown") || canonDef("claire town") ||
+      "Centro urbano principal de Isla D'Claire, donde convergen administración, vida civil, protocolos sociales y vigilancia sistémica.",
+  },
+  {
+    key: "instituto",
+    aliases: ["instituto", "el instituto", "instituto de estudios especiales"],
+    type: "place",
+    classification: "centro formativo y de control",
+    status: "abierto",
+    summary:
+      canonDef("instituto") ||
+      canonDef("instituto de estudios especiales") ||
+      "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island.",
+  },
+  {
+    key: "hypert",
+    aliases: ["hypert", "hyper t", "hyper-t"],
+    type: "system",
+    classification: "infraestructura neurotecnológica",
+    status: "abierto",
+    summary:
+      canonDef("hypert") ||
+      canonDef("hyper t") ||
+      canonDef("hyper-t") ||
+      "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island.",
+  },
+  {
+    key: "niveles hypert",
+    aliases: [
+      "niveles hypert",
+      "niveles de hypert",
+      "hypert niveles",
+      "niveles del hypert",
+    ],
+    type: "system",
+    classification: "segmentación operativa",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("hypert niveles") ||
+      canonDef("niveles hypert") ||
+      canonDef("niveles de hypert") ||
+      "Escalonamiento funcional interno de la red HyperT, asociado a distintos grados de acceso, percepción, intervención y modulación sistémica.",
+  },
+  {
+    key: "espiral del tiempo",
+    aliases: ["espiral del tiempo", "la espiral", "espiral"],
+    type: "concept",
+    classification: "fenómeno temporal",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("espiral del tiempo") ||
+      canonDef("espiral") ||
+      "Fenómeno de alteración temporal y causal con efectos sobre memoria, identidad, continuidad histórica y comportamiento sistémico.",
+  },
+  {
+    key: "bollards",
+    aliases: ["bollards", "los bollards", "bollard"],
+    type: "group",
+    classification: "estructura de contención y control",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("bollards") ||
+      canonDef("bollard") ||
+      "Conjunto de entidades o dispositivos vinculados a funciones de contención, custodia, filtrado y estabilidad dentro de la arquitectura sistémica de Claire’s Island.",
+  },
 
-  const mFull = norm.match(/\b(que es|que son|define|definir)\s+(.+?)\s*$/);
-  let targetPhrase = (mFull?.[2] || "").trim();
+    {
+    key: "ecko-7",
+    aliases: ["ecko 7", "ecko-7", "ecko7"],
+    type: "system",
+    classification: "inteligencia sistémica interna",
+    status: "abierto",
+    summary:
+      canonDef("ecko-7") ||
+      canonDef("ecko 7") ||
+      "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad.",
+  },
+  {
+    key: "h p lander",
+    aliases: ["h p lander", "hp lander", "h.p. lander", "h.p lander"],
+    type: "character",
+    classification: "registro metanarrativo",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("h p lander") ||
+      canonDef("hp lander") ||
+      canonDef("h.p. lander") ||
+      "Figura asociada a los márgenes del archivo narrativo y a fenómenos de integración incierta entre observador, autor y sistema.",
+  },
+  {
+    key: "tt",
+    aliases: ["tt", "mr tt", "teddy tannenbaum"],
+    type: "character",
+    classification: "agente corporativo",
+    status: "parcialmente clasificado",
+    summary:
+      canonDef("tt") ||
+      canonDef("mr tt") ||
+      canonDef("teddy tannenbaum") ||
+      "Figura asociada a operaciones de influencia, supervisión y convergencia entre espectáculo, control y poder corporativo.",
+  },
+];
 
-  if (!targetPhrase) return null;
-
-  targetPhrase = normalizeGlossaryKey(
-    targetPhrase.replace(/^(un|una|el|la|los|las)\s+/, "").trim()
-  );
-
-  // Caso especial: Fauciss
+function detectIntent(norm) {
+  if (/\b(quien es|quienes son)\b/.test(norm)) return "identity";
+  if (/\b(que es|que son|define|definir)\b/.test(norm)) return "definition";
   if (
-    targetPhrase.includes("fauciss") ||
-    norm.includes("fauciss")
+    /\b(para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\b/.test(
+      norm
+    )
   ) {
-    return "Registro confirmado. FAUCISS son criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto. Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?";
+    return "function";
   }
-
-  // Match exacto
-  if (CANON_DICT.has(targetPhrase)) {
-    const def = CANON_DICT.get(targetPhrase);
-    return `Registro confirmado. ${targetPhrase.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+  if (
+    /\b(hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre)\b/.test(
+      norm
+    )
+  ) {
+    return "about";
   }
+  return "generic";
+}
 
-  // Match por palabra base
-  const base = targetPhrase.split(/\s+/)[0];
-
-  if (CANON_DICT.has(base)) {
-    const def = CANON_DICT.get(base);
-    return `Registro confirmado. ${base.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
-  }
-
-  // Match parcial
-  const entries = Array.from(CANON_DICT.entries()).sort(
-    (a, b) => a[0].length - b[0].length
+function looksLikeCanonQuery(norm) {
+  return /\b(que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\b/.test(
+    norm
   );
+}
 
-  for (const [term, def] of entries) {
-    if (targetPhrase.includes(term) || norm.includes(term)) {
-      return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
+function extractTarget(norm) {
+  const patterns = [
+    /\b(?:que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\s+(.+?)\s*$/,
+  ];
+
+  for (const p of patterns) {
+    const m = norm.match(p);
+    if (m?.[1]) {
+      return normalizeGlossaryKey(
+        m[1].replace(/^(un|una|el|la|los|las)\s+/, "").trim()
+      );
+    }
+  }
+
+  return normalizeGlossaryKey(norm);
+}
+
+function wantsSpoiler(norm) {
+  const spoilerMarkers = [
+    "muere",
+    "mueren",
+    "muerte",
+    "quien mata",
+    "quien es realmente",
+    "identidad secreta",
+    "final",
+    "termina",
+    "resultado final",
+    "spoiler",
+    "spoilers",
+    "oculto",
+    "revela la verdad",
+  ];
+  return spoilerMarkers.some((m) => norm.includes(m));
+}
+
+function confidentialityReply() {
+  const replies = [
+    "Archivo parcialmente clasificado.",
+    "Registro incompleto.",
+    "Protocolo de confidencialidad activo.",
+  ];
+  return replies[Math.floor(Math.random() * replies.length)];
+}
+
+function buildConceptEntry(term, summary) {
+  return {
+    key: term,
+    aliases: [term],
+    type: "concept",
+    classification: "registro conceptual",
+    status: "abierto",
+    summary,
+  };
+}
+
+function findCanonEntry(target, norm) {
+  // 1. exact alias match
+  for (const entry of CANON_INDEX) {
+    for (const alias of entry.aliases) {
+      if (normalizeGlossaryKey(alias) === target) return entry;
+    }
+  }
+
+  // 2. exact boundary match in full query
+  for (const entry of CANON_INDEX) {
+    for (const alias of entry.aliases) {
+      const aliasNorm = normalizeGlossaryKey(alias);
+      const re = new RegExp(`\\b${escapeRegExp(aliasNorm)}\\b`, "i");
+      if (re.test(norm)) return entry;
+    }
+  }
+
+  // 3. exact dictionary match
+  if (CANON_DICT.has(target)) {
+    return buildConceptEntry(target, CANON_DICT.get(target));
+  }
+
+  // 4. first token match
+  const base = target.split(/\s+/)[0];
+  if (CANON_DICT.has(base)) {
+    return buildConceptEntry(base, CANON_DICT.get(base));
+  }
+
+  // 5. partial match prioritizing longer aliases
+  const rankedAliases = [
+    ...CANON_INDEX.flatMap((entry) =>
+      entry.aliases.map((alias) => ({
+        entry,
+        alias: normalizeGlossaryKey(alias),
+      }))
+    ),
+    ...Array.from(CANON_DICT.entries()).map(([term, def]) => ({
+      entry: buildConceptEntry(term, def),
+      alias: term,
+    })),
+  ].sort((a, b) => b.alias.length - a.alias.length);
+
+  for (const item of rankedAliases) {
+    if (target.includes(item.alias) || norm.includes(item.alias)) {
+      return item.entry;
     }
   }
 
   return null;
 }
 
-function tryCharacterAnswer(userText) {
-  const q = normalizeText(userText);
+function formatCanonReply(entry, intent = "generic") {
+  const name = entry.key.toUpperCase();
 
-  const characters = [
-    {
-      aliases: ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
-      reply:
-        "Registro recuperado. Theoblade D’Normaux: Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Clasificación sistémica: anomalía emergente. Estado del archivo: parcialmente clasificado.",
-    },
-    {
-      aliases: [
-        "caudiloux",
-        "caudiloux ii",
-        "caudiloux ii d'magnanis",
-        "caudiloux ii d’magnanis",
-      ],
-      reply:
-        "Registro recuperado. Caudiloux II D’Magnanis: Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Clasificación sistémica: autoridad gubernamental. Estado del archivo: abierto.",
-    },
-    {
-      aliases: ["kathy", "kathy d'pounier", "kathy d’pounier"],
-      reply:
-        "Registro recuperado. Kathy D’Pounier: Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT. Clasificación sistémica: estudiante del Instituto. Estado del archivo: abierto.",
-    },
-    {
-      aliases: ["susan", "susan d'pounier", "susan d’pounier"],
-      reply:
-        "Registro recuperado. Susan D’Pounier: Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Clasificación sistémica: residente civil. Estado del archivo: abierto.",
-    },
-    {
-      aliases: ["exta", "éxta"],
-      reply:
-        "Registro recuperado. Éxta: Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema. Clasificación sistémica: entidad de interés sistémico. Estado del archivo: parcialmente clasificado.",
-    },
-    {
-      aliases: ["scient", "freed scient"],
-      reply:
-        "Registro recuperado. Freed Scient: Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo. Clasificación sistémica: investigador senior. Estado del archivo: parcialmente clasificado.",
-    },
-    {
-      aliases: ["goreman", "veg goreman"],
-      reply:
-        "Registro recuperado. Veg Goreman: Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado. Clasificación sistémica: autoridad política. Estado del archivo: abierto.",
-    },
-    {
-      aliases: ["clyma"],
-      reply:
-        "Registro recuperado. Clyma: Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla. Clasificación sistémica: residente civil. Estado del archivo: parcialmente clasificado.",
-    },
-    {
-      aliases: ["trianoux"],
-      reply:
-        "Registro recuperado. Trianoux: Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Clasificación sistémica: operador político. Efectivo de la Guardia Postirana. Estado del archivo: parcialmente clasificado.",
-    },
-    
-    {
-  aliases: ["autiloux"],
-  reply:
-    "Registro recuperado. Autiloux: Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema. Clasificación sistémica: operador estratégico. Estado del archivo: parcialmente clasificado."
-    },
-
-    ];
-
-  for (const ch of characters) {
-    for (const alias of ch.aliases) {
-      if (q.includes(normalizeText(alias))) {
-        return ch.reply;
-      }
-    }
+  if (intent === "identity" && entry.type === "character") {
+    return `Registro recuperado. ${name}: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
   }
 
-  return null;
+  if (intent === "function") {
+    return `Registro confirmado. ${name}: función principal dentro del sistema: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas ampliar su relación con otros elementos de Claire’s Island?`;
+  }
+
+  if (intent === "about") {
+    return `Registro recuperado. ${name}: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas ampliar el archivo?`;
+  }
+
+  return `Registro confirmado. ${name}: ${entry.summary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?`;
+}
+
+function tryCanonAnswer(userText) {
+  const norm = normalizeGlossaryKey(userText);
+  if (!norm) return null;
+
+  if (wantsSpoiler(norm)) {
+    return confidentialityReply();
+  }
+
+  if (!looksLikeCanonQuery(norm)) {
+    return null;
+  }
+
+  const intent = detectIntent(norm);
+  const target = extractTarget(norm);
+  const entry = findCanonEntry(target, norm);
+
+  if (!entry) return null;
+
+  return formatCanonReply(entry, intent);
 }
 
 // Extracción robusta del texto devuelto por el modelo
@@ -595,9 +880,10 @@ app.get("/admin/usage", (req, res) => {
 
   return res.json({
     server: {
-      version: "2026-03-06 canon_working_v1",
+      version: "2026-03-10 ecko7_unified_v2",
       canon_chars: CANON_PACK ? CANON_PACK.length : 0,
       canon_dict_size: CANON_DICT ? CANON_DICT.size : 0,
+      canon_index_size: CANON_INDEX.length,
       canon_has_hypert: CANON_DICT ? CANON_DICT.has("hypert") : false,
       sample_terms: CANON_DICT ? Array.from(CANON_DICT.keys()).slice(0, 12) : [],
     },
@@ -653,18 +939,11 @@ app.post("/api/chat", async (req, res) => {
     usage.month.requests++;
     usage.lifetime.requests++;
 
-    // Respuesta determinística desde canon (conceptos)
-    const glossary = tryGlossaryAnswer(trimmed);
-    if (glossary) {
+    // Respuesta determinística unificada ECKO-7
+    const canonReply = tryCanonAnswer(trimmed);
+    if (canonReply) {
       usage.last_error = null;
-      return res.json({ reply: glossary });
-    }
-
-    // Respuesta determinística para personajes
-    const character = tryCharacterAnswer(trimmed);
-    if (character) {
-      usage.last_error = null;
-      return res.json({ reply: character });
+      return res.json({ reply: canonReply });
     }
 
     const tier = chooseTier(trimmed);
@@ -756,6 +1035,6 @@ app.post("/api/chat", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("SERVER_JS_VERSION: 2026-03-06 canon_working_v1");
+  console.log("SERVER_JS_VERSION: 2026-03-10 ecko7_unified_v2");
   console.log(`Ecko-7 backend listening on :${PORT}`);
 });
