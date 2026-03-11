@@ -1,29 +1,240 @@
 [
   {
-    "key": "hypert",
-    "aliases": ["hypert", "hyper t", "hyper-t"],
-    "type": "system",
-    "classification": "infraestructura neurotecnológica",
+    "key": "fauciss",
+    "aliases": ["fauciss", "el fauciss", "los fauciss"],
+    "type": "species",
+    "classification": "criaturas bioingenierizadas",
     "status": "abierto",
-    "summary": "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island.",
-    "function_summary": "Su función principal es observar, modular y registrar interacciones humanas y biotecnológicas con distintos niveles de profundidad y acceso.",
-    "about_summary": "HyperT constituye una de las capas operativas centrales del sistema de Claire’s Island. Vincula experiencia, supervisión, modulación conductual y circulación de datos en una sola arquitectura.",
-    "relations": "Se relaciona directamente con el Instituto, los niveles HyperT, Ecko-7 y múltiples protocolos de control sistémico.",
-    "public_summary": "Infraestructura central de conexión, observación y transmisión dentro de la isla.",
-    "restricted_summary": "Su alcance completo excede la función visible de vigilancia y participa en capas más profundas de gestión perceptiva y modulación."
+    "summary": "Criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto."
   },
   {
-    "key": "instituto",
-    "aliases": ["instituto", "el instituto", "instituto de estudios especiales"],
-    "type": "place",
-    "classification": "centro formativo y de control",
+    "key": "theoblade",
+    "aliases": ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
+    "type": "character",
+    "classification": "anomalía emergente",
+    "status": "parcialmente clasificado",
+    "summary": "Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Su presencia produce desviaciones perceptibles en los equilibrios previstos por la red."
+  },
+  {
+    "key": "kathy",
+    "aliases": ["kathy", "kathy d'pounier", "kathy d’pounier"],
+    "type": "character",
+    "classification": "estudiante del Instituto",
     "status": "abierto",
-    "summary": "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island.",
-    "function_summary": "Su función práctica es formar, evaluar, observar y filtrar individuos bajo protocolos académicos, psicológicos y sistémicos.",
-    "about_summary": "El Instituto actúa a la vez como espacio educativo, cámara de observación y nodo de intervención dentro del equilibrio de la isla.",
-    "relations": "Mantiene relación estructural con HyperT, Clairetown, autoridades políticas y procesos de clasificación humana.",
-    "public_summary": "Centro académico de alta relevancia dentro del sistema insular.",
-    "restricted_summary": "Su papel real supera la educación formal y se vincula a procesos de selección, contención y modulación avanzada."
+    "summary": "Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT."
+  },
+  {
+    "key": "susan",
+    "aliases": ["susan", "susan d'pounier", "susan d’pounier"],
+    "type": "character",
+    "classification": "residente civil",
+    "status": "abierto",
+    "summary": "Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT."
+  },
+  {
+    "key": "exta",
+    "aliases": ["exta", "éxta"],
+    "type": "character",
+    "classification": "entidad de interés sistémico",
+    "status": "parcialmente clasificado",
+    "summary": "Individuo vinculado a fenómenos perceptivos y resonancias biotecnológicas dentro del entorno de Isla D'Claire. Su interacción con otros individuos genera variaciones detectables en la red emocional del sistema."
+  },
+  {
+    "key": "clyma",
+    "aliases": ["clyma"],
+    "type": "character",
+    "classification": "residente civil",
+    "status": "parcialmente clasificado",
+    "summary": "Figura emocionalmente intensa asociada a procesos de memoria, identidad y resonancia sistémica dentro de la red social de la isla."
+  },
+  {
+    "key": "caudiloux",
+    "aliases": [
+      "caudiloux",
+      "caudiloux ii",
+      "caudiloux ii d'magnanis",
+      "caudiloux ii d’magnanis"
+    ],
+    "type": "character",
+    "classification": "autoridad gubernamental",
+    "status": "abierto",
+    "summary": "Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Administra orden, protocolo y estabilidad institucional."
+  },
+  {
+    "key": "lactassys",
+    "aliases": ["lactassys"],
+    "type": "character",
+    "classification": "autoridad insular",
+    "status": "parcialmente clasificado",
+    "summary": "Regente de D’Lessya Island, asociado a estructuras de poder, gestión territorial y decisiones de alto nivel dentro del equilibrio político del archipiélago."
+  },
+  {
+    "key": "goreman",
+    "aliases": ["goreman", "veg goreman"],
+    "type": "character",
+    "classification": "autoridad política",
+    "status": "abierto",
+    "summary": "Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado."
+  },
+  {
+    "key": "trianoux",
+    "aliases": ["trianoux"],
+    "type": "character",
+    "classification": "operador político",
+    "status": "parcialmente clasificado",
+    "summary": "Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Efectivo de la Guardia Postirana."
+  },
+  {
+    "key": "autiloux",
+    "aliases": ["autiloux"],
+    "type": "character",
+    "classification": "operador estratégico",
+    "status": "parcialmente clasificado",
+    "summary": "Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema."
+  },
+  {
+    "key": "freed scient",
+    "aliases": ["freed scient", "scient"],
+    "type": "character",
+    "classification": "investigador senior",
+    "status": "parcialmente clasificado",
+    "summary": "Investigador vinculado al estudio de fenómenos históricos y científicos asociados a la Espiral del Tiempo."
+  },
+  {
+    "key": "axe",
+    "aliases": ["axe"],
+    "type": "character",
+    "classification": "bioentidad aliada",
+    "status": "parcialmente clasificado",
+    "summary": "Ganso bioingenierizado de relevancia táctica y simbólica dentro del universo de Claire’s Island. Asociado a lealtad, intervención y presencia operativa en eventos de alta intensidad."
+  },
+  {
+    "key": "bexa",
+    "aliases": ["bexa"],
+    "type": "character",
+    "classification": "bioentidad aliada",
+    "status": "parcialmente clasificado",
+    "summary": "Gansa bioingenierizada vinculada al ecosistema narrativo y operativo de Claire’s Island. Su presencia se relaciona con inteligencia biotecnológica, sensibilidad ambiental y funciones de acompañamiento activo."
+  },
+  {
+    "key": "tex",
+    "aliases": ["tex"],
+    "type": "character",
+    "classification": "bioentidad intervenida",
+    "status": "parcialmente clasificado",
+    "summary": "Cerdo portador de un Fauciss HyperT insertado. Su existencia sugiere cruces experimentales entre organismo, transmisión y función latente dentro del sistema."
+  },
+  {
+    "key": "hp lander",
+    "aliases": ["h p lander", "hp lander", "h.p. lander", "h.p lander"],
+    "type": "character",
+    "classification": "registro metanarrativo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura asociada a los márgenes del archivo narrativo y a fenómenos de integración incierta entre observador, autor y sistema."
+  },
+  {
+    "key": "tt",
+    "aliases": ["tt", "mr tt", "teddy tannenbaum"],
+    "type": "character",
+    "classification": "agente corporativo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura asociada a operaciones de influencia, supervisión y convergencia entre espectáculo, control y poder corporativo."
+  },
+  {
+    "key": "marcus chen",
+    "aliases": ["marcus chen", "chen"],
+    "type": "character",
+    "classification": "operador externo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura vinculada a capas de poder, negociación y convergencia estratégica entre intereses visibles y circuitos menos transparentes del sistema."
+  },
+  {
+    "key": "tom mcknow",
+    "aliases": ["tom mcknow", "mcknow"],
+    "type": "character",
+    "classification": "registro civil",
+    "status": "parcialmente clasificado",
+    "summary": "Figura humana asociada al archivo social y narrativo del Libro I, con relevancia contextual dentro de la lectura sistémica de la isla."
+  },
+  {
+    "key": "dra elena vasquez",
+    "aliases": ["dra elena vasquez", "elena vasquez", "doctora elena vasquez", "dr elena vasquez"],
+    "type": "character",
+    "classification": "especialista científica",
+    "status": "parcialmente clasificado",
+    "summary": "Profesional vinculada a conocimiento técnico, evaluación científica o procesos de interpretación avanzada dentro del universo de Claire’s Island."
+  },
+  {
+    "key": "antabadt",
+    "aliases": ["antabadt", "el antabadt"],
+    "type": "concept",
+    "classification": "registro singular",
+    "status": "clasificado",
+    "summary": "Elemento de naturaleza no enteramente aclarada dentro del archivo disponible. Se asocia a zonas de ambigüedad, importancia latente y acceso restringido."
+  },
+  {
+    "key": "clarize",
+    "aliases": ["clarize", "clarize d'normaux", "clarize d’normaux"],
+    "type": "character",
+    "classification": "figura genealógica de alto valor",
+    "status": "parcialmente clasificado",
+    "summary": "Figura central ligada a linaje, autoridad simbólica y capas profundas de la historia de Theoblade. Su presencia tiene peso afectivo y estructural."
+  },
+  {
+    "key": "theofort",
+    "aliases": ["theofort", "theofort d'normaux", "theofort d’normaux"],
+    "type": "character",
+    "classification": "figura genealógica de alto valor",
+    "status": "parcialmente clasificado",
+    "summary": "Figura vinculada a la estructura familiar de Theoblade y a dimensiones de legitimidad, origen y herencia dentro del sistema."
+  },
+  {
+    "key": "ben",
+    "aliases": ["ben"],
+    "type": "character",
+    "classification": "residente de relevancia narrativa",
+    "status": "abierto",
+    "summary": "Figura humana asociada a escenas de transición, observación y tensión dentro del entorno social y político de Claire’s Island."
+  },
+  {
+    "key": "clark",
+    "aliases": ["clark"],
+    "type": "character",
+    "classification": "observador remoto",
+    "status": "abierto",
+    "summary": "Individuo asociado a la capa de recepción mediada del espectáculo sistémico, conectado a consumo, observación y experiencia remota del universo de Claire’s Island."
+  },
+  {
+    "key": "kiera",
+    "aliases": ["kiera"],
+    "type": "character",
+    "classification": "observadora remota",
+    "status": "abierto",
+    "summary": "Figura vinculada a la recepción emocional, estética y social del espectáculo proyectado por el sistema y sus interfaces de consumo."
+  },
+  {
+    "key": "sienna",
+    "aliases": ["sienna"],
+    "type": "character",
+    "classification": "observadora remota",
+    "status": "abierto",
+    "summary": "Figura relacionada con la capa externa de contemplación, deseo, proyección y lectura emocional del espectáculo transmitido."
+  },
+  {
+    "key": "jordan",
+    "aliases": ["jordan"],
+    "type": "character",
+    "classification": "observador remoto",
+    "status": "abierto",
+    "summary": "Figura asociada a una mirada escéptica o distanciada frente a la experiencia espectatorial del sistema y sus manifestaciones públicas."
+  },
+  {
+    "key": "ellinet d'vryans",
+    "aliases": ["ellinet d'vryans", "ellinet d’vryans", "ellinet"],
+    "type": "character",
+    "classification": "figura aristocrática",
+    "status": "parcialmente clasificado",
+    "summary": "Figura vinculada a linajes, protocolo social y capas de autoridad o memoria familiar dentro del tejido narrativo de la isla."
   },
   {
     "key": "ecolibrium",
@@ -31,74 +242,23 @@
     "type": "organization",
     "classification": "estructura corporativa sistémica",
     "status": "parcialmente clasificado",
-    "summary": "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island.",
-    "function_summary": "Su función principal es intervenir en la preservación del equilibrio operativo mediante supervisión, gestión biotecnológica y control estructural.",
-    "about_summary": "Ecolibrium representa una capa corporativa de gran profundidad, menos visible que las instituciones públicas pero potencialmente más decisiva en la arquitectura general del sistema.",
-    "relations": "Se conecta con HyperT, protocolos de equilibrio, operadores corporativos y capas no plenamente expuestas del control insular.",
-    "public_summary": "Entidad asociada a equilibrio operativo y administración biotecnológica.",
-    "restricted_summary": "Su influencia podría exceder ampliamente su perfil público y rozar zonas estructurales de dirección sistémica."
+    "summary": "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island. Su presencia excede la visibilidad pública ordinaria."
   },
   {
-    "key": "bollards",
-    "aliases": ["bollards", "los bollards", "bollard"],
-    "type": "group",
-    "classification": "estructura de contención y control",
-    "status": "parcialmente clasificado",
-    "summary": "Conjunto de entidades, dispositivos o funciones vinculadas a tareas de contención, custodia, filtrado y estabilidad dentro de la arquitectura sistémica de Claire’s Island.",
-    "function_summary": "Su función práctica es limitar desviaciones, preservar estabilidad y actuar como mecanismo de contención dentro del sistema.",
-    "about_summary": "Los Bollards ocupan una posición ambigua entre infraestructura, custodia y control. Su naturaleza exacta no siempre resulta transparente desde el archivo público.",
-    "relations": "Se vinculan con estabilidad sistémica, filtrado, vigilancia, protocolos de integridad y capas de contención del entorno insular.",
-    "public_summary": "Mecanismo de estabilidad y custodia dentro del sistema.",
-    "restricted_summary": "Su alcance exacto y su forma de intervención no pertenecen por completo al registro abierto."
-  },
-  {
-    "key": "ecko-7",
-    "aliases": ["ecko 7", "ecko-7", "ecko7"],
-    "type": "system",
-    "classification": "inteligencia sistémica interna",
+    "key": "instituto",
+    "aliases": ["instituto", "el instituto", "instituto de estudios especiales"],
+    "type": "place",
+    "classification": "centro formativo y de control",
     "status": "abierto",
-    "summary": "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad.",
-    "function_summary": "Su función principal es asistir consultas, recuperar archivo autorizado, filtrar contenido sensible y sostener coherencia narrativa e informativa.",
-    "about_summary": "Ecko-7 opera como interfaz entre usuario, archivo y sistema. No sólo informa: también regula acceso, tono y profundidad de lo que puede ser dicho.",
-    "relations": "Se relaciona con HyperT, el Response Protocol, la Hidden Layer y los mecanismos de clasificación del archivo.",
-    "public_summary": "Interfaz de consulta y archivo interno autorizada por el sistema.",
-    "restricted_summary": "Dispone de capas de filtrado y jerarquización no plenamente visibles desde la interfaz pública."
+    "summary": "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island. Funciona simultáneamente como espacio académico, filtro conductual y nodo de supervisión."
   },
   {
-    "key": "ecko-7 response protocol",
-    "aliases": [
-      "ecko-7 response protocol",
-      "response protocol",
-      "protocolo de respuesta ecko-7",
-      "protocolo de respuesta de ecko-7"
-    ],
-    "type": "protocol",
-    "classification": "capa de interacción autorizada",
-    "status": "parcialmente clasificado",
-    "summary": "Conjunto de reglas que gobierna cómo Ecko-7 recupera, filtra y formula respuestas dentro de los márgenes permitidos por el sistema.",
-    "function_summary": "Su función es asegurar coherencia canónica, protección de spoilers, control de acceso y formulación segura de respuestas.",
-    "about_summary": "El Response Protocol define el comportamiento visible de Ecko-7 y determina qué puede decir, cómo debe decirlo y cuándo debe callar.",
-    "relations": "Se conecta con la Hidden Layer, el archivo canónico, los filtros de confidencialidad y la jerarquización de consulta.",
-    "public_summary": "Protocolo que regula la forma autorizada de responder.",
-    "restricted_summary": "Algunas de sus reglas dependen de capas internas no expuestas al usuario."
-  },
-  {
-    "key": "ecko-7 hidden layer",
-    "aliases": [
-      "ecko-7 hidden layer",
-      "hidden layer",
-      "capa oculta de ecko-7",
-      "capa oculta ecko-7"
-    ],
-    "type": "system",
-    "classification": "capa interna no expuesta",
-    "status": "clasificado",
-    "summary": "Subestructura no visible del sistema Ecko-7 asociada a filtrado profundo, jerarquización de acceso y contención de material no autorizado.",
-    "function_summary": "Su función es priorizar, restringir, jerarquizar y contener información según reglas internas de acceso y sensibilidad.",
-    "about_summary": "La Hidden Layer no forma parte de la interfaz ordinaria. Opera como mecanismo interno de selección y silenciamiento dentro del sistema.",
-    "relations": "Se relaciona con Ecko-7, el Response Protocol, los filtros de clasificación y la protección del canon sensible.",
-    "public_summary": "Capa interna de procesamiento y filtrado.",
-    "restricted_summary": "Su lógica completa y su alcance real no forman parte del archivo público."
+    "key": "clairetown",
+    "aliases": ["clairetown", "claire town"],
+    "type": "place",
+    "classification": "núcleo urbano",
+    "status": "abierto",
+    "summary": "Centro urbano principal de Isla D'Claire, donde convergen administración, vida civil, protocolos sociales y vigilancia sistémica. Funciona como vitrina de orden y normalidad regulada."
   },
   {
     "key": "claire's island",
@@ -113,11 +273,100 @@
     "type": "place",
     "classification": "entorno insular sistémico",
     "status": "abierto",
-    "summary": "Isla-región organizada bajo una arquitectura de vigilancia, modulación social y gestión biotecnológica.",
-    "function_summary": "Su función práctica dentro del sistema es servir como entorno total de organización, observación, regulación social y experimentación estructurada.",
-    "about_summary": "Claire’s Island es un espacio donde política, arquitectura, biotecnología, percepción y control convergen en una misma ecología sistémica.",
-    "relations": "Se articula con Clairetown, el Instituto, HyperT, Ecolibrium y diversas capas visibles e invisibles de autoridad.",
-    "public_summary": "Territorio central del sistema, organizado bajo protocolos de equilibrio y supervisión.",
-    "restricted_summary": "Su apariencia de orden no agota la complejidad de sus capas operativas internas."
+    "summary": "Isla-región organizada bajo una arquitectura de vigilancia, modulación social y gestión biotecnológica. Su apariencia de equilibrio depende de protocolos visibles e invisibles que regulan percepción, conducta y memoria."
+  },
+  {
+    "key": "lessya island",
+    "aliases": [
+      "lessya island",
+      "d'lessya island",
+      "d’lessya island",
+      "isla d'lessya",
+      "isla d’lessya",
+      "lessya"
+    ],
+    "type": "place",
+    "classification": "territorio insular asociado",
+    "status": "parcialmente clasificado",
+    "summary": "Territorio insular vinculado al mapa político y operativo del universo de Claire’s Island. Su importancia excede su visibilidad superficial dentro del archivo público."
+  },
+  {
+    "key": "saint croix",
+    "aliases": ["saint croix", "st croix"],
+    "type": "place",
+    "classification": "localización restringida",
+    "status": "parcialmente clasificado",
+    "summary": "Zona activada dentro de la trama como localización viva pero sometida a cuarentena de memoria. Su mera mención sugiere capas de ocultamiento y recuperación restringida."
+  },
+  {
+    "key": "hypert",
+    "aliases": ["hypert", "hyper t", "hyper-t"],
+    "type": "system",
+    "classification": "infraestructura neurotecnológica",
+    "status": "abierto",
+    "summary": "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island. Permite observar, modular y registrar interacciones con distintos niveles de profundidad."
+  },
+  {
+    "key": "niveles hypert",
+    "aliases": [
+      "niveles hypert",
+      "niveles de hypert",
+      "hypert niveles",
+      "niveles del hypert"
+    ],
+    "type": "system",
+    "classification": "segmentación operativa",
+    "status": "parcialmente clasificado",
+    "summary": "Escalonamiento funcional interno de la red HyperT, asociado a distintos grados de acceso, percepción, intervención y modulación sistémica. No todos los niveles son visibles ni equivalentes entre sí."
+  },
+  {
+    "key": "bollards",
+    "aliases": ["bollards", "los bollards", "bollard"],
+    "type": "group",
+    "classification": "estructura de contención y control",
+    "status": "parcialmente clasificado",
+    "summary": "Conjunto de entidades, dispositivos o funciones vinculadas a tareas de contención, custodia, filtrado y estabilidad dentro de la arquitectura sistémica de Claire’s Island. Su papel se relaciona con preservación del orden y limitación de desviaciones."
+  },
+  {
+    "key": "espiral del tiempo",
+    "aliases": ["espiral del tiempo", "la espiral", "espiral"],
+    "type": "concept",
+    "classification": "fenómeno temporal",
+    "status": "parcialmente clasificado",
+    "summary": "Fenómeno de alteración temporal y causal con efectos sobre memoria, identidad, continuidad histórica y comportamiento sistémico. Su comprensión completa permanece restringida."
+  },
+  {
+    "key": "ecko-7",
+    "aliases": ["ecko 7", "ecko-7", "ecko7"],
+    "type": "system",
+    "classification": "inteligencia sistémica interna",
+    "status": "abierto",
+    "summary": "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad. Su función combina asistencia, archivo y contención narrativa."
+  },
+  {
+    "key": "ecko-7 response protocol",
+    "aliases": [
+      "ecko-7 response protocol",
+      "response protocol",
+      "protocolo de respuesta ecko-7",
+      "protocolo de respuesta de ecko-7"
+    ],
+    "type": "protocol",
+    "classification": "capa de interacción autorizada",
+    "status": "parcialmente clasificado",
+    "summary": "Conjunto de reglas que gobierna cómo Ecko-7 recupera, filtra y formula respuestas dentro de los márgenes permitidos por el sistema. Prioriza consistencia canónica, ambigüedad controlada y protección de información sensible."
+  },
+  {
+    "key": "ecko-7 hidden layer",
+    "aliases": [
+      "ecko-7 hidden layer",
+      "hidden layer",
+      "capa oculta de ecko-7",
+      "capa oculta ecko-7"
+    ],
+    "type": "system",
+    "classification": "capa interna no expuesta",
+    "status": "clasificado",
+    "summary": "Subestructura no visible del sistema Ecko-7 asociada a filtrado profundo, jerarquización de acceso y contención de material no autorizado. Su descripción integral no forma parte del archivo público."
   }
 ]
