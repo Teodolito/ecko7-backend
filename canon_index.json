@@ -16,20 +16,20 @@
     "summary": "Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Su presencia produce desviaciones perceptibles en los equilibrios previstos por la red."
   },
   {
-    "key": "kathy",
-    "aliases": ["kathy", "kathy d'pounier", "kathy d’pounier"],
-    "type": "character",
-    "classification": "estudiante del Instituto",
-    "status": "abierto",
-    "summary": "Estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT."
+  "key": "kathy",
+  "aliases": ["kathy", "kathy d'vryans", "kathy d’vryans"],
+  "type": "character",
+  "classification": "estudiante del Instituto",
+  "status": "abierto",
+  "summary": "Kathy D'Vryans es estudiante del Instituto de Estudios Especiales. Posee una sensibilidad emocional y cognitiva que produce resonancias detectables dentro de la red HyperT. Es amiga cercana de Susan D'Pounier y compañera de aventuras y travesuras dentro del entorno del Instituto."
   },
   {
-    "key": "susan",
-    "aliases": ["susan", "susan d'pounier", "susan d’pounier"],
-    "type": "character",
-    "classification": "residente civil",
-    "status": "abierto",
-    "summary": "Amiga de Kathy. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT."
+  "key": "susan",
+  "aliases": ["susan", "susan d'pounier", "susan d’pounier"],
+  "type": "character",
+  "classification": "residente civil",
+  "status": "abierto",
+  "summary": "Susan D'Pounier es amiga cercana de Kathy D'Vryans, no su hermana. Observadora analítica del funcionamiento social de la isla y de las dinámicas del sistema HyperT. Ambas comparten formación, aventuras y travesuras vinculadas al Instituto."
   },
   {
     "key": "exta",
@@ -368,5 +368,118 @@
     "classification": "capa interna no expuesta",
     "status": "clasificado",
     "summary": "Subestructura no visible del sistema Ecko-7 asociada a filtrado profundo, jerarquización de acceso y contención de material no autorizado. Su descripción integral no forma parte del archivo público."
+  }
+
+  {
+    "key": "oscurantis",
+    "aliases": ["oscurantis"],
+    "type": "concept",
+    "classification": "registro conceptual",
+    "status": "parcialmente clasificado",
+    "summary": "Término asociado a zonas de sombra, opacidad operativa o capas oscuras del sistema dentro del universo de Claire’s Island."
+  },
+  {
+    "key": "rex",
+    "aliases": ["rex"],
+    "type": "character",
+    "classification": "registro narrativo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura identificada dentro del archivo narrativo de Claire’s Island, asociada a eventos o capas específicas del sistema."
+  },
+  {
+    "key": "punto de restauracion",
+    "aliases": ["punto de restauracion", "punto de restauración", "restoration point"],
+    "type": "concept",
+    "classification": "mecanismo de reintegración",
+    "status": "parcialmente clasificado",
+    "summary": "Nodo o condición de retorno asociado a recuperación, reinicio parcial, reanclaje o restablecimiento dentro de procesos sistémicos o temporales."
+  },
+  {
+    "key": "bucle",
+    "aliases": ["bucle", "loop"],
+    "type": "concept",
+    "classification": "patrón cíclico",
+    "status": "abierto",
+    "summary": "Repetición estructurada de una secuencia, proceso o estado dentro de una dinámica temporal, cognitiva o sistémica."
+  },
+  {
+    "key": "walter & cousins",
+    "aliases": ["walter & cousins", "walter and cousins", "w&c", "w c"],
+    "type": "organization",
+    "classification": "entidad corporativa",
+    "status": "parcialmente clasificado",
+    "summary": "Estructura corporativa asociada a poder externo, supervisión estratégica, intereses de control y capas de influencia más allá del marco visible de la isla."
+  },
+  {
+    "key": "sgoch",
+    "aliases": ["sgoch"],
+    "type": "character",
+    "classification": "registro narrativo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura presente en el archivo del universo de Claire’s Island cuya función completa no pertenece al nivel abierto del registro."
+  },
+  {
+    "key": "nathaniel wells",
+    "aliases": ["nathaniel wells", "nathaniel", "wells"],
+    "type": "character",
+    "classification": "operador externo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura vinculada a capas de decisión, lectura estratégica o intervención externa en relación con el sistema de Claire’s Island."
+  },
+  {
+    "key": "guardia postirana",
+    "aliases": ["guardia postirana", "la guardia postirana", "postirana"],
+    "type": "group",
+    "classification": "estructura de seguridad",
+    "status": "abierto",
+    "summary": "Cuerpo de seguridad y operación asociado a funciones de custodia, intervención y preservación del orden dentro de la estructura política de la isla."
+  },
+  {
+    "key": "d'grasnier",
+    "aliases": ["d'grasnier", "d’grasnier", "grasnier"],
+    "type": "lineage",
+    "classification": "linaje o casa",
+    "status": "parcialmente clasificado",
+    "summary": "Nombre de linaje o pertenencia familiar presente en el archivo social y político de Claire’s Island."
+  },
+  {
+    "key": "varin",
+    "aliases": ["varin", "elias varin"],
+    "type": "character",
+    "classification": "registro estratégico",
+    "status": "parcialmente clasificado",
+    "summary": "Figura vinculada a capas de análisis, decisión o desplazamiento estratégico dentro del ecosistema narrativo de Claire’s Island."
+  },
+  {
+    "key": "muro",
+    "aliases": ["muro", "el muro", "wall"],
+    "type": "place",
+    "classification": "infraestructura de contención",
+    "status": "abierto",
+    "summary": "Estructura perimetral de separación, control y contención asociada al entorno territorial de Claire’s Island."
+  },
+  {
+    "key": "influencer",
+    "aliases": ["influencer", "influencers"],
+    "type": "group",
+    "classification": "capa espectatorial remota",
+    "status": "abierto",
+    "summary": "Observadores remotos con capacidad de amplificar, comentar, modular o influir sobre la recepción pública del espectáculo sistémico asociado a la isla."
+  },
+  {
+    "key": "vida en la isla",
+    "aliases": ["vida en la isla", "como es la vida en la isla", "cómo es la vida en la isla"],
+    "type": "concept",
+    "classification": "descripción social",
+    "status": "abierto",
+    "summary": "La vida en Claire’s Island combina rutina social regulada, vigilancia normalizada, arquitectura de control, formación institucional y una apariencia de equilibrio sostenida por protocolos visibles e invisibles."
+  },
+  {
+    "key": "anomalia",
+    "aliases": ["anomalia", "anomalía"],
+    "type": "concept",
+    "classification": "desviación sistémica",
+    "status": "parcialmente clasificado",
+    "summary": "Desviación detectada respecto al comportamiento, patrón o equilibrio esperado por el sistema."
   }
 ]

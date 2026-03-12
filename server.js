@@ -423,7 +423,7 @@ function detectIntent(norm) {
 
 function looksLikeCanonQuery(norm) {
   const intentPattern =
-    /\b(que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace)\b/;
+    /\b(que es|que son|quien es|quienes son|define|definir|hablame de|que sabes de|informacion sobre|info sobre|datos de|dime sobre|para que sirve|como funciona|como opera|cual es su funcion|funcion|que hace|como es|cómo es|que estudian|qué estudian)\b/;
 
   if (intentPattern.test(norm)) return true;
 
@@ -668,7 +668,12 @@ function tryCanonAnswer(userText) {
   const target = extractTarget(norm);
   const entry = findCanonEntry(target, norm);
 
-  if (!entry) return null;
+if (!entry) {
+  if (/\b(vida en la isla|como es la isla|cómo es la isla|muro|instituto|hypert|claire's island|claires island)\b/.test(norm)) {
+    return "Registro recuperado. CLAIRE'S ISLAND: La vida en la isla combina organización social estricta, vigilancia normalizada, educación selectiva, protocolos de conducta y una sensación persistente de equilibrio administrado. ¿Deseas ampliar el archivo?";
+  }
+  return null;
+}
 
   return formatCanonReply(entry, intent);
 }
