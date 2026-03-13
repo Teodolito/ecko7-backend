@@ -369,15 +369,7 @@ function formatRelations(entry) {
   return `\n\nARCHIVOS RELACIONADOS\n${entry.relations}`;
 }
 
-function formatCanonReply(entry, intent = "generic") {
-  let reply = `Registro confirmado. ${entry.key.toUpperCase()}: ${entry.summary}
-Clasificación sistémica: ${entry.classification}.
-Estado del archivo: ${entry.status}.`;
 
-  reply += formatRelations(entry);
-
-  return reply;
-}
 
 function mergeCanonIndex(staticEntries, dict) {
   return (Array.isArray(staticEntries) ? staticEntries : []).map((entry) => {
@@ -616,7 +608,6 @@ function formatCanonReply(entry, intent = "generic") {
   const name = entry.key.toUpperCase();
   const prefix = stylePrefix(entry.response_style);
 
-  // Restricción por acceso / spoiler
   if (shouldRestrictEntry(entry, intent)) {
     if (entry.access_level === "classified") {
       return `${prefix} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
@@ -627,7 +618,7 @@ function formatCanonReply(entry, intent = "generic") {
     }
 
     return `${prefix} ${name}: Registro incompleto. Parte del contenido solicitado pertenece a capas restringidas del sistema.`;
-    }
+  }
 
   const safeSummary =
     entry.public_summary ||
@@ -654,7 +645,7 @@ function formatCanonReply(entry, intent = "generic") {
     let reply = `${prefix} ${name}: función principal dentro del sistema: ${functionSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
 
     if (entry.relations) {
-      reply += ` Relación sistémica: ${entry.relations}`;
+      reply += formatRelations(entry);
     }
 
     reply += ` ¿Deseas ampliar su relación con otros elementos de Claire’s Island?`;
@@ -673,7 +664,6 @@ function formatCanonReply(entry, intent = "generic") {
   }
 
   return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?`;
-
 }
 
 function tryCanonAnswer(userText) {
