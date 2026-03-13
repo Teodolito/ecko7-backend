@@ -356,7 +356,19 @@ function canonDef(term) {
 // ======================
 
 function getSessionKey(req) {
-  return req.ip || req.get("x-forwarded-for") || "default";
+  const explicit =
+    req.body?.sessionId ||
+    req.get("x-session-id") ||
+    req.query?.sessionId;
+
+  if (explicit) return String(explicit);
+
+  const forwarded = req.get("x-forwarded-for");
+  if (forwarded) return String(forwarded).split(",")[0].trim();
+
+  if (req.ip) return String(req.ip);
+
+  return "default";
 }
 
 function isAffirmativeFollowup(text = "") {
@@ -974,7 +986,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     const trimmed = message.trim();
-    const sessionKey = getSessionKey(req);
+
 
     if (!trimmed) {
       return res.status(400).json({ reply: "Entrada vacía." });
@@ -992,7 +1004,13 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
-    // Follow-up afirmativo: "sí", "ok", "amplía", etc.
+    const sessionKey = getSessionKey(req);
+
+    console.log("SESSION KEY:", sessionKey);
+    console.log("FOLLOWUP CHECK:", trimmed);
+    console.log("LAST STATE:", conversationState.get(sessionKey));
+
+// Follow-up afirmativo
 if (isAffirmativeFollowup(trimmed)) {
   const last = conversationState.get(sessionKey);
 
@@ -1005,7 +1023,7 @@ if (isAffirmativeFollowup(trimmed)) {
   }
 }
 
-// Preguntas relacionales explícitas
+// Preguntas relacionales
 const relationshipReply = tryRelationshipAnswer(trimmed);
 if (relationshipReply) {
   usage.day.requests++;
@@ -1015,13 +1033,14 @@ if (relationshipReply) {
   return res.json({ reply: relationshipReply });
 }
 
-    usage.day.requests++;
-    usage.month.requests++;
-    usage.lifetime.requests++;
+usage.day.requests++;
+usage.month.requests++;
+usage.lifetime.requests++;
 
-   const canonResult = tryCanonAnswer(trimmed);
+const canonResult = tryCanonAnswer(trimmed);
 if (canonResult) {
   if (canonResult.entry) {
+    console.log("SAVING STATE:", sessionKey, canonResult.entry.key);
     conversationState.set(sessionKey, {
       entry: canonResult.entry,
       intent: canonResult.intent
