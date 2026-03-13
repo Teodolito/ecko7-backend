@@ -357,18 +357,26 @@
     "summary": "Conjunto de reglas que gobierna cómo Ecko-7 recupera, filtra y formula respuestas dentro de los márgenes permitidos por el sistema. Prioriza consistencia canónica, ambigüedad controlada y protección de información sensible."
   },
   {
-    "key": "ecko-7 hidden layer",
-    "aliases": [
-      "ecko-7 hidden layer",
-      "hidden layer",
-      "capa oculta de ecko-7",
-      "capa oculta ecko-7"
-    ],
-    "type": "system",
-    "classification": "capa interna no expuesta",
-    "status": "clasificado",
-    "summary": "Subestructura no visible del sistema Ecko-7 asociada a filtrado profundo, jerarquización de acceso y contención de material no autorizado. Su descripción integral no forma parte del archivo público."
-  },
+  "key": "ecko-7 hidden layer",
+  "aliases": [
+    "ecko-7 hidden layer",
+    "hidden layer",
+    "capa oculta de ecko-7",
+    "capa oculta ecko-7"
+  ],
+  "type": "system",
+  "classification": "capa interna no expuesta",
+  "status": "clasificado",
+  "summary": "Subestructura no visible del sistema Ecko-7 asociada a filtrado profundo, jerarquización de acceso y contención de material no autorizado.",
+  "function_summary": "Su función es priorizar, restringir, jerarquizar y contener información según reglas internas de acceso y sensibilidad.",
+  "about_summary": "La Hidden Layer no forma parte de la interfaz ordinaria. Opera como mecanismo interno de selección y silenciamiento dentro del sistema.",
+  "relations": "Se relaciona con Ecko-7, el Response Protocol, los filtros de clasificación y la protección del canon sensible.",
+  "public_summary": "Capa interna de procesamiento y filtrado.",
+  "restricted_summary": "Su lógica completa y su alcance real no forman parte del archivo público.",
+  "spoiler_risk": "high",
+  "access_level": "classified",
+  "response_style": "ominous"
+},
   {
     "key": "oscurantis",
     "aliases": ["oscurantis"],
