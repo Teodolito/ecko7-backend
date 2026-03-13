@@ -1013,6 +1013,7 @@ app.post("/api/chat", async (req, res) => {
 // Follow-up afirmativo
 if (isAffirmativeFollowup(trimmed)) {
   const last = conversationState.get(sessionKey);
+  console.log("FOLLOWUP STATE USED:", sessionKey, last?.entry?.key || null);
 
   if (last && last.entry) {
     usage.day.requests++;
