@@ -15,6 +15,7 @@ app.set("trust proxy", 1);
 // Environment / Config
 // ======================
 const PORT = Number(process.env.PORT || 10000);
+const conversationState = new Map();
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -354,6 +355,69 @@ function canonDef(term) {
 // Canon helpers
 // ======================
 
+function getSessionKey(req) {
+  return req.ip || req.get("x-forwarded-for") || "default";
+}
+
+function isAffirmativeFollowup(text = "") {
+  const norm = normalizeGlossaryKey(text);
+  return [
+    "si",
+    "sí",
+    "ok",
+    "vale",
+    "dale",
+    "continua",
+    "continúa",
+    "amplia",
+    "amplía",
+    "expandir",
+    "mas",
+    "más"
+  ].includes(norm);
+}
+
+function tryRelationshipAnswer(userText) {
+  const norm = normalizeGlossaryKey(userText);
+
+  if (
+    norm.includes("kathy") &&
+    norm.includes("susan") &&
+    (norm.includes("hermanas") || norm.includes("son hermanas"))
+  ) {
+    return "Registro confirmado. KATHY D'VRYANS y SUSAN D'POUNIER no son hermanas. Son amigas del Instituto y compañeras de aventuras y travesuras. Clasificación sistémica: vínculo social verificado. Estado del archivo: abierto.";
+  }
+
+  return null;
+}
+
+function buildFollowupReply(entry) {
+  if (!entry) return "Registro insuficiente.";
+
+  const name = entry.key.toUpperCase();
+  const prefix = stylePrefix(entry.response_style);
+
+  if (shouldRestrictEntry(entry, "about")) {
+    if (entry.access_level === "classified") {
+      return `${prefix} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
+    }
+
+    return `${prefix} ${name}: Archivo parcialmente clasificado. La expansión de este registro excede el nivel de acceso actual.`;
+  }
+
+  const detail =
+    entry.function_summary ||
+    entry.about_summary ||
+    entry.public_summary ||
+    entry.summary ||
+    "Registro insuficiente.";
+
+  let reply = `Registro ampliado. ${name}: ${detail} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
+  reply += formatRelations(entry);
+
+  return reply;
+}
+
 function cleanCanonSummary(text = "") {
   return String(text || "")
     .replace(/^Registro confirmado\.\s*/i, "")
@@ -368,8 +432,6 @@ function formatRelations(entry) {
   if (!entry.relations) return "";
   return `\n\nARCHIVOS RELACIONADOS\n${entry.relations}`;
 }
-
-
 
 function mergeCanonIndex(staticEntries, dict) {
   return (Array.isArray(staticEntries) ? staticEntries : []).map((entry) => {
@@ -638,53 +700,60 @@ function formatCanonReply(entry, intent = "generic") {
     "Registro insuficiente.";
 
   if (intent === "identity" && entry.type === "character") {
-    return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
+    return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.${formatRelations(entry)}`;
   }
 
   if (intent === "function") {
     let reply = `${prefix} ${name}: función principal dentro del sistema: ${functionSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
-
-    if (entry.relations) {
-      reply += formatRelations(entry);
-    }
-
+    reply += formatRelations(entry);
     reply += ` ¿Deseas ampliar su relación con otros elementos de Claire’s Island?`;
     return reply;
   }
 
   if (intent === "about") {
     let reply = `${prefix} ${name}: ${aboutSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}.`;
-
-    if (entry.relations) {
-      reply += ` Relación sistémica: ${entry.relations}`;
-    }
-
+    reply += formatRelations(entry);
     reply += ` ¿Deseas ampliar el archivo?`;
     return reply;
   }
 
-  return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?`;
+  return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?${formatRelations(entry)}`;
 }
 
 function tryCanonAnswer(userText) {
   const norm = normalizeGlossaryKey(userText);
   if (!norm) return null;
 
-  if (wantsSpoiler(norm)) return confidentialityReply();
+  if (wantsSpoiler(norm)) {
+    return {
+      reply: confidentialityReply(),
+      entry: null,
+      intent: "generic"
+    };
+  }
+
   if (!looksLikeCanonQuery(norm)) return null;
 
   const intent = detectIntent(norm);
   const target = extractTarget(norm);
   const entry = findCanonEntry(target, norm);
 
-if (!entry) {
-  if (/\b(vida en la isla|como es la isla|cómo es la isla|muro|instituto|hypert|claire's island|claires island)\b/.test(norm)) {
-    return "Registro recuperado. CLAIRE'S ISLAND: La vida en la isla combina organización social estricta, vigilancia normalizada, educación selectiva, protocolos de conducta y una sensación persistente de equilibrio administrado. ¿Deseas ampliar el archivo?";
+  if (!entry) {
+    if (/\b(vida en la isla|como es la isla|cómo es la isla|muro|instituto|hypert|claire's island|claires island)\b/.test(norm)) {
+      return {
+        reply: "Registro recuperado. CLAIRE'S ISLAND: La vida en la isla combina organización social estricta, vigilancia normalizada, educación selectiva, protocolos de conducta y una sensación persistente de equilibrio administrado. ¿Deseas ampliar el archivo?",
+        entry: null,
+        intent
+      };
+    }
+    return null;
   }
-  return null;
-}
 
-  return formatCanonReply(entry, intent);
+  return {
+    reply: formatCanonReply(entry, intent),
+    entry,
+    intent
+  };
 }
 
 // ======================
@@ -905,6 +974,7 @@ app.post("/api/chat", async (req, res) => {
     }
 
     const trimmed = message.trim();
+    const sessionKey = getSessionKey(req);
 
     if (!trimmed) {
       return res.status(400).json({ reply: "Entrada vacía." });
@@ -922,15 +992,45 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
+    // Follow-up afirmativo: "sí", "ok", "amplía", etc.
+if (isAffirmativeFollowup(trimmed)) {
+  const last = conversationState.get(sessionKey);
+
+  if (last && last.entry) {
+    usage.day.requests++;
+    usage.month.requests++;
+    usage.lifetime.requests++;
+    usage.last_error = null;
+    return res.json({ reply: buildFollowupReply(last.entry) });
+  }
+}
+
+// Preguntas relacionales explícitas
+const relationshipReply = tryRelationshipAnswer(trimmed);
+if (relationshipReply) {
+  usage.day.requests++;
+  usage.month.requests++;
+  usage.lifetime.requests++;
+  usage.last_error = null;
+  return res.json({ reply: relationshipReply });
+}
+
     usage.day.requests++;
     usage.month.requests++;
     usage.lifetime.requests++;
 
-    const canonReply = tryCanonAnswer(trimmed);
-    if (canonReply) {
-      usage.last_error = null;
-      return res.json({ reply: canonReply });
-    }
+   const canonResult = tryCanonAnswer(trimmed);
+if (canonResult) {
+  if (canonResult.entry) {
+    conversationState.set(sessionKey, {
+      entry: canonResult.entry,
+      intent: canonResult.intent
+    });
+  }
+
+  usage.last_error = null;
+  return res.json({ reply: canonResult.reply });
+}
 
     const tier = chooseTier(trimmed);
     const model = tier === "strong" ? MODEL_STRONG : MODEL_LIGHT;
