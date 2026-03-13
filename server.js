@@ -350,6 +350,9 @@ function canonDef(term) {
   return CANON_DICT.get(normalizeGlossaryKey(term)) || null;
 }
 
+// ======================
+// Canon helpers
+// ======================
 
 function cleanCanonSummary(text = "") {
   return String(text || "")
@@ -359,6 +362,21 @@ function cleanCanonSummary(text = "") {
     .replace(/^Registro incompleto\.\s*/i, "")
     .replace(/^Protocolo de confidencialidad activo\.\s*/i, "")
     .trim();
+}
+
+function formatRelations(entry) {
+  if (!entry.relations) return "";
+  return `\n\nARCHIVOS RELACIONADOS\n${entry.relations}`;
+}
+
+function formatCanonReply(entry, intent = "generic") {
+  let reply = `Registro confirmado. ${entry.key.toUpperCase()}: ${entry.summary}
+Clasificación sistémica: ${entry.classification}.
+Estado del archivo: ${entry.status}.`;
+
+  reply += formatRelations(entry);
+
+  return reply;
 }
 
 function mergeCanonIndex(staticEntries, dict) {
@@ -609,7 +627,7 @@ function formatCanonReply(entry, intent = "generic") {
     }
 
     return `${prefix} ${name}: Registro incompleto. Parte del contenido solicitado pertenece a capas restringidas del sistema.`;
-  }
+    }
 
   const safeSummary =
     entry.public_summary ||
@@ -655,6 +673,7 @@ function formatCanonReply(entry, intent = "generic") {
   }
 
   return `${prefix} ${name}: ${safeSummary} Clasificación sistémica: ${entry.classification}. Estado del archivo: ${entry.status}. ¿Deseas su función práctica dentro del sistema?`;
+
 }
 
 function tryCanonAnswer(userText) {

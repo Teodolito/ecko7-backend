@@ -383,7 +383,15 @@
     "type": "character",
     "classification": "registro narrativo",
     "status": "parcialmente clasificado",
-    "summary": "Figura identificada dentro del archivo narrativo de Claire’s Island, asociada a eventos o capas específicas del sistema."
+    "summary": "Rex es una figura presente en el archivo narrativo de Claire’s Island, asociada a capas de acción, vigilancia o conflicto cuyo alcance completo no pertenece al nivel abierto del registro.",
+    "function_summary": "Su función práctica dentro del archivo es intervenir o gravitar sobre zonas de tensión operativa y narrativa.",
+    "about_summary": "Rex pertenece a esa clase de figuras cuyo peso dentro del sistema se percibe antes de quedar del todo explicado.",
+    "relations": "Se vincula con eventos de presión sistémica, actores operativos y sectores sensibles del entorno insular.",
+    "public_summary": "Figura de relevancia operativa dentro del archivo narrativo.",
+    "restricted_summary": "La amplitud de su papel no forma parte del registro público completo.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "ominous"
   },
   {
     "key": "punto de restauracion",
@@ -391,23 +399,47 @@
     "type": "concept",
     "classification": "mecanismo de reintegración",
     "status": "parcialmente clasificado",
-    "summary": "Nodo o condición de retorno asociado a recuperación, reinicio parcial, reanclaje o restablecimiento dentro de procesos sistémicos o temporales."
+    "summary": "El punto de restauración es un nodo o condición de retorno asociado a recuperación, reinicio parcial, reanclaje o restablecimiento dentro de procesos sistémicos o temporales.",
+    "function_summary": "Su función práctica es permitir que un estado, trayectoria o secuencia vuelva a un marco de estabilidad, referencia o continuidad operativa.",
+    "about_summary": "El punto de restauración actúa como ancla de reingreso en contextos donde memoria, secuencia o integridad del proceso pueden verse alteradas.",
+    "relations": "Se relaciona con bucles, reintegración, procesos temporales y mecanismos de restablecimiento del sistema.",
+    "public_summary": "Mecanismo de retorno o restablecimiento dentro de procesos sensibles.",
+    "restricted_summary": "Sus condiciones completas de activación no forman parte del archivo abierto.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   },
-  {
+   {
     "key": "bucle",
     "aliases": ["bucle", "loop"],
     "type": "concept",
     "classification": "patrón cíclico",
     "status": "abierto",
-    "summary": "Repetición estructurada de una secuencia, proceso o estado dentro de una dinámica temporal, cognitiva o sistémica."
+    "summary": "Un bucle es una repetición estructurada de una secuencia, proceso o estado dentro de una dinámica temporal, cognitiva o sistémica.",
+    "function_summary": "Su función práctica es reiterar una secuencia hasta que una condición de salida, ruptura o reorientación altere el patrón.",
+    "about_summary": "En el universo de Claire’s Island, el bucle puede describir repetición técnica, patrón conductual o persistencia temporal dentro de un sistema que busca estabilidad o control.",
+    "relations": "Se relaciona con punto de restauración, Espiral del Tiempo, memoria, conducta y reiteración sistémica.",
+    "public_summary": "Patrón cíclico de repetición dentro de un proceso o estado.",
+    "restricted_summary": "Algunas manifestaciones del bucle exceden la simple repetición mecánica.",
+    "spoiler_risk": "low",
+    "access_level": "public",
+    "response_style": "clinical"
   },
-  {
+   {
     "key": "walter & cousins",
     "aliases": ["walter & cousins", "walter and cousins", "w&c", "w c"],
     "type": "organization",
     "classification": "entidad corporativa",
     "status": "parcialmente clasificado",
-    "summary": "Estructura corporativa asociada a poder externo, supervisión estratégica, intereses de control y capas de influencia más allá del marco visible de la isla."
+    "summary": "Walter & Cousins es una estructura corporativa asociada a poder externo, supervisión estratégica, intereses de control y capas de influencia que exceden el marco visible de la isla.",
+    "function_summary": "Su función práctica es intervenir en decisiones, financiamiento, supervisión y direccionamiento de procesos cuyo alcance no pertenece por completo a la esfera pública de Claire’s Island.",
+    "about_summary": "Walter & Cousins representa una presencia externa de peso, vinculada a capas de poder que observan, condicionan o aprovechan la arquitectura sistémica de la isla sin limitarse a sus instituciones visibles.",
+    "relations": "Se relaciona con operadores externos, intereses corporativos, vigilancia de alto nivel y estructuras de control no plenamente expuestas.",
+    "public_summary": "Entidad corporativa vinculada a supervisión estratégica y poder externo.",
+    "restricted_summary": "Su grado real de influencia sobre la isla no forma parte del archivo abierto.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
   },
   {
     "key": "sgoch",
@@ -415,23 +447,47 @@
     "type": "character",
     "classification": "registro narrativo",
     "status": "parcialmente clasificado",
-    "summary": "Figura presente en el archivo del universo de Claire’s Island cuya función completa no pertenece al nivel abierto del registro."
+    "summary": "Sgoch es una figura presente en el archivo del universo de Claire’s Island cuya función completa no pertenece al nivel abierto del registro.",
+    "function_summary": "Su función práctica se asocia a desplazamientos narrativos, presión sistémica o intervención en capas no completamente transparentes.",
+    "about_summary": "Sgoch ocupa una zona ambigua del archivo: visible como nombre, pero no plenamente abierta como estructura de sentido.",
+    "relations": "Se relaciona con sectores sensibles del relato y con información de acceso parcial.",
+    "public_summary": "Figura narrativa de acceso parcial dentro del sistema.",
+    "restricted_summary": "Su papel completo excede el nivel de acceso actual.",
+    "spoiler_risk": "high",
+    "access_level": "restricted",
+    "response_style": "ominous"
   },
-  {
+   {
     "key": "nathaniel wells",
     "aliases": ["nathaniel wells", "nathaniel", "wells"],
     "type": "character",
     "classification": "operador externo",
     "status": "parcialmente clasificado",
-    "summary": "Figura vinculada a capas de decisión, lectura estratégica o intervención externa en relación con el sistema de Claire’s Island."
+    "summary": "Nathaniel Wells es una figura vinculada a capas de decisión, lectura estratégica o intervención externa en relación con el sistema de Claire’s Island.",
+    "function_summary": "Su función práctica es conectar observación, decisión y operación desde marcos no plenamente internos a la isla.",
+    "about_summary": "Nathaniel Wells pertenece a la categoría de actores cuya importancia depende tanto de su posición como de los sistemas a los que tienen acceso.",
+    "relations": "Se relaciona con Walter & Cousins, supervisión estratégica y circuitos de influencia ajenos al nivel cotidiano de la isla.",
+    "public_summary": "Operador externo asociado a supervisión y decisión.",
+    "restricted_summary": "Su alcance real dentro de la arquitectura de poder no forma parte del registro público.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
   },
-  {
+   {
     "key": "guardia postirana",
     "aliases": ["guardia postirana", "la guardia postirana", "postirana"],
     "type": "group",
     "classification": "estructura de seguridad",
     "status": "abierto",
-    "summary": "Cuerpo de seguridad y operación asociado a funciones de custodia, intervención y preservación del orden dentro de la estructura política de la isla."
+    "summary": "La Guardia Postirana es un cuerpo de seguridad y operación asociado a funciones de custodia, intervención y preservación del orden dentro de la estructura política de la isla.",
+    "function_summary": "Su función práctica es ejecutar control, custodia, vigilancia, contención e intervención directa allí donde el sistema requiere fuerza organizada y obediencia táctica.",
+    "about_summary": "La Guardia Postirana traduce autoridad política en presencia operativa. Constituye uno de los brazos visibles del orden insular.",
+    "relations": "Se relaciona con Autiloux, Trianoux, el aparato político de la isla y los mecanismos de preservación del orden.",
+    "public_summary": "Cuerpo de seguridad e intervención al servicio del orden insular.",
+    "restricted_summary": "No todas sus funciones ni todos sus márgenes de acción pertenecen al registro completamente abierto.",
+    "spoiler_risk": "low",
+    "access_level": "public",
+    "response_style": "political"
   },
   {
     "key": "d'grasnier",
@@ -441,13 +497,21 @@
     "status": "parcialmente clasificado",
     "summary": "Nombre de linaje o pertenencia familiar presente en el archivo social y político de Claire’s Island."
   },
-  {
+   {
     "key": "varin",
     "aliases": ["varin", "elias varin"],
     "type": "character",
     "classification": "registro estratégico",
     "status": "parcialmente clasificado",
-    "summary": "Figura vinculada a capas de análisis, decisión o desplazamiento estratégico dentro del ecosistema narrativo de Claire’s Island."
+    "summary": "Elias Varin es una figura vinculada a capas de análisis, decisión o desplazamiento estratégico dentro del ecosistema narrativo de Claire’s Island.",
+    "function_summary": "Su función práctica es intervenir en circuitos de lectura, cálculo o maniobra estratégica asociados a zonas de tensión del sistema.",
+    "about_summary": "Varin se sitúa en el cruce entre información, cálculo y reposicionamiento. Su presencia sugiere inteligencia operativa antes que visibilidad pública.",
+    "relations": "Se relaciona con estructuras de decisión, operadores externos y dinámicas de control o anticipación.",
+    "public_summary": "Figura estratégica vinculada a análisis y decisión.",
+    "restricted_summary": "La totalidad de su papel dentro del sistema no forma parte del archivo abierto.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   },
   {
     "key": "muro",
@@ -455,7 +519,15 @@
     "type": "place",
     "classification": "infraestructura de contención",
     "status": "abierto",
-    "summary": "Estructura perimetral de separación, control y contención asociada al entorno territorial de Claire’s Island."
+    "summary": "El muro es una estructura perimetral de separación, control y contención asociada al entorno territorial de Claire’s Island.",
+    "function_summary": "Su función práctica es delimitar, proteger, contener y regular el borde entre el espacio interior organizado por el sistema y aquello que queda fuera de él.",
+    "about_summary": "El muro no es sólo una barrera física: también expresa una lógica de separación, administración del límite y gestión del adentro y del afuera.",
+    "relations": "Se relaciona con control territorial, percepción del límite, seguridad y arquitectura de contención de la isla.",
+    "public_summary": "Infraestructura perimetral de separación y control.",
+    "restricted_summary": "Su función simbólica y sistémica excede su dimensión puramente material.",
+    "spoiler_risk": "low",
+    "access_level": "public",
+    "response_style": "ominous"
   },
   {
     "key": "influencer",
@@ -463,16 +535,32 @@
     "type": "group",
     "classification": "capa espectatorial remota",
     "status": "abierto",
-    "summary": "Observadores remotos con capacidad de amplificar, comentar, modular o influir sobre la recepción pública del espectáculo sistémico asociado a la isla."
+    "summary": "Los influencers son observadores remotos con capacidad de amplificar, comentar, modular o influir sobre la recepción pública del espectáculo sistémico asociado a la isla.",
+    "function_summary": "Su función práctica es intervenir en la capa de percepción pública, comentario, deseo, tendencia y presión social vinculada al espectáculo transmitido.",
+    "about_summary": "Los influencers no sólo observan: forman parte de la ecología de lectura, validación y distorsión de lo que la isla proyecta hacia fuera.",
+    "relations": "Se relacionan con transmisión remota, recepción espectatorial, comentario social y modulación cultural del sistema.",
+    "public_summary": "Observadores remotos con peso en la percepción pública del espectáculo insular.",
+    "restricted_summary": "Su influencia real puede exceder el comentario visible y rozar zonas de condicionamiento colectivo.",
+    "spoiler_risk": "low",
+    "access_level": "public",
+    "response_style": "neutral"
   },
   {
     "key": "vida en la isla",
-    "aliases": ["vida en la isla", "como es la vida en la isla", "cómo es la vida en la isla"],
+    "aliases": ["vida en la isla", "como es la vida en la isla", "cómo es la vida en la isla", "vida cotidiana en la isla", "vida cotidiana"],
     "type": "concept",
     "classification": "descripción social",
     "status": "abierto",
-    "summary": "La vida en Claire’s Island combina rutina social regulada, vigilancia normalizada, arquitectura de control, formación institucional y una apariencia de equilibrio sostenida por protocolos visibles e invisibles."
-  },
+    "summary": "La vida cotidiana en Claire’s Island combina rutina social regulada, vigilancia normalizada, arquitectura de control, formación institucional y una apariencia de equilibrio sostenida por protocolos visibles e invisibles.",
+    "function_summary": "Su función práctica dentro del sistema es mantener estabilidad, previsibilidad conductual y una experiencia diaria donde orden, costumbre y supervisión parezcan naturales.",
+    "about_summary": "La vida en la isla se presenta como normalidad refinada, pero esa normalidad está atravesada por vigilancia, jerarquía, formación y control perceptivo. La cotidianeidad no elimina el sistema: lo disimula.",
+    "relations": "Se relaciona con Clairetown, el Instituto, HyperT, el muro, protocolos sociales y mecanismos de modulación del comportamiento.",
+    "public_summary": "Rutina social aparentemente estable sostenida por orden, formación y supervisión normalizada.",
+    "restricted_summary": "La aparente normalidad cotidiana depende de capas de control más profundas que no siempre son visibles para sus habitantes.",
+    "spoiler_risk": "low",
+    "access_level": "public",
+    "response_style": "neutral"
+  }
   {
     "key": "anomalia",
     "aliases": ["anomalia", "anomalía"],
