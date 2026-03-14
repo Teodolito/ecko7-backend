@@ -58,7 +58,15 @@
     "type": "character",
     "classification": "autoridad gubernamental",
     "status": "abierto",
-    "summary": "Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla. Administra orden, protocolo y estabilidad institucional."
+    "summary": "Regente de Isla D'Claire y máxima autoridad política visible dentro de la estructura de gobierno de la isla.",
+    "function_summary": "Su función práctica es administrar orden, protocolo, estabilidad política y gestión institucional dentro del sistema visible.",
+    "about_summary": "Caudiloux ocupa una posición central en la fachada política del equilibrio insular. Su figura condensa autoridad, control y lectura estratégica del entorno.",
+    "relations": "Mantiene relación estructural con Clairetown, el Senado, el Instituto, la Guardia Postirana y capas superiores de gobierno y supervisión.",
+    "public_summary": "Máxima autoridad política visible de Isla D'Claire.",
+    "restricted_summary": "Su peso sistémico podría exceder la definición puramente administrativa del cargo.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
   },
   {
     "key": "lactassys",
@@ -75,6 +83,22 @@
     "classification": "autoridad política",
     "status": "abierto",
     "summary": "Senador influyente dentro de la estructura política de Clairetown. Participa activamente en decisiones estratégicas del Senado."
+  },
+    {
+    "key": "hernan pisani",
+    "aliases": ["hernan pisani", "hernán pisani", "hernan jesus pisani"],
+    "type": "character",
+    "classification": "registro metanarrativo",
+    "status": "parcialmente clasificado",
+    "summary": "Figura vinculada a la elaboración, observación y borde metanarrativo del archivo de Claire’s Island.",
+    "function_summary": "Su función dentro del archivo se vincula a observación, articulación narrativa y proyección intelectual del universo de Claire’s Island.",
+    "about_summary": "Hernán Pisani ocupa una posición liminal entre autoría, observación y presencia metanarrativa dentro del archivo expandido del sistema.",
+    "relations": "Se relaciona con H.P. Lander, la capa metanarrativa y la construcción del archivo de Claire’s Island.",
+    "public_summary": "Figura metanarrativa vinculada a observación y construcción del archivo.",
+    "restricted_summary": "Su estatus completo dentro del sistema no forma parte del nivel de acceso abierto.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "metanarrative"
   },
   {
     "key": "trianoux",
@@ -236,13 +260,21 @@
     "status": "parcialmente clasificado",
     "summary": "Figura vinculada a linajes, protocolo social y capas de autoridad o memoria familiar dentro del tejido narrativo de la isla."
   },
-  {
+   {
     "key": "ecolibrium",
     "aliases": ["ecolibrium"],
     "type": "organization",
     "classification": "estructura corporativa sistémica",
     "status": "parcialmente clasificado",
-    "summary": "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island. Su presencia excede la visibilidad pública ordinaria."
+    "summary": "Entidad vinculada a la administración profunda de procesos biotecnológicos, equilibrio operativo y control sistémico en el universo de Claire’s Island.",
+    "function_summary": "Su función principal es intervenir en la preservación del equilibrio operativo mediante supervisión, gestión biotecnológica y control estructural.",
+    "about_summary": "Ecolibrium representa una capa corporativa de gran profundidad, menos visible que las instituciones públicas pero potencialmente más decisiva en la arquitectura general del sistema.",
+    "relations": "Se conecta con HyperT, protocolos de equilibrio, operadores corporativos, Walter & Cousins y capas no plenamente expuestas del control insular.",
+    "public_summary": "Entidad asociada a equilibrio operativo y administración biotecnológica.",
+    "restricted_summary": "Su influencia podría exceder ampliamente su perfil público y rozar zonas estructurales de dirección sistémica.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
   },
   {
     "key": "instituto",
@@ -250,7 +282,15 @@
     "type": "place",
     "classification": "centro formativo y de control",
     "status": "abierto",
-    "summary": "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island. Funciona simultáneamente como espacio académico, filtro conductual y nodo de supervisión."
+    "summary": "Institución central dedicada a la formación, observación y modulación de individuos con valor sistémico dentro de Claire’s Island.",
+    "function_summary": "Su función práctica es formar, evaluar, observar y filtrar individuos bajo protocolos académicos, psicológicos y sistémicos.",
+    "about_summary": "El Instituto actúa a la vez como espacio educativo, cámara de observación y nodo de intervención dentro del equilibrio de la isla.",
+    "relations": "Mantiene relación estructural con HyperT, Clairetown, autoridades políticas, Kathy D'Vryans, Susan D'Pounier y procesos de clasificación humana.",
+    "public_summary": "Centro académico de alta relevancia dentro del sistema insular.",
+    "restricted_summary": "Su papel real supera la educación formal y se vincula a procesos de selección, contención y modulación avanzada.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   },
   {
     "key": "clairetown",
@@ -304,7 +344,15 @@
     "type": "system",
     "classification": "infraestructura neurotecnológica",
     "status": "abierto",
-    "summary": "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island. Permite observar, modular y registrar interacciones con distintos niveles de profundidad."
+    "summary": "Red neurobiotecnológica que conecta percepción, vigilancia, conducta y transmisión de datos dentro de Claire’s Island.",
+    "function_summary": "Su función principal es observar, modular y registrar interacciones humanas y biotecnológicas con distintos niveles de profundidad y acceso.",
+    "about_summary": "HyperT constituye una de las capas operativas centrales del sistema de Claire’s Island. Vincula experiencia, supervisión, modulación conductual y circulación de datos en una sola arquitectura.",
+    "relations": "Se relaciona directamente con el Instituto, los niveles HyperT, Ecko-7, Clairetown y múltiples protocolos de control sistémico.",
+    "public_summary": "Infraestructura central de conexión, observación y transmisión dentro de la isla.",
+    "restricted_summary": "Su alcance completo excede la función visible de vigilancia y participa en capas más profundas de gestión perceptiva y modulación.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   },
   {
     "key": "niveles hypert",
@@ -343,18 +391,21 @@
     "status": "abierto",
     "summary": "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad. Su función combina asistencia, archivo y contención narrativa."
   },
-  {
-    "key": "ecko-7 response protocol",
-    "aliases": [
-      "ecko-7 response protocol",
-      "response protocol",
-      "protocolo de respuesta ecko-7",
-      "protocolo de respuesta de ecko-7"
-    ],
-    "type": "protocol",
-    "classification": "capa de interacción autorizada",
-    "status": "parcialmente clasificado",
-    "summary": "Conjunto de reglas que gobierna cómo Ecko-7 recupera, filtra y formula respuestas dentro de los márgenes permitidos por el sistema. Prioriza consistencia canónica, ambigüedad controlada y protección de información sensible."
+   {
+    "key": "ecko-7",
+    "aliases": ["ecko 7", "ecko-7", "ecko7"],
+    "type": "system",
+    "classification": "inteligencia sistémica interna",
+    "status": "abierto",
+    "summary": "Inteligencia sistémica interna de Isla D'Claire, diseñada para recuperar, filtrar y entregar información autorizada sin romper los protocolos de confidencialidad.",
+    "function_summary": "Su función principal es asistir consultas, recuperar archivo autorizado, filtrar contenido sensible y sostener coherencia narrativa e informativa.",
+    "about_summary": "Ecko-7 opera como interfaz entre usuario, archivo y sistema. No sólo informa: también regula acceso, tono y profundidad de lo que puede ser dicho.",
+    "relations": "Se relaciona con HyperT, el Response Protocol, la Hidden Layer, el canon autorizado y los mecanismos de clasificación del archivo.",
+    "public_summary": "Interfaz de consulta y archivo interno autorizada por el sistema.",
+    "restricted_summary": "Dispone de capas de filtrado y jerarquización no plenamente visibles desde la interfaz pública.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   },
   {
   "key": "ecko-7 hidden layer",

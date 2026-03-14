@@ -409,17 +409,21 @@ function buildFollowupReply(entry) {
   const name = entry.key.toUpperCase();
   const prefix = stylePrefix(entry.response_style);
 
-  if (shouldRestrictEntry(entry, "about")) {
-    if (entry.access_level === "classified") {
-      return `${prefix} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
-    }
+  // Bloqueo duro solo para clasificados
+  if (entry.access_level === "classified") {
+    return `${prefix} ${name}: Protocolo de confidencialidad activo. Estado del archivo: clasificado.`;
+  }
 
+  // Bloqueo por alto riesgo de spoiler
+  if (entry.spoiler_risk === "high") {
     return `${prefix} ${name}: Archivo parcialmente clasificado. La expansión de este registro excede el nivel de acceso actual.`;
   }
 
+  // Para public y restricted, sí ampliamos
   const detail =
     entry.function_summary ||
     entry.about_summary ||
+    entry.restricted_summary ||
     entry.public_summary ||
     entry.summary ||
     "Registro insuficiente.";
