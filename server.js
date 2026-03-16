@@ -595,30 +595,32 @@ app.get("/admin/usage", (req, res) => {
 
   return res.json({
     server: {
-      version: "2026-03-16 ecko7_v4_inference_followup"
+      version: "2026-03-16 ecko7_v4_inference_followup",
       canon_chars: CANON_PACK ? CANON_PACK.length : 0,
       canon_dict_size: CANON_DICT ? CANON_DICT.size : 0,
+      canon_index_size: CANON_INDEX ? CANON_INDEX.length : 0,
+      canon_index_file_size: CANON_INDEX_FILE ? CANON_INDEX_FILE.length : 0,
       canon_has_hypert: CANON_DICT ? CANON_DICT.has("hypert") : false,
-      sample_terms: CANON_DICT ? Array.from(CANON_DICT.keys()).slice(0, 12) : [],
+      sample_terms: CANON_DICT ? Array.from(CANON_DICT.keys()).slice(0, 12) : []
     },
     models: { strong: MODEL_STRONG, light: MODEL_LIGHT },
     pricing_usd_per_1m_tokens: {
       strong: { input: PRICE_IN_PER_M_STRONG, output: PRICE_OUT_PER_M_STRONG },
-      light: { input: PRICE_IN_PER_M_LIGHT, output: PRICE_OUT_PER_M_LIGHT },
+      light: { input: PRICE_IN_PER_M_LIGHT, output: PRICE_OUT_PER_M_LIGHT }
     },
     limits: {
       max_req_per_min: MAX_REQ_PER_MIN,
       max_msg_chars: MAX_MSG_CHARS,
       max_completion_tokens_limits: {
         strong: MAX_TOKENS_STRONG,
-        light: MAX_TOKENS_LIGHT,
-      },
+        light: MAX_TOKENS_LIGHT
+      }
     },
     day: usage.day,
     month: usage.month,
     lifetime: usage.lifetime,
     by_model: usage.by_model,
-    last_error: usage.last_error,
+    last_error: usage.last_error
   });
 });
 
