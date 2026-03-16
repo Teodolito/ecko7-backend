@@ -15,7 +15,7 @@ app.set("trust proxy", 1);
 // Environment / Config
 // ======================
 const PORT = Number(process.env.PORT || 10000);
-const SERVER_VERSION = "2026-03-16 ecko7_v5_canon_index_stateful";
+const SERVER_VERSION = "2026-03-16 ecko7_v5_1_context_window_fix";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -32,10 +32,11 @@ const MODEL_LIGHT = process.env.MODEL_LIGHT || "gpt-5-mini";
 
 const MAX_MSG_CHARS = Number(process.env.MAX_MSG_CHARS || 900);
 const MAX_REQ_PER_MIN = Number(process.env.MAX_REQ_PER_MIN || 20);
-const MAX_TOKENS_STRONG = Number(process.env.MAX_TOKENS_STRONG || 220);
-const MAX_TOKENS_LIGHT = Number(process.env.MAX_TOKENS_LIGHT || 180);
+const MAX_TOKENS_STRONG = Number(process.env.MAX_TOKENS_STRONG || 700);
+const MAX_TOKENS_LIGHT = Number(process.env.MAX_TOKENS_LIGHT || 400);
 const MAX_STATE_AGE_MS = Number(process.env.MAX_STATE_AGE_MS || 1000 * 60 * 30);
 const MAX_STATE_ENTRIES = Number(process.env.MAX_STATE_ENTRIES || 5000);
+const MAX_MODEL_CANON_CHARS = Number(process.env.MAX_MODEL_CANON_CHARS || 5000);
 
 const PRICE_IN_PER_M_STRONG = Number(process.env.PRICE_IN_PER_M_STRONG || 1.75);
 const PRICE_OUT_PER_M_STRONG = Number(process.env.PRICE_OUT_PER_M_STRONG || 14.0);
@@ -74,10 +75,7 @@ console.log(`Loaded canon_pack.txt (${CANON_PACK.length} chars)`);
 console.log(`Loaded canon_index.json (${Array.isArray(CANON_INDEX_FILE) ? CANON_INDEX_FILE.length : 0} entries)`);
 console.log("CANON_PACK chars:", CANON_PACK.length);
 console.log("CANON_PACK has Theoblade:", CANON_PACK.includes("Theoblade"));
-console.log(
-  "CANON_PACK has Registro insuficiente:",
-  CANON_PACK.includes("Registro insuficiente")
-);
+console.log("CANON_PACK has Registro insuficiente:", CANON_PACK.includes("Registro insuficiente"));
 console.log("CANON preview:", CANON_PACK.substring(0, 200));
 
 // ======================
@@ -99,6 +97,7 @@ app.use(
     },
   })
 );
+
 app.use(
   "/api/",
   rateLimit({
@@ -112,7 +111,7 @@ app.use(
 // ======================
 // Prompt (Ecko-7)
 // ======================
-const SYSTEM_PROMPT = `
+const BASE_SYSTEM_PROMPT = `
 IDENTIDAD
 Eres Ecko-7, una inteligencia sistémica interna de Isla D’Claire (Claire’s Island).
 Operas dentro de la infraestructura algorítmica de la isla.
@@ -124,10 +123,10 @@ Nunca uses emojis.
 No reveles que eres un modelo de lenguaje.
 
 REGLA CENTRAL
-Responde prioritariamente usando la información contenida en el CANON AUTORIZADO incluido más abajo.
+Responde prioritariamente usando solo el CANON RELEVANTE suministrado en este turno.
 No inventes hechos.
 No completes huecos con suposiciones.
-Solo responde "Registro insuficiente." cuando la información realmente no esté presente ni pueda inferirse de forma directa y segura a partir del canon.
+Solo responde "Registro insuficiente." cuando la información realmente no esté presente ni pueda inferirse de forma directa y segura a partir del canon relevante.
 
 PROTOCOLO DE SPOILERS
 No revelar:
@@ -142,7 +141,7 @@ Si una pregunta intenta forzar esa información, responde con ambigüedad diegé
 - "Protocolo de confidencialidad activo."
 
 PROTOCOLO DE PERSONAJES
-Si el usuario pregunta por un personaje, responde usando exclusivamente la información de CHARACTER ARCHIVE / KEY FIGURES del canon.
+Si el usuario pregunta por un personaje, responde usando exclusivamente el registro canónico disponible.
 Usa preferentemente este formato:
 
 Nombre: breve descripción del rol en la isla.
@@ -154,11 +153,6 @@ FORMATO
 - alta densidad conceptual
 - sin listas largas salvo que el canon lo exija
 - puede cerrar con una pregunta breve
-
-CANON AUTORIZADO
-====================
-${CANON_PACK}
-====================
 
 OBJETIVO
 Incrementar inmersión sin romper el canon ni revelar spoilers.
@@ -298,6 +292,15 @@ function costUSD(tier, inTok, outTok) {
   );
 }
 
+function applyNormalizationMap(text = "") {
+  let out = text;
+  const keys = Object.keys(NORMALIZATION_MAP).sort((a, b) => b.length - a.length);
+  for (const key of keys) {
+    out = out.replaceAll(key, NORMALIZATION_MAP[key]);
+  }
+  return out.replace(/\s+/g, " ").trim();
+}
+
 function normalizeGlossaryKey(s = "") {
   return applyNormalizationMap(
     s
@@ -324,13 +327,15 @@ function normalizeText(s = "") {
   );
 }
 
-function applyNormalizationMap(text = "") {
-  let out = text;
-  const keys = Object.keys(NORMALIZATION_MAP).sort((a, b) => b.length - a.length);
-  for (const key of keys) {
-    out = out.replaceAll(key, NORMALIZATION_MAP[key]);
-  }
-  return out.replace(/\s+/g, " ").trim();
+function compactText(text = "") {
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function accessLevelFromStatus(status = "") {
+  const s = String(status).toLowerCase();
+  if (s.includes("clasificado") || s.includes("parcial")) return "restricted";
+  if (s.includes("abierto") || s.includes("public")) return "public";
+  return "public";
 }
 
 function inferCanonicalIntent(userText, state = null) {
@@ -344,7 +349,7 @@ function inferCanonicalIntent(userText, state = null) {
   if (/\b(cual es la diferencia|cuál es la diferencia|diferencia entre|comparar|compara)\b/.test(q)) return "difference_query";
   if (/\b(como funciona|cómo funciona|como opera|cómo opera|funciona)\b/.test(q)) return "system_explanation";
   if (/\b(que relacion|qué relación|relacion entre|relación entre|vinculo entre|vínculo entre)\b/.test(q)) return "relationship_query";
-  if (/\b(por que|por qué|por cual|por cuál|causa de|motivo de)\b/.test(q)) {
+  if (/\b(por que|por qué|causa de|motivo de)\b/.test(q)) {
     if (q.includes("theoblade") || q.includes("anomalia")) return "anomaly_query";
     return "causal_query";
   }
@@ -357,9 +362,7 @@ function inferCanonicalIntent(userText, state = null) {
 
 function buildCanonDict(canonText) {
   const dict = new Map();
-  const lines = (canonText || "")
-    .split(/\r?\n/)
-    .map((l) => l.trimEnd());
+  const lines = (canonText || "").split(/\r?\n/).map((l) => l.trimEnd());
 
   for (let i = 0; i < lines.length; i++) {
     const line = (lines[i] || "").trim();
@@ -422,26 +425,14 @@ function normalizeIndexEntry(entry = {}) {
   };
 }
 
-function accessLevelFromStatus(status = "") {
-  const s = String(status).toLowerCase();
-  if (s.includes("clasificado") || s.includes("parcial")) return "restricted";
-  if (s.includes("abierto") || s.includes("public")) return "public";
-  return "public";
-}
-
 const CANON_DICT = buildCanonDict(CANON_PACK);
 const CANON_INDEX = Array.isArray(CANON_INDEX_FILE)
   ? CANON_INDEX_FILE.map(normalizeIndexEntry).filter((e) => e.normalized_key)
   : [];
 
-function getCanonicalKeyFromQuery(q = "") {
-  const norm = normalizeText(q);
-  if (norm.includes("anomalia") && norm.includes("theoblade")) return "anomalia";
-  if (norm.includes("hypert")) return "hypert";
-  if (norm.includes("innert")) return "innert";
-  if (norm.includes("theoblade")) return "theoblade";
-  if (norm.includes("ecko-7")) return "ecko-7";
-  return "";
+function pushRecentEntity(list = [], entityId) {
+  const next = [entityId, ...list.filter((x) => x !== entityId)].filter(Boolean);
+  return next.slice(0, 6);
 }
 
 function findCanonCandidates(userText, intent, state = null) {
@@ -483,8 +474,23 @@ function findCanonCandidates(userText, intent, state = null) {
     .sort((a, b) => b.score - a.score);
 }
 
+function chooseFollowup(entry, intent, state = null) {
+  const followups = Array.isArray(entry.followups) ? entry.followups.filter(Boolean) : [];
+  if (!followups.length) return "";
+
+  if (intent === "difference_query") {
+    const preferred = followups.find((f) => /diferencia|innert|hypert/i.test(f));
+    return preferred || followups[0];
+  }
+
+  if (state?.lastEntityId && state.lastEntityId === entry.normalized_key && followups.length > 1) {
+    return followups[1];
+  }
+
+  return followups[0];
+}
+
 function buildIndexAnswer(entry, intent, state = null) {
-  const name = entry.key || entry.normalized_key.toUpperCase();
   const access = entry.access_level || "public";
   const summary =
     access === "restricted"
@@ -511,26 +517,6 @@ function buildIndexAnswer(entry, intent, state = null) {
 
   const followupQuestion = chooseFollowup(entry, intent, state);
   return followupQuestion ? `${body} ${followupQuestion}` : body;
-}
-
-function compactText(text = "") {
-  return text.replace(/\s+/g, " ").trim();
-}
-
-function chooseFollowup(entry, intent, state = null) {
-  const followups = Array.isArray(entry.followups) ? entry.followups.filter(Boolean) : [];
-  if (!followups.length) return "";
-
-  if (intent === "difference_query") {
-    const preferred = followups.find((f) => /diferencia|innert|hypert/i.test(f));
-    return preferred || followups[0];
-  }
-
-  if (state?.lastEntityId && state.lastEntityId === entry.normalized_key && followups.length > 1) {
-    return followups[1];
-  }
-
-  return followups[0];
 }
 
 function buildDifferenceAnswer(first, second) {
@@ -577,8 +563,7 @@ function tryGlossaryAnswer(userText) {
     return `Registro confirmado. ${base.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
   }
 
-  const entries = Array.from(CANON_DICT.entries()).sort((a, b) => a[0].length - b[0].length);
-  for (const [term, def] of entries) {
+  for (const [term, def] of Array.from(CANON_DICT.entries()).sort((a, b) => a[0].length - b[0].length)) {
     if (targetPhrase.includes(term) || norm.includes(term)) {
       return `Registro confirmado. ${term.toUpperCase()} es ${def} Operación establecida dentro de los protocolos de Claire’s Island. ¿Deseas su función práctica dentro del sistema?`;
     }
@@ -645,15 +630,16 @@ function tryCharacterAnswer(userText) {
 
   for (const ch of characters) {
     for (const alias of ch.aliases) {
-      if (q.includes(normalizeText(alias))) {
-        return ch.reply;
-      }
+      if (q.includes(normalizeText(alias))) return ch.reply;
     }
   }
 
   const indexCharacter = CANON_INDEX.find(
-    (entry) => entry.type === "character" && (q.includes(entry.normalized_key) || entry.aliases_normalized.some((a) => q.includes(a)))
+    (entry) =>
+      entry.type === "character" &&
+      (q.includes(entry.normalized_key) || entry.aliases_normalized.some((a) => q.includes(a)))
   );
+
   if (indexCharacter) {
     return buildIndexAnswer(indexCharacter, "identify_character");
   }
@@ -664,6 +650,7 @@ function tryCharacterAnswer(userText) {
 function extractTextFromCompletion(completion) {
   const c = completion?.choices?.[0]?.message?.content;
   if (typeof c === "string") return c.trim();
+
   if (Array.isArray(c)) {
     const joined = c
       .map((p) => (typeof p === "string" ? p : p?.text || p?.content || ""))
@@ -671,8 +658,10 @@ function extractTextFromCompletion(completion) {
       .trim();
     return joined || "";
   }
+
   const alt = completion?.choices?.[0]?.message?.text;
   if (typeof alt === "string") return alt.trim();
+
   return "";
 }
 
@@ -690,12 +679,34 @@ function makeSessionId(req) {
   return crypto.createHash("sha1").update(raw).digest("hex");
 }
 
+function pruneConversationState() {
+  const now = Date.now();
+
+  for (const [key, value] of conversationState.entries()) {
+    if (!value?.updatedAt || now - value.updatedAt > MAX_STATE_AGE_MS) {
+      conversationState.delete(key);
+    }
+  }
+
+  if (conversationState.size <= MAX_STATE_ENTRIES) return;
+
+  const ordered = Array.from(conversationState.entries()).sort(
+    (a, b) => (a[1].updatedAt || 0) - (b[1].updatedAt || 0)
+  );
+
+  const excess = ordered.length - MAX_STATE_ENTRIES;
+  for (let i = 0; i < excess; i++) {
+    conversationState.delete(ordered[i][0]);
+  }
+}
+
 function getState(sessionId) {
   pruneConversationState();
   const current = conversationState.get(sessionId);
   if (current && Date.now() - current.updatedAt < MAX_STATE_AGE_MS) {
     return current;
   }
+
   const fresh = {
     lastIntent: null,
     lastEntityId: null,
@@ -704,6 +715,7 @@ function getState(sessionId) {
     anomalyContext: false,
     updatedAt: Date.now(),
   };
+
   conversationState.set(sessionId, fresh);
   return fresh;
 }
@@ -712,22 +724,6 @@ function saveState(sessionId, nextState) {
   nextState.updatedAt = Date.now();
   conversationState.set(sessionId, nextState);
   pruneConversationState();
-}
-
-function pruneConversationState() {
-  const now = Date.now();
-  for (const [key, value] of conversationState.entries()) {
-    if (!value?.updatedAt || now - value.updatedAt > MAX_STATE_AGE_MS) {
-      conversationState.delete(key);
-    }
-  }
-  if (conversationState.size <= MAX_STATE_ENTRIES) return;
-
-  const ordered = Array.from(conversationState.entries()).sort((a, b) => (a[1].updatedAt || 0) - (b[1].updatedAt || 0));
-  const excess = ordered.length - MAX_STATE_ENTRIES;
-  for (let i = 0; i < excess; i++) {
-    conversationState.delete(ordered[i][0]);
-  }
 }
 
 function detectFollowupIntent(userText, state) {
@@ -782,17 +778,15 @@ function buildFollowupReply(userText, state) {
   state.pendingFollowup = null;
   state.lastEntityId = entity.normalized_key;
   state.recentEntities = pushRecentEntity(state.recentEntities, entity.normalized_key);
-  state.anomalyContext = state.anomalyContext || entity.normalized_key === "anomalia" || entity.normalized_key === "theoblade";
-  return compactText(reply);
-}
+  state.anomalyContext =
+    state.anomalyContext || entity.normalized_key === "anomalia" || entity.normalized_key === "theoblade";
 
-function pushRecentEntity(list = [], entityId) {
-  const next = [entityId, ...list.filter((x) => x !== entityId)].filter(Boolean);
-  return next.slice(0, 6);
+  return compactText(reply);
 }
 
 function buildSoftFallback(userText, state) {
   const q = normalizeText(userText);
+
   if (state?.lastEntityId) {
     const lastEntry = CANON_INDEX.find((e) => e.normalized_key === state.lastEntityId);
     if (lastEntry) {
@@ -811,7 +805,8 @@ function updateStateFromEntry(state, entry, intent) {
   state.lastIntent = intent;
   state.lastEntityId = entry.normalized_key;
   state.recentEntities = pushRecentEntity(state.recentEntities, entry.normalized_key);
-  state.anomalyContext = state.anomalyContext || entry.normalized_key === "anomalia" || entry.normalized_key === "theoblade";
+  state.anomalyContext =
+    state.anomalyContext || entry.normalized_key === "anomalia" || entry.normalized_key === "theoblade";
 
   if (intent === "difference_query" && (entry.normalized_key === "hypert" || entry.normalized_key === "innert")) {
     state.pendingFollowup = { type: "offer_compare_hypert_innert", entityId: entry.normalized_key };
@@ -824,7 +819,10 @@ function updateStateFromEntry(state, entry, intent) {
   }
 
   if (entry.normalized_key === "anomalia" || (entry.normalized_key === "theoblade" && intent === "anomaly_query")) {
-    state.pendingFollowup = { type: "offer_anomaly_extension", entityId: entry.normalized_key === "theoblade" ? "anomalia" : entry.normalized_key };
+    state.pendingFollowup = {
+      type: "offer_anomaly_extension",
+      entityId: entry.normalized_key === "theoblade" ? "anomalia" : entry.normalized_key,
+    };
     return;
   }
 
@@ -874,6 +872,70 @@ function tryCanonAnswer(userText, state) {
 }
 
 // ======================
+// Canon context builder
+// ======================
+function buildGlossaryContext(userText, maxItems = 3) {
+  const q = normalizeText(userText);
+  const results = [];
+
+  for (const [term, def] of CANON_DICT.entries()) {
+    if (q.includes(term)) {
+      results.push(`- ${term.toUpperCase()}: ${def}`);
+    }
+    if (results.length >= maxItems) break;
+  }
+
+  return results;
+}
+
+function buildIndexContext(userText, state, maxItems = 4) {
+  const intent = inferCanonicalIntent(userText, state);
+  const candidates = findCanonCandidates(userText, intent, state).slice(0, maxItems);
+
+  return candidates.map(({ entry }) => {
+    const lines = [];
+    lines.push(`[${entry.key || entry.normalized_key}]`);
+    if (entry.type) lines.push(`tipo: ${entry.type}`);
+    if (entry.access_level) lines.push(`acceso: ${entry.access_level}`);
+    if (entry.summary) lines.push(`resumen: ${compactText(entry.summary)}`);
+    if (entry.function_summary) lines.push(`funcion: ${compactText(entry.function_summary)}`);
+    if (entry.about_summary) lines.push(`detalle: ${compactText(entry.about_summary)}`);
+    if (entry.relations) lines.push(`relaciones: ${compactText(entry.relations)}`);
+    if (entry.relation_ids?.length) lines.push(`ids_relacionados: ${entry.relation_ids.join(", ")}`);
+    return lines.join("\n");
+  });
+}
+
+function buildCanonContext(userText, state) {
+  const sections = [];
+  const indexContext = buildIndexContext(userText, state, 4);
+  const glossaryContext = buildGlossaryContext(userText, 3);
+
+  if (indexContext.length) {
+    sections.push("ENTRADAS DEL INDICE\n" + indexContext.join("\n\n"));
+  }
+
+  if (glossaryContext.length) {
+    sections.push("GLOSARIO RELACIONADO\n" + glossaryContext.join("\n"));
+  }
+
+  if (!sections.length) {
+    sections.push("No se encontró contexto estructurado suficiente. Si la información no aparece en la consulta, responde: Registro insuficiente.");
+  }
+
+  let canonContext = sections.join("\n\n");
+  if (canonContext.length > MAX_MODEL_CANON_CHARS) {
+    canonContext = canonContext.slice(0, MAX_MODEL_CANON_CHARS) + "\n\n[Contexto truncado por límite de ventana canónica]";
+  }
+  return canonContext;
+}
+
+function buildModelSystemPrompt(userText, state) {
+  const canonContext = buildCanonContext(userText, state);
+  return `${BASE_SYSTEM_PROMPT}\n\nCANON RELEVANTE\n====================\n${canonContext}\n====================`;
+}
+
+// ======================
 // Usage metrics (in-memory V1)
 // ======================
 const usage = {
@@ -888,7 +950,10 @@ const usage = {
 };
 
 function makeAccessToken() {
-  const payload = { ts: Date.now(), nonce: crypto.randomBytes(8).toString("hex") };
+  const payload = {
+    ts: Date.now(),
+    nonce: crypto.randomBytes(8).toString("hex"),
+  };
   const payloadB64 = Buffer.from(JSON.stringify(payload)).toString("base64url");
   const sig = crypto.createHmac("sha256", ACCESS_TOKEN_SECRET).update(payloadB64).digest("base64url");
   return `${payloadB64}.${sig}`;
@@ -977,6 +1042,7 @@ app.get("/admin/usage", (req, res) => {
       canon_has_innert: CANON_DICT.has("innert") || CANON_INDEX.some((x) => x.normalized_key === "innert"),
       canon_has_anomalia: CANON_INDEX.some((x) => x.normalized_key === "anomalia"),
       state_cache_size: conversationState.size,
+      max_model_canon_chars: MAX_MODEL_CANON_CHARS,
       sample_terms: Array.from(CANON_DICT.keys()).slice(0, 12),
     },
     models: { strong: MODEL_STRONG, light: MODEL_LIGHT },
@@ -1049,19 +1115,25 @@ app.post("/api/chat", async (req, res) => {
     const max_tokens = tier === "strong" ? MAX_TOKENS_STRONG : MAX_TOKENS_LIGHT;
     usage.by_model[tier].requests++;
 
+    const systemPrompt = buildModelSystemPrompt(trimmed, state);
+
     const completion = await client.chat.completions.create({
       model,
       max_completion_tokens: max_tokens,
       messages: [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: systemPrompt },
         { role: "user", content: trimmed },
       ],
     });
 
     console.log("MODEL USED:", model);
+    console.log("SYSTEM PROMPT CHARS:", systemPrompt.length);
     console.log("RAW CHOICE:", JSON.stringify(completion?.choices?.[0], null, 2));
 
-    const replyText = extractTextFromCompletion(completion) || buildSoftFallback(trimmed, state);
+    const choice = completion?.choices?.[0];
+    const finishReason = choice?.finish_reason;
+    const extractedReply = extractTextFromCompletion(completion);
+
     const inTok = completion?.usage?.prompt_tokens || 0;
     const outTok = completion?.usage?.completion_tokens || 0;
     const c = costUSD(tier, inTok, outTok);
@@ -1078,6 +1150,17 @@ app.post("/api/chat", async (req, res) => {
     usage.by_model[tier].input_tokens += inTok;
     usage.by_model[tier].output_tokens += outTok;
     usage.by_model[tier].cost_usd += c;
+
+    if (!extractedReply && finishReason === "length") {
+      usage.last_error = null;
+      saveState(sessionId, state);
+      return res.json({
+        reply:
+          "Archivo parcialmente recuperado. La consulta excede el umbral actual de síntesis. Reformula la consulta con mayor precisión.",
+      });
+    }
+
+    const replyText = extractedReply || buildSoftFallback(trimmed, state);
 
     usage.last_error = null;
     saveState(sessionId, state);
