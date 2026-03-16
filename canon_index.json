@@ -7,13 +7,53 @@
     "status": "abierto",
     "summary": "Criaturas bioingenierizadas con cuerpo de águila cuadrúpeda y cabeza de lobo. Utilizadas como unidades de vigilancia, caza y recolección. Algunas muestran comportamiento emergente no previsto."
   },
-  {
+    {
     "key": "theoblade",
     "aliases": ["theoblade", "theoblade d'normaux", "theoblade d’normaux"],
     "type": "character",
     "classification": "anomalía emergente",
     "status": "parcialmente clasificado",
-    "summary": "Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island. Su presencia produce desviaciones perceptibles en los equilibrios previstos por la red."
+    "summary": "Individuo asociado a una anomalía emergente dentro del sistema de Claire’s Island.",
+    "function_summary": "Su función sistémica no se limita a interactuar con la red. Su vínculo con InnerT lo sitúa en una posición excepcional dentro de la arquitectura del sistema.",
+    "about_summary": "Theoblade representa una divergencia respecto al comportamiento esperado por el sistema. Su relación con la red parece operar desde una capa interna, no completamente dependiente de la infraestructura HyperT estándar.",
+    "relations": "Se relaciona con InnerT, anomalía, HyperT, Espiral del Tiempo, resonancia biotecnológica y múltiples desviaciones sistémicas.",
+    "public_summary": "Individuo de alto interés sistémico dentro de la isla.",
+    "restricted_summary": "La naturaleza completa de su vínculo con el sistema no forma parte del registro abierto.",
+    "spoiler_risk": "high",
+    "access_level": "restricted",
+    "response_style": "ominous"
+  },
+    {
+    "key": "resonancia",
+    "aliases": ["resonancia", "resonancia biotecnologica", "resonancia biotecnológica"],
+    "type": "concept",
+    "classification": "fenómeno sistémico",
+    "status": "parcialmente clasificado",
+    "summary": "Fenómeno de sincronización o interacción entre sistemas biológicos y arquitectura tecnológica.",
+    "function_summary": "Su función práctica es amplificar o transmitir patrones perceptivos, emocionales o cognitivos entre capas biológicas y tecnológicas.",
+    "about_summary": "La resonancia describe momentos en los que organismos y sistemas tecnológicos operan en sincronía o interferencia mutua. En ciertos casos, puede generar efectos no previstos por los modelos del sistema.",
+    "relations": "Se relaciona con HyperT, InnerT, anomalía, percepción expandida y procesos biotecnológicos emergentes.",
+    "public_summary": "Sincronización entre sistemas biológicos y arquitectura tecnológica.",
+    "restricted_summary": "En algunos casos, la resonancia puede desencadenar fenómenos de desviación sistémica.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
+  },
+   {
+    "key": "percepcion expandida",
+    "aliases": ["percepcion expandida", "percepción expandida"],
+    "type": "concept",
+    "classification": "estado perceptivo",
+    "status": "parcialmente clasificado",
+    "summary": "Estado perceptivo en el que la experiencia sensorial o cognitiva se amplía más allá de los canales ordinarios.",
+    "function_summary": "Su función práctica dentro del sistema es permitir acceso ampliado a información, patrones o dinámicas que normalmente no serían detectables.",
+    "about_summary": "La percepción expandida puede surgir por interacción con tecnologías sistémicas avanzadas o por fenómenos biotecnológicos emergentes. En algunos casos aparece asociada a anomalías.",
+    "relations": "Se relaciona con resonancia, HyperT, InnerT, anomalía y procesos cognitivos vinculados al sistema.",
+    "public_summary": "Ampliación de la capacidad perceptiva dentro del sistema.",
+    "restricted_summary": "Algunas manifestaciones de percepción expandida no están completamente comprendidas por los modelos del sistema.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   },
   {
   "key": "kathy",
@@ -100,21 +140,37 @@
     "access_level": "restricted",
     "response_style": "metanarrative"
   },
-  {
+   {
     "key": "trianoux",
     "aliases": ["trianoux"],
     "type": "character",
     "classification": "operador político",
     "status": "parcialmente clasificado",
-    "summary": "Actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla. Efectivo de la Guardia Postirana."
-  },
-  {
+    "summary": "Trianoux es un actor político implicado en conflictos de poder dentro de la estructura gubernamental de la isla y efectivo de la Guardia Postirana.",
+    "function_summary": "Su función práctica es operar en la intersección entre poder político, disciplina táctica y ejecución de intereses dentro de contextos de presión o conflicto.",
+    "about_summary": "Trianoux se mueve entre obediencia estructural, ambición y exposición al conflicto. Su presencia pertenece a una zona donde política y coerción se rozan directamente.",
+    "relations": "Se relaciona con Autiloux, la Guardia Postirana, Caudiloux y tensiones internas del aparato político de la isla.",
+    "public_summary": "Operador político vinculado al aparato de seguridad y al conflicto interno de poder.",
+    "restricted_summary": "Su papel completo dentro de las tensiones del sistema no forma parte del archivo plenamente abierto.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
+  }
+    {
     "key": "autiloux",
     "aliases": ["autiloux"],
     "type": "character",
     "classification": "operador estratégico",
     "status": "parcialmente clasificado",
-    "summary": "Jefe de la Guardia Postirana. Individuo asociado a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire. Su perfil combina observación analítica y participación en eventos críticos del sistema."
+    "summary": "Autiloux es jefe de la Guardia Postirana y figura asociada a operaciones estratégicas dentro de las dinámicas de poder que rodean Isla D'Claire.",
+    "function_summary": "Su función práctica es coordinar, ejecutar o supervisar intervención táctica, seguridad operativa y preservación del orden en contextos sensibles.",
+    "about_summary": "Autiloux ocupa un punto de cruce entre inteligencia táctica, obediencia institucional y acción directa. Su figura conecta mando, vigilancia y capacidad de respuesta.",
+    "relations": "Se relaciona con la Guardia Postirana, Trianoux, Caudiloux y estructuras de seguridad vinculadas al poder político de la isla.",
+    "public_summary": "Jefe de la Guardia Postirana y operador clave del aparato de seguridad.",
+    "restricted_summary": "La extensión completa de su papel estratégico no forma parte del registro abierto.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
   },
   {
     "key": "freed scient",
@@ -301,7 +357,7 @@
     "summary": "Centro urbano principal de Isla D'Claire, donde convergen administración, vida civil, protocolos sociales y vigilancia sistémica. Funciona como vitrina de orden y normalidad regulada."
   },
   {
-    "key": "claire's island",
+     "key": "claire's island",
     "aliases": [
       "claire's island",
       "claires island",
@@ -313,7 +369,15 @@
     "type": "place",
     "classification": "entorno insular sistémico",
     "status": "abierto",
-    "summary": "Isla-región organizada bajo una arquitectura de vigilancia, modulación social y gestión biotecnológica. Su apariencia de equilibrio depende de protocolos visibles e invisibles que regulan percepción, conducta y memoria."
+    "summary": "Claire’s Island es una isla-región organizada bajo una arquitectura de vigilancia, modulación social y gestión biotecnológica.",
+    "function_summary": "Su función práctica dentro del sistema es servir como entorno total de organización, observación, regulación social y experimentación estructurada.",
+    "about_summary": "Claire’s Island es el espacio donde política, biotecnología, vigilancia, formación institucional y vida cotidiana convergen dentro de una ecología de control cuidadosamente administrada.",
+    "relations": "Se relaciona con Clairetown, el Instituto, HyperT, Ecolibrium, el muro y las capas externas de supervisión del experimento.",
+    "public_summary": "Territorio central del sistema, organizado bajo protocolos de equilibrio, control y supervisión.",
+    "restricted_summary": "Su apariencia de orden no agota la complejidad de sus capas operativas internas ni el alcance real del experimento.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "ominous"
   },
   {
     "key": "lessya island",
@@ -328,7 +392,15 @@
     "type": "place",
     "classification": "territorio insular asociado",
     "status": "parcialmente clasificado",
-    "summary": "Territorio insular vinculado al mapa político y operativo del universo de Claire’s Island. Su importancia excede su visibilidad superficial dentro del archivo público."
+    "summary": "Lessya Island es un territorio insular vinculado al mapa político y operativo del universo de Claire’s Island.",
+    "function_summary": "Su función práctica dentro del sistema es actuar como territorio asociado a dinámicas políticas, estratégicas o logísticas que exceden el marco inmediato de la isla principal.",
+    "about_summary": "Lessya Island ocupa una posición periférica sólo en apariencia. Su relevancia depende menos de su visibilidad pública que de su relación con la arquitectura mayor del sistema.",
+    "relations": "Se relaciona con Lactassys, estructuras de poder regional, equilibrio político del archipiélago y circuitos de supervisión externa.",
+    "public_summary": "Territorio insular asociado al universo político y operativo de Claire’s Island.",
+    "restricted_summary": "Su importancia real no queda completamente expuesta en el archivo público.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "political"
   },
   {
     "key": "saint croix",
@@ -484,16 +556,16 @@
     "access_level": "public",
     "response_style": "clinical"
   },
-   {
+    {
     "key": "walter & cousins",
     "aliases": ["walter & cousins", "walter and cousins", "w&c", "w c"],
     "type": "organization",
-    "classification": "entidad corporativa",
+    "classification": "estructura corporativa externa",
     "status": "parcialmente clasificado",
-    "summary": "Walter & Cousins es una estructura corporativa asociada a poder externo, supervisión estratégica, intereses de control y capas de influencia que exceden el marco visible de la isla.",
-    "function_summary": "Su función práctica es intervenir en decisiones, financiamiento, supervisión y direccionamiento de procesos cuyo alcance no pertenece por completo a la esfera pública de Claire’s Island.",
-    "about_summary": "Walter & Cousins representa una presencia externa de peso, vinculada a capas de poder que observan, condicionan o aprovechan la arquitectura sistémica de la isla sin limitarse a sus instituciones visibles.",
-    "relations": "Se relaciona con operadores externos, intereses corporativos, vigilancia de alto nivel y estructuras de control no plenamente expuestas.",
+    "summary": "Walter & Cousins es un consorcio corporativo asociado a poder financiero, supervisión estratégica y estructuras de influencia externas vinculadas al experimento de Claire’s Island.",
+    "function_summary": "Su función práctica es participar en financiamiento, dirección estratégica y supervisión de proyectos vinculados al sistema que rodea a la isla.",
+    "about_summary": "Walter & Cousins representa una capa de poder externo que observa, evalúa o condiciona el funcionamiento de la isla desde marcos que no pertenecen completamente a su estructura interna.",
+    "relations": "Se relaciona con Nathaniel Wells, Elias Varin, Ecolibrium, supervisión estratégica y estructuras corporativas de alto nivel.",
     "public_summary": "Entidad corporativa vinculada a supervisión estratégica y poder externo.",
     "restricted_summary": "Su grado real de influencia sobre la isla no forma parte del archivo abierto.",
     "spoiler_risk": "medium",
@@ -538,12 +610,28 @@
     "type": "group",
     "classification": "estructura de seguridad",
     "status": "abierto",
-    "summary": "La Guardia Postirana es un cuerpo de seguridad y operación asociado a funciones de custodia, intervención y preservación del orden dentro de la estructura política de la isla.",
-    "function_summary": "Su función práctica es ejecutar control, custodia, vigilancia, contención e intervención directa allí donde el sistema requiere fuerza organizada y obediencia táctica.",
-    "about_summary": "La Guardia Postirana traduce autoridad política en presencia operativa. Constituye uno de los brazos visibles del orden insular.",
-    "relations": "Se relaciona con Autiloux, Trianoux, el aparato político de la isla y los mecanismos de preservación del orden.",
+    "summary": "La Guardia Postirana es el cuerpo de seguridad encargado de preservar el orden y ejecutar intervenciones dentro del sistema político de la isla.",
+    "function_summary": "Su función práctica es mantener el orden, ejecutar operaciones de seguridad, custodiar zonas sensibles y responder ante situaciones de riesgo o desviación.",
+    "about_summary": "La Guardia Postirana traduce autoridad política en presencia táctica. Es uno de los mecanismos más visibles del control insular cuando la supervisión debe convertirse en acción directa.",
+    "relations": "Se relaciona con Autiloux, Trianoux, Caudiloux, el Senado y los mecanismos de preservación del orden político.",
     "public_summary": "Cuerpo de seguridad e intervención al servicio del orden insular.",
     "restricted_summary": "No todas sus funciones ni todos sus márgenes de acción pertenecen al registro completamente abierto.",
+    "spoiler_risk": "low",
+    "access_level": "public",
+    "response_style": "political"
+  },
+   {
+    "key": "senado",
+    "aliases": ["senado", "el senado", "senate"],
+    "type": "organization",
+    "classification": "estructura política",
+    "status": "abierto",
+    "summary": "El Senado es una de las estructuras políticas centrales dentro del orden institucional de Claire’s Island.",
+    "function_summary": "Su función práctica es deliberar, legitimar, encauzar o representar decisiones dentro del marco político visible de la isla.",
+    "about_summary": "El Senado forma parte de la fachada institucional del equilibrio insular. En él convergen jerarquía, ritual político, representación y lucha por influencia.",
+    "relations": "Se relaciona con Caudiloux, Goreman, Clairetown, la Guardia Postirana y la administración visible del sistema.",
+    "public_summary": "Órgano político central dentro del orden institucional de la isla.",
+    "restricted_summary": "Su poder visible no necesariamente coincide con todos los centros reales de decisión del sistema.",
     "spoiler_risk": "low",
     "access_level": "public",
     "response_style": "political"
@@ -621,11 +709,43 @@
     "response_style": "neutral"
   },
   {
+    "key": "innert",
+    "aliases": [
+      "innert",
+      "inner t",
+      "inner-t",
+      "hypert de theoblade",
+      "hyper t de theoblade",
+      "hypert interno",
+      "hypert singular"
+    ],
+    "type": "system",
+    "classification": "capa interna singular",
+    "status": "parcialmente clasificado",
+    "summary": "InnerT designa la dimensión interna y singular del vínculo de Theoblade con el sistema. No equivale al HyperT ordinario de la isla.",
+    "function_summary": "Su función práctica no se limita a transmitir o registrar información. Actúa como interfaz interna de percepción, cálculo y resonancia vinculada directamente a Theoblade.",
+    "about_summary": "InnerT representa una forma diferenciada del vínculo sistémico. Mientras HyperT conecta individuos con la red externa, InnerT parece operar como una capa interna de interacción directa entre percepción biológica y arquitectura sistémica.",
+    "relations": "Se relaciona con Theoblade, anomalía, HyperT, Espiral del Tiempo y procesos de resonancia biotecnológica.",
+    "public_summary": "Capa interna singular asociada al vínculo sistémico de Theoblade.",
+    "restricted_summary": "Su alcance completo no forma parte del archivo abierto.",
+    "spoiler_risk": "high",
+    "access_level": "restricted",
+    "response_style": "ominous"
+  },
+  {
     "key": "anomalia",
     "aliases": ["anomalia", "anomalía"],
     "type": "concept",
     "classification": "desviación sistémica",
     "status": "parcialmente clasificado",
-    "summary": "Desviación detectada respecto al comportamiento, patrón o equilibrio esperado por el sistema."
+    "summary": "Desviación detectada respecto al comportamiento, patrón o equilibrio esperado por el sistema.",
+    "function_summary": "Su función práctica dentro del archivo es señalar eventos, individuos o procesos cuya evolución no coincide con los modelos previstos por el sistema.",
+    "about_summary": "Una anomalía no implica necesariamente error. Puede representar una divergencia, un fenómeno emergente o una forma de reorganización del equilibrio sistémico.",
+    "relations": "Se relaciona con Theoblade, InnerT, HyperT, resonancia biotecnológica y desviaciones del equilibrio sistémico.",
+    "public_summary": "Desviación respecto a patrones esperados por el sistema.",
+    "restricted_summary": "Algunas anomalías pueden indicar transformaciones profundas del sistema.",
+    "spoiler_risk": "medium",
+    "access_level": "restricted",
+    "response_style": "clinical"
   }
 ]
