@@ -595,7 +595,7 @@ app.get("/admin/usage", (req, res) => {
 
   return res.json({
     server: {
-      version: "2026-03-06 canon_working_v1",
+      version: "2026-03-16 ecko7_v4_inference_followup"
       canon_chars: CANON_PACK ? CANON_PACK.length : 0,
       canon_dict_size: CANON_DICT ? CANON_DICT.size : 0,
       canon_has_hypert: CANON_DICT ? CANON_DICT.has("hypert") : false,
@@ -756,6 +756,6 @@ app.post("/api/chat", async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log("SERVER_JS_VERSION: 2026-03-06 canon_working_v1");
+    console.log("SERVER_JS_VERSION: 2026-03-16 ecko7_v4_inference_followup");
   console.log(`Ecko-7 backend listening on :${PORT}`);
 });
