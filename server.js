@@ -42,6 +42,10 @@ const PRICE_IN_PER_M_STRONG = Number(process.env.PRICE_IN_PER_M_STRONG || 1.75);
 const PRICE_OUT_PER_M_STRONG = Number(process.env.PRICE_OUT_PER_M_STRONG || 14.0);
 const PRICE_IN_PER_M_LIGHT = Number(process.env.PRICE_IN_PER_M_LIGHT || 0.25);
 const PRICE_OUT_PER_M_LIGHT = Number(process.env.PRICE_OUT_PER_M_LIGHT || 2.0);
+// === RATE LIMIT + TEST BYPASS ===
+const DAILY_IP_LIMIT = Number(process.env.DAILY_IP_LIMIT || 5);
+const TEST_BYPASS_KEY = process.env.TEST_BYPASS_KEY || "";
+const ipUsage = {};
 
 // ======================
 // Load canon files
@@ -726,6 +730,57 @@ function saveState(sessionId, nextState) {
   pruneConversationState();
 }
 
+// ======================
+// New Helpers
+// ======================
+
+function getClientIP(req) {
+  const forwarded = req.headers["x-forwarded-for"];
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return req.socket?.remoteAddress || "unknown";
+}
+
+function checkDailyIpLimit(ip) {
+  const today = new Date().toISOString().slice(0, 10);
+
+  if (!ipUsage[ip]) {
+    ipUsage[ip] = { date: today, count: 0 };
+  }
+
+  if (ipUsage[ip].date !== today) {
+    ipUsage[ip] = { date: today, count: 0 };
+  }
+
+  ipUsage[ip].count++;
+
+  return ipUsage[ip].count <= DAILY_IP_LIMIT;
+}
+
+function tryActivateTestBypass(message, state) {
+  if (!TEST_BYPASS_KEY) return false;
+
+  const trimmed = message.trim();
+  const expected = `/test ${TEST_BYPASS_KEY}`;
+
+  if (trimmed === expected) {
+    state.isTester = true;
+    state.testerActivatedAt = new Date().toISOString();
+    return true;
+  }
+
+  return false;
+}
+
+function tryDeactivateTestBypass(message, state) {
+  const trimmed = message.trim();
+  if (trimmed === "/test-off") {
+    state.isTester = false;
+    delete state.testerActivatedAt;
+    return true;
+  }
+  return false;
+}
+
 function detectFollowupIntent(userText, state) {
   const norm = normalizeText(userText);
   const isAffirmative = AFFIRMATIVE_TOKENS.has(norm);
@@ -838,6 +893,10 @@ function updateStateFromEntry(state, entry, intent) {
 
   state.pendingFollowup = null;
 }
+
+// ======================
+// Helpers
+// ======================
 
 function tryCanonAnswer(userText, state) {
   const normalized = normalizeText(userText);
@@ -1084,6 +1143,34 @@ app.post("/api/chat", async (req, res) => {
 
     const sessionId = makeSessionId(req);
     const state = getState(sessionId);
+
+    // ======================
+    // TEST MODE ACTIVATION
+    // ======================
+
+if (tryActivateTestBypass(trimmed, state)) {
+  saveState(sessionId, state);
+  return res.json({
+    reply: "Canal de pruebas habilitado. Umbral de interacción expandido para esta sesión."
+  });
+}
+
+if (tryDeactivateTestBypass(trimmed, state)) {
+  saveState(sessionId, state);
+  return res.json({
+    reply: "Canal de pruebas desactivado. Umbral estándar restaurado."
+  });
+}
+
+// === RATE LIMIT BY IP ===
+const ip = getClientIP(req);
+
+if (!state.isTester && !checkDailyIpLimit(ip)) {
+  return res.status(429).json({
+    reply:
+      "Canal temporalmente saturado. Este nodo ha alcanzado el umbral diario de interacción. Intenta nuevamente en el siguiente ciclo.",
+  });
+}
 
     usage.day.requests++;
     usage.month.requests++;
