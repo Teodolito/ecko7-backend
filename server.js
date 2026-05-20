@@ -15,7 +15,7 @@ app.set("trust proxy", 1);
 // Environment / Config
 // ======================
 const PORT = Number(process.env.PORT || 10000);
-const SERVER_VERSION = "2026-03-16 ecko7_v5_1_context_window_fix";
+const SERVER_VERSION = "2026-05-20 ecko7_v5_2_topic_anchor_fix";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -781,14 +781,73 @@ function tryDeactivateTestBypass(message, state) {
   return false;
 }
 
+function getMentionedCanonEntityIds(userText) {
+  const q = normalizeText(userText);
+  if (!q) return [];
+
+  const ids = new Set();
+
+  for (const entry of CANON_INDEX) {
+    const key = entry.normalized_key;
+    if (key && q.includes(key)) ids.add(key);
+
+    for (const alias of entry.aliases_normalized || []) {
+      if (alias && q.includes(alias)) ids.add(key);
+    }
+  }
+
+  // Fallback for hardcoded character records that may not exist in canon_index.json.
+  const manualEntityTerms = [
+    ["caudiloux", ["caudiloux", "caudiloux ii", "caudiloux ii d'magnanis"]],
+    ["theoblade", ["theoblade", "theoblade d'normaux", "theo blade"]],
+    ["kathy", ["kathy"]],
+    ["susan", ["susan"]],
+    ["exta", ["exta", "éxta"]],
+    ["scient", ["scient", "freed scient"]],
+    ["goreman", ["goreman", "veg goreman"]],
+    ["clyma", ["clyma"]],
+    ["trianoux", ["trianoux"]],
+    ["autiloux", ["autiloux"]],
+    ["hypert", ["hypert", "hyper t", "hyper-t"]],
+    ["innert", ["innert", "inner t", "inner-t"]],
+  ];
+
+  for (const [id, terms] of manualEntityTerms) {
+    for (const term of terms) {
+      if (q.includes(normalizeText(term))) ids.add(id);
+    }
+  }
+
+  return Array.from(ids);
+}
+
+function detectTopicShift(userText, state) {
+  const mentioned = getMentionedCanonEntityIds(userText);
+  if (!mentioned.length || !state?.lastEntityId) return false;
+  return !mentioned.includes(state.lastEntityId);
+}
+
+function applyTopicShiftGuard(userText, state) {
+  if (!detectTopicShift(userText, state)) return;
+
+  // A new explicit entity should override any pending expansion from the previous topic.
+  state.pendingFollowup = null;
+  state.lastIntent = null;
+}
+
 function detectFollowupIntent(userText, state) {
   const norm = normalizeText(userText);
   const isAffirmative = AFFIRMATIVE_TOKENS.has(norm);
   const isNegative = NEGATIVE_TOKENS.has(norm);
   const hasPendingFollowup = Boolean(state?.pendingFollowup);
+  const mentionsEntity = getMentionedCanonEntityIds(norm).length > 0;
+
+  const explicitContinuation =
+    /^(explica mejor|amplia|amplía|profundiza|mas detalle|más detalle|detalle|continua|continúa|sigue|desarrolla|funcion practica|función práctica|impacto|explicacion tecnica|explicación técnica)$/.test(norm);
 
   return {
-    isFollowup: hasPendingFollowup && (isAffirmative || isNegative || norm.length <= 18),
+    // Do not treat short questions like "quien es caudiloux" as follow-ups.
+    isFollowup: hasPendingFollowup && !mentionsEntity && (isAffirmative || isNegative || explicitContinuation),
     isAffirmative,
     isNegative,
     normalized: norm,
@@ -900,6 +959,7 @@ function updateStateFromEntry(state, entry, intent) {
 
 function tryCanonAnswer(userText, state) {
   const normalized = normalizeText(userText);
+  applyTopicShiftGuard(normalized, state);
   const followup = detectFollowupIntent(normalized, state);
   if (followup.isFollowup) {
     return buildFollowupReply(normalized, state);
@@ -922,7 +982,9 @@ function tryCanonAnswer(userText, state) {
   const candidates = findCanonCandidates(normalized, intent, state);
   const best = candidates[0];
   if (!best || best.score < 0.6) {
-    return buildSoftFallback(normalized, state);
+    // Allow glossary, hardcoded character records, and the model-backed path to answer.
+    // Returning a soft fallback here can incorrectly block direct entity questions.
+    return null;
   }
 
   const answer = buildIndexAnswer(best.entry, intent, state);
@@ -989,9 +1051,28 @@ function buildCanonContext(userText, state) {
   return canonContext;
 }
 
+function buildTopicAnchor(userText, state) {
+  const mentioned = getMentionedCanonEntityIds(userText);
+  const topic = mentioned.length ? mentioned.join(", ") : normalizeText(userText).slice(0, 120);
+
+  return `
+ANCLA DE TEMA ACTUAL
+La pregunta actual del usuario es:
+"${userText}"
+
+Tema dominante detectado: ${topic || "consulta actual"}.
+
+Instrucción obligatoria:
+Responde SOLO a la pregunta actual.
+No continúes el tema anterior salvo que el usuario lo pida explícitamente.
+Si la pregunta menciona un personaje, concepto o entidad nueva, esa entidad tiene prioridad absoluta sobre cualquier seguimiento pendiente.
+`.trim();
+}
+
 function buildModelSystemPrompt(userText, state) {
   const canonContext = buildCanonContext(userText, state);
-  return `${BASE_SYSTEM_PROMPT}\n\nCANON RELEVANTE\n====================\n${canonContext}\n====================`;
+  const topicAnchor = buildTopicAnchor(userText, state);
+  return `${BASE_SYSTEM_PROMPT}\n\n${topicAnchor}\n\nCANON RELEVANTE\n====================\n${canonContext}\n====================`;
 }
 
 // ======================
