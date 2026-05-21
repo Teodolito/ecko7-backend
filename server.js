@@ -15,7 +15,7 @@ app.set("trust proxy", 1);
 // Environment / Config
 // ======================
 const PORT = Number(process.env.PORT || 10000);
-const SERVER_VERSION = "2026-05-21 ecko7_v5_3_voice_base64";
+const SERVER_VERSION = "2026-05-21 ecko7_v5_4_dramatic_voice";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -681,10 +681,46 @@ function sanitizeTextForSpeech(text = "") {
     .slice(0, TTS_MAX_CHARS);
 }
 
+function stylizeForEckoVoice(text = "") {
+  const clean = sanitizeTextForSpeech(text);
+  if (!clean) return "";
+
+  const lower = clean.toLowerCase();
+  const isRestricted =
+    lower.includes("clasificado") ||
+    lower.includes("restringido") ||
+    lower.includes("confidencialidad") ||
+    lower.includes("acceso denegado") ||
+    lower.includes("archivo parcialmente") ||
+    lower.includes("registro incompleto");
+
+  const isInsufficient =
+    lower.includes("registro insuficiente") ||
+    lower.includes("no encuentro un registro exacto");
+
+  const isSystem =
+    lower.includes("protocolo") ||
+    lower.includes("hypert") ||
+    lower.includes("ecolibrium") ||
+    lower.includes("nodo");
+
+  let voiceDirection = "Voz grave, lenta, precisa y contenida. Pausas breves. Tono elegante, inquietante, como una conciencia sistémica hablando desde una infraestructura biotecnológica.";
+
+  if (isRestricted) {
+    voiceDirection = "Voz muy baja, lenta y ominosa. Pausas más marcadas. Tono confidencial, como si el archivo estuviera parcialmente bloqueado. No sobreactúes; mantén tensión fría.";
+  } else if (isInsufficient) {
+    voiceDirection = "Voz baja, seca y distante. Ritmo pausado. Sensación de archivo incompleto o memoria dañada.";
+  } else if (isSystem) {
+    voiceDirection = "Voz grave y técnica, lenta, con autoridad contenida. Pausas medidas. Sensación de sistema vivo, no de asistente humano.";
+  }
+
+  return `${voiceDirection}\n\n${clean}`;
+}
+
 async function generateReplyAudioBase64(replyText) {
   if (!TTS_ENABLED) return null;
 
-  const input = sanitizeTextForSpeech(replyText);
+  const input = stylizeForEckoVoice(replyText);
   if (!input) return null;
 
   try {
