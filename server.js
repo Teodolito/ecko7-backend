@@ -15,7 +15,7 @@ app.set("trust proxy", 1);
 // Environment / Config
 // ======================
 const PORT = Number(process.env.PORT || 10000);
-const SERVER_VERSION = "2026-05-21 ecko7_v5_4_dramatic_voice";
+const SERVER_VERSION = "2026-05-21 ecko7_v5_5_tts_instructions_fix";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -681,11 +681,9 @@ function sanitizeTextForSpeech(text = "") {
     .slice(0, TTS_MAX_CHARS);
 }
 
-function stylizeForEckoVoice(text = "") {
-  const clean = sanitizeTextForSpeech(text);
-  if (!clean) return "";
+function buildEckoVoiceInstructions(text = "") {
+  const lower = String(text || "").toLowerCase();
 
-  const lower = clean.toLowerCase();
   const isRestricted =
     lower.includes("clasificado") ||
     lower.includes("restringido") ||
@@ -704,23 +702,25 @@ function stylizeForEckoVoice(text = "") {
     lower.includes("ecolibrium") ||
     lower.includes("nodo");
 
-  let voiceDirection = "Voz grave, lenta, precisa y contenida. Pausas breves. Tono elegante, inquietante, como una conciencia sistémica hablando desde una infraestructura biotecnológica.";
-
   if (isRestricted) {
-    voiceDirection = "Voz muy baja, lenta y ominosa. Pausas más marcadas. Tono confidencial, como si el archivo estuviera parcialmente bloqueado. No sobreactúes; mantén tensión fría.";
-  } else if (isInsufficient) {
-    voiceDirection = "Voz baja, seca y distante. Ritmo pausado. Sensación de archivo incompleto o memoria dañada.";
-  } else if (isSystem) {
-    voiceDirection = "Voz grave y técnica, lenta, con autoridad contenida. Pausas medidas. Sensación de sistema vivo, no de asistente humano.";
+    return "Speak slowly in a deep, low, controlled and ominous voice. Use marked pauses and a confidential tone, as if the archive is partially locked. Do not read these instructions aloud.";
   }
 
-  return `${voiceDirection}\n\n${clean}`;
+  if (isInsufficient) {
+    return "Speak in a low, dry, distant voice with slow pacing, suggesting incomplete memory or damaged records. Do not read these instructions aloud.";
+  }
+
+  if (isSystem) {
+    return "Speak with deep technical precision, low resonance, measured pauses and contained authority, as a living system rather than a human assistant. Do not read these instructions aloud.";
+  }
+
+  return "Speak slowly with calm authority, subtle tension, low resonance and cinematic presence. Do not read these instructions aloud.";
 }
 
 async function generateReplyAudioBase64(replyText) {
   if (!TTS_ENABLED) return null;
 
-  const input = stylizeForEckoVoice(replyText);
+  const input = sanitizeTextForSpeech(replyText);
   if (!input) return null;
 
   try {
@@ -728,6 +728,7 @@ async function generateReplyAudioBase64(replyText) {
       model: TTS_MODEL,
       voice: TTS_VOICE,
       input,
+      instructions: buildEckoVoiceInstructions(replyText),
       response_format: TTS_FORMAT,
     });
 
