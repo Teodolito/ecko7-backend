@@ -15,7 +15,7 @@ app.set("trust proxy", 1);
 // Environment / Config
 // ======================
 const PORT = Number(process.env.PORT || 10000);
-const SERVER_VERSION = "2026-05-20 ecko7_v5_2_topic_anchor_fix";
+const SERVER_VERSION = "2026-05-21 ecko7_v5_3_voice_base64";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || "")
   .split(",")
@@ -29,6 +29,12 @@ const NODE_LOG_URL = "https://www.claireisland.com/node-log";
 
 const MODEL_STRONG = process.env.MODEL_STRONG || "gpt-5.2";
 const MODEL_LIGHT = process.env.MODEL_LIGHT || "gpt-5-mini";
+
+const TTS_ENABLED = String(process.env.TTS_ENABLED || "true").toLowerCase() !== "false";
+const TTS_MODEL = process.env.TTS_MODEL || "gpt-4o-mini-tts";
+const TTS_VOICE = process.env.TTS_VOICE || "onyx";
+const TTS_FORMAT = process.env.TTS_FORMAT || "mp3";
+const TTS_MAX_CHARS = Number(process.env.TTS_MAX_CHARS || 1200);
 
 const MAX_MSG_CHARS = Number(process.env.MAX_MSG_CHARS || 900);
 const MAX_REQ_PER_MIN = Number(process.env.MAX_REQ_PER_MIN || 20);
@@ -669,6 +675,46 @@ function extractTextFromCompletion(completion) {
   return "";
 }
 
+function sanitizeTextForSpeech(text = "") {
+  return compactText(String(text || ""))
+    .replace(/https?:\/\/\S+/g, "")
+    .slice(0, TTS_MAX_CHARS);
+}
+
+async function generateReplyAudioBase64(replyText) {
+  if (!TTS_ENABLED) return null;
+
+  const input = sanitizeTextForSpeech(replyText);
+  if (!input) return null;
+
+  try {
+    const speech = await client.audio.speech.create({
+      model: TTS_MODEL,
+      voice: TTS_VOICE,
+      input,
+      response_format: TTS_FORMAT,
+    });
+
+    const audioBuffer = Buffer.from(await speech.arrayBuffer());
+    return audioBuffer.toString("base64");
+  } catch (ttsError) {
+    console.error("TTS_ERROR:", ttsError?.status, ttsError?.message || ttsError);
+    return null;
+  }
+}
+
+async function sendChatReply(res, replyText, extra = {}) {
+  const audio = await generateReplyAudioBase64(replyText);
+
+  return res.json({
+    reply: replyText,
+    audio,
+    audioMimeType: audio ? `audio/${TTS_FORMAT}` : null,
+    voice: audio ? TTS_VOICE : null,
+    ...extra,
+  });
+}
+
 // ======================
 // Conversation state
 // ======================
@@ -1183,6 +1229,11 @@ app.get("/admin/usage", (req, res) => {
       canon_has_anomalia: CANON_INDEX.some((x) => x.normalized_key === "anomalia"),
       state_cache_size: conversationState.size,
       max_model_canon_chars: MAX_MODEL_CANON_CHARS,
+      tts_enabled: TTS_ENABLED,
+      tts_model: TTS_MODEL,
+      tts_voice: TTS_VOICE,
+      tts_format: TTS_FORMAT,
+      tts_max_chars: TTS_MAX_CHARS,
       sample_terms: Array.from(CANON_DICT.keys()).slice(0, 12),
     },
     models: { strong: MODEL_STRONG, light: MODEL_LIGHT },
@@ -1231,16 +1282,18 @@ app.post("/api/chat", async (req, res) => {
 
 if (tryActivateTestBypass(trimmed, state)) {
   saveState(sessionId, state);
-  return res.json({
-    reply: "Canal de pruebas habilitado. Umbral de interacción expandido para esta sesión."
-  });
+  return await sendChatReply(
+    res,
+    "Canal de pruebas habilitado. Umbral de interacción expandido para esta sesión."
+  );
 }
 
 if (tryDeactivateTestBypass(trimmed, state)) {
   saveState(sessionId, state);
-  return res.json({
-    reply: "Canal de pruebas desactivado. Umbral estándar restaurado."
-  });
+  return await sendChatReply(
+    res,
+    "Canal de pruebas desactivado. Umbral estándar restaurado."
+  );
 }
 
 // === RATE LIMIT BY IP ===
@@ -1250,6 +1303,9 @@ if (!state.isTester && !checkDailyIpLimit(ip)) {
   return res.status(429).json({
     reply:
       "Canal temporalmente saturado. Este nodo ha alcanzado el umbral diario de interacción. Intenta nuevamente en el siguiente ciclo.",
+    audio: null,
+    audioMimeType: null,
+    voice: null,
   });
 }
 
@@ -1261,21 +1317,21 @@ if (!state.isTester && !checkDailyIpLimit(ip)) {
     if (deterministicCanon && deterministicCanon !== "Registro insuficiente.") {
       saveState(sessionId, state);
       usage.last_error = null;
-      return res.json({ reply: deterministicCanon });
+      return await sendChatReply(res, deterministicCanon);
     }
 
     const glossary = tryGlossaryAnswer(trimmed);
     if (glossary) {
       saveState(sessionId, state);
       usage.last_error = null;
-      return res.json({ reply: glossary });
+      return await sendChatReply(res, glossary);
     }
 
     const character = tryCharacterAnswer(trimmed);
     if (character) {
       saveState(sessionId, state);
       usage.last_error = null;
-      return res.json({ reply: character });
+      return await sendChatReply(res, character);
     }
 
     const tier = chooseTier(trimmed);
@@ -1322,10 +1378,10 @@ if (!state.isTester && !checkDailyIpLimit(ip)) {
     if (!extractedReply && finishReason === "length") {
       usage.last_error = null;
       saveState(sessionId, state);
-      return res.json({
-        reply:
-          "Archivo parcialmente recuperado. La consulta excede el umbral actual de síntesis. Reformula la consulta con mayor precisión.",
-      });
+      return await sendChatReply(
+        res,
+        "Archivo parcialmente recuperado. La consulta excede el umbral actual de síntesis. Reformula la consulta con mayor precisión."
+      );
     }
 
     const replyText = extractedReply || buildSoftFallback(trimmed, state);
@@ -1333,7 +1389,7 @@ if (!state.isTester && !checkDailyIpLimit(ip)) {
     usage.last_error = null;
     saveState(sessionId, state);
 
-    return res.json({ reply: replyText });
+    return await sendChatReply(res, replyText);
   } catch (err) {
     console.error("CHAT_ERROR:", err?.status, err?.message);
 
