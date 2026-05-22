@@ -1,6 +1,6 @@
 {
   "name": "ecko7-backend",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "Ecko-7 backend server for Claire's Island interactive canon system",
   "main": "server.js",
   "type": "module",

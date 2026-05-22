@@ -1138,3 +1138,364 @@ Personality Matrix
 Preservación del experimento
 
 El sistema continúa monitoreando.
+
+CANON SUPPLEMENT — GLOSSARY-VERIFIED NODES
+
+Los siguientes registros fueron añadidos tras contrastar el glosario técnico con el cuerpo principal de LIBRO 1 FINAL V2. Solo se incorporan términos presentes en el texto narrativo y no registrados previamente en el canon maestro.
+
+PROTOCOLO DE ANOMALÍA
+
+Mecanismo defensivo híbrido —simultáneamente código algorítmico y política institucional— diseñado para detectar, suprimir o eliminar individuos que representen amenazas al delicado equilibrio bio-digital de la Isla. Opera de forma autónoma, identificando desviaciones genéticas, emocionales o conductuales que puedan desestabilizar el sistema.
+
+Clasificación sistémica: protocolo sistémico
+Estado del archivo: parcialmente clasificado
+
+FLOR DE ATENCIÓN (ATTENTION BLOOM)
+
+Técnica psico-sensorial avanzada empleada por agentes de la Capa de Influencia para inducir resonancia emocional en multitudes. Combina un ancla visual hipnótica (como un ojo brillante o espiral flotante) con un Pulso de Señal neural, creando sincronización emocional masiva y susceptibilidad a la sugestión.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: abierto
+Aliases reconocidos: Flor de Atención; Attention Bloom
+
+MATRIZ DE MÉTRICAS DE AUDIENCIA
+
+Sistema global de vigilancia sensorial-emocional que registra y analiza las reacciones de espectadores en tiempo real. Cada suspiro, latido acelerado o lágrima derramada se convierte en datos cuantificables que alimentan los algoritmos de HyperT, convirtiendo la vida humana en contenido medible y monetizable.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: abierto
+
+ENREDADERAS BIOTECNOLÓGICAS (BIOTECH VINES / LIVING FILAMENTS)
+
+Infraestructura neural y física viva profundamente integrada en el ecosistema de la Isla. Estos filamentos orgánico-sintéticos fusionan rutas biológicas y tecnológicas, sirviendo simultáneamente como conductos para datos, energía y regulación ambiental. Palpitan con vida propia, respondiendo a estímulos emocionales y neuronales.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: abierto
+Aliases reconocidos: Enredaderas Biotecnológicas; Biotech Vines; Living Filaments
+
+ARMADURA BIOLATTICE
+
+Armadura orgánica de última generación compuesta por filamentos proteicos reactivos, nodos fotosensibles que se adaptan a diferentes longitudes de onda, y gel auto-endurecible que responde instantáneamente al impacto. Se moldea al usuario como una segunda piel consciente.
+
+Clasificación sistémica: biotecnología aplicada
+Estado del archivo: abierto
+
+CÓDIGO BIOLINGÜÍSTICO
+
+Código emocional profundamente incrustado en tonos vocales, microgestos o glifos visuales. Capaz de inducir reacciones inconscientes, despertar recuerdos enterrados o desbloquear capas de seguridad sin que el sujeto sea consciente de estar siendo manipulado. El lenguaje como arma de control subconsciente.
+
+Clasificación sistémica: biotecnología aplicada
+Estado del archivo: abierto
+
+CONTINGENCIA BIOLINGÜÍSTICA
+
+Modo de seguridad radical dentro de la ciberbiología isleña que trasciende lo digital para fusionar emoción, memoria y código en tejido vivo. No existe meramente en archivos o servidores: está literalmente codificada en la carne, el sistema nervioso y el ADN de los habitantes.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+
+CÓDIGOS DE ALIENTO (BREATH CODES)
+
+Sistema ancestral de comunicación codificado en ritmos respiratorios específicos. Utilizado por personajes selectos iniciados en artes antiguas para sortear nodos de acceso biométrico o activar tecnología latente sin alertar a sistemas de vigilancia convencionales. El aliento como contraseña viviente.
+
+Clasificación sistémica: biotecnología aplicada
+Estado del archivo: abierto
+Aliases reconocidos: Códigos de Aliento; Breath Codes
+
+CENÁCULO
+
+Cámara de gobierno hermética donde se dictan políticas genéticas, protocolos de nacimiento controlado y órdenes ejecutivas que determinan quién puede nacer, cómo y con qué propósito. Asociado directamente con la élite Postirana, representa el control absoluto sobre la vida misma.
+
+Clasificación sistémica: protocolo sistémico
+Estado del archivo: parcialmente clasificado
+
+PLAZA CEREMONIAL
+
+Nodo público bio-codificado diseñado específicamente para rituales comunitarios, recepción de señales masivas o eventos de sincronización emocional. Su arquitectura viva responde dinámicamente a las emociones colectivas, amplificándolas o canalizándolas según las necesidades del sistema.
+
+Clasificación sistémica: biotecnología aplicada
+Estado del archivo: abierto
+
+PROTOCOLO DE CONTENCIÓN
+
+Respuesta automática e inmediata frente a anomalías detectadas o picos emocionales peligrosos. Aplica medidas que van desde supresión conductual y sedación química hasta anulación neural completa. La seguridad del sistema prevalece sobre la autonomía individual.
+
+Clasificación sistémica: protocolo sistémico
+Estado del archivo: parcialmente clasificado
+
+VÓRTICE CARMESÍ (CRIMSON VORTEX)
+
+Evento atmosférico-emocional altamente inestable caracterizado por energía roja en espiral que rasga el cielo. Indica fracturas graves en la realidad, bucles temporales colapsando, o desbordes resonantes que amenazan la integridad del sistema. Presagio de caos inminente.
+
+Clasificación sistémica: fenómeno temporal / recursivo
+Estado del archivo: abierto
+Aliases reconocidos: Vórtice Carmesí; Crimson Vortex
+
+CICLO 64
+
+El ciclo temporal-broadcast actual en el que se desarrolla la narrativa principal. Compuesto por múltiples temporadas de contenido transmitido, representa la sexagésima cuarta iteración del experimento social de la Isla. ¿Cuántos ciclos han sido borrados de la memoria colectiva?
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+
+EMOVAULTS
+
+Archivos de memoria encapsulados y preservados en nodos biológicos vivientes. Se activan exclusivamente mediante combinaciones específicas de glifos o potentes detonadores emocionales, liberando recuerdos que pueden haber sido suprimidos durante décadas.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+
+TELEMETRÍA EMOTIVA
+
+Captura exhaustiva y análisis algorítmico de estados emocionales en tiempo real para múltiples propósitos: control conductual preventivo, publicidad hiperpersonalizada, detección de amenazas potenciales antes de que se manifiesten en acciones. La emoción como dato explotable.
+
+Clasificación sistémica: registro conceptual del sistema
+Estado del archivo: abierto
+
+NÚCLEO FRACTAL
+
+Motor de inteligencia recursiva enterrado en las profundidades de la infraestructura original de Ecolibrium. Paradójicamente, es tanto la fuente de estabilidad del sistema como el origen de sus anomalías más perturbadoras: fracturas de realidad, bucles temporales y clones no autorizados.
+
+Clasificación sistémica: fenómeno temporal / recursivo
+Estado del archivo: parcialmente clasificado
+
+GLIFOS
+
+Símbolos biotecnológicos que encapsulan información neural compleja o cargas emocionales concentradas. Aparecen espontáneamente en sueños, interfaces tecnológicas o durante fracturas de identidad, sirviendo como mensajes del subconsciente colectivo o advertencias del sistema.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: abierto
+
+HOLO-TRANSMISIONES (HOLO-STREAMS)
+
+Entornos inmersivos que proyectan eventos emocionales o neuronales como experiencias holográficas completamente vivenciales. Los espectadores no solo observan: sienten, experimentan y viven momentos extraídos directamente de la consciencia de los habitantes.
+
+Clasificación sistémica: registro conceptual del sistema
+Estado del archivo: abierto
+Aliases reconocidos: Holo-transmisiones; Holo-Streams
+
+HUD (HEADS-UP DISPLAY)
+
+Artilugio de superposición visual que proporciona métricas emocionales en tiempo real, niveles de resonancia, glifos activos y advertencias del sistema. Para usuarios avanzados, una ventana permanente a la realidad subyacente del mundo.
+
+Clasificación sistémica: registro conceptual del sistema
+Estado del archivo: abierto
+Aliases reconocidos: HUD; Heads-Up Display
+
+DERIVA HYPERT (HYPERT DRIFT)
+
+Pérdida progresiva de fidelidad en la transmisión neural causada por trauma psicológico intenso o proximidad prolongada a anomalías de alta resonancia. Los afectados experimentan desconexión sensorial, fragmentación de memoria y distorsión perceptual.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Deriva HyperT; HyperT Drift
+
+SUPERPOSICIÓN DE INFLUENCERS (INFLUENCER OVERLAY)
+
+Capa de comentarios en tiempo real superpuesta sobre la realidad transmitida para dirigir la percepción de la audiencia, maximizar engagement emocional y moldear interpretaciones de eventos según agendas corporativas o narrativas.
+
+Clasificación sistémica: estructura corporativa
+Estado del archivo: abierto
+Aliases reconocidos: Superposición de Influencers; Influencer Overlay
+
+MULTIPLEXACIÓN DE IDS DE INFLUENCER
+
+Proyección simultánea de una misma consciencia individual en múltiples identidades digitales aparentemente distintas. Permite a megainfluencers omnipresencia aparente y manipulación coordinada de múltiples narrativas paralelas.
+
+Clasificación sistémica: registro conceptual del sistema
+Estado del archivo: abierto
+
+BLOQUEO DE MEMORIA (MEMORY LOCK)
+
+Protocolo de seguridad para sellar herméticamente recuerdos traumáticos, prohibidos o que contradigan la narrativa oficial. Los recuerdos permanecen en el subconsciente pero inaccesibles a la consciencia voluntaria sin claves específicas de desbloqueo.
+
+Clasificación sistémica: protocolo sistémico
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Bloqueo de Memoria; Memory Lock
+
+RE-IMPLANTACIÓN DE MEMORIA
+
+Inserción quirúrgica de recuerdos cuidadosamente curados tras un colapso mental severo o reseteo sistémico. Los nuevos recuerdos se integran como si siempre hubieran estado presentes, reescribiendo la historia personal del sujeto.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+
+PIEL-ESPEJO / HUESO-ESPEJO (MIRROR-SKIN / MIRROR-BONE)
+
+Material exótico utilizado en constructs avanzados que distorsiona activamente la percepción e identidad. Refleja y refracta no solo luz, sino también señales neuronales, creando confusión profunda sobre qué es real y qué es reflejo.
+
+Clasificación sistémica: registro conceptual del sistema
+Estado del archivo: abierto
+Aliases reconocidos: Piel-Espejo / Hueso-Espejo; Mirror-Skin; Mirror-Bone; Piel-Espejo; Hueso-Espejo
+
+CASCADA DE RUIDO (NOISE FALL)
+
+Descarga sensorial masiva y deliberadamente desorientadora generada por Ecko-7 como medida defensiva o de control de multitudes. Sobrecarga todos los sentidos simultáneamente, provocando parálisis temporal o colapso perceptual.
+
+Clasificación sistémica: fenómeno temporal / recursivo
+Estado del archivo: abierto
+Aliases reconocidos: Cascada de Ruido; Noise Fall
+
+CORREDOR NEURAL / VELO DE DATOS
+
+Pasajes biotecnológicos caracterizados por superposición constante de vigilancia en tiempo real. Al atravesarlos, cada pensamiento puede ser leído, cada emoción monitoreada, cada intención evaluada por algoritmos invisibles.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: abierto
+Aliases reconocidos: Corredor Neural; Velo de Datos
+
+LATTICE NEURAL (NEURAL LATTICE)
+
+La red neural omnipresente de la Isla que conecta íntimamente memoria, emoción y flujo de datos. Tejido invisible que vincula toda consciencia en un metaorganismo de información compartida, voluntaria o no.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+Aliases reconocidos: Lattice Neural; Neural Lattice
+
+POZOS NEURONALES (NEURAL WELLS)
+
+Cámaras de inmersión diseñadas para extracción forzada o reescritura controlada de memoria. Los sujetos sumergidos emergen transformados, con recuerdos alterados, suprimidos o completamente reemplazados según los objetivos del procedimiento.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Pozos Neuronales; Neural Wells
+
+DERRAME NEURAL (NEURAL SPILLAGE)
+
+Emisión no controlada e involuntaria de pensamientos privados o memorias íntimas hacia la red compartida. Como una hemorragia mental, expone lo que debería permanecer oculto, vulnerable a interceptación por entidades externas.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+Aliases reconocidos: Derrame Neural; Neural Spillage
+
+NEUROVAULT
+
+Repositorio blindado y herméticamente sellado para almacenar experiencias volátiles, datos altamente clasificados o recuerdos demasiado peligrosos para permanecer en consciencias individuales. El archivo de secretos que nunca deberían revelarse.
+
+Clasificación sistémica: registro conceptual del sistema
+Estado del archivo: parcialmente clasificado
+
+PISCINAS DE NUTRIENTES (NUTRIENT POOLS)
+
+Reservorios orgánicos subterráneos utilizados para cultivar, regenerar o reconstruir tejido biológico desde nivel celular. Inmersión en estas piscinas puede sanar heridas catastróficas o permitir modificaciones corporales radicales.
+
+Clasificación sistémica: biotecnología aplicada
+Estado del archivo: abierto
+Aliases reconocidos: Piscinas de Nutrientes; Nutrient Pools
+
+NUBE ROJA / ESPORA BIOTECH (RED SWARM / BIO-SPORE MIST)
+
+Neblina aerosolizada auto-replicante capaz de alterar radicalmente estados neuroquímicos en organismos expuestos. Se dispersa como niebla viviente, invadiendo pulmones y cerebros, reescribiendo química mental desde dentro.
+
+Clasificación sistémica: biotecnología aplicada
+Estado del archivo: abierto
+Aliases reconocidos: Nube Roja / Espora Biotech; Red Swarm; Bio-Spore Mist; Nube Roja; Espora Biotech
+
+REESCRITORES (REWRITERS)
+
+Facción especializada dedicada a la reprogramación sistemática de memorias, identidades o realidades completas. Artistas de la manipulación neural que pueden borrar, modificar o fabricar historias personales con precisión quirúrgica.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Reescritores; Rewriters
+
+LABORATORIO SECRETO DE SCIENT
+
+Instalación clandestina profundamente oculta destinada a experimentos prohibidos que violan incluso los flexibles códigos éticos del régimen. Aquí se exploran los límites más oscuros de la bioingenería y la manipulación neural.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: parcialmente clasificado
+
+ECOS DE BESTIAS-SEÑAL (SIGNAL-BEAST ECHOES)
+
+Distorsiones ambientales inquietantes generadas por implantes HyperT corruptos o degradados. Manifiestan como alucinaciones compartidas: criaturas que existen simultáneamente como señal y percepción, ni completamente reales ni totalmente ilusorias.
+
+Clasificación sistémica: infraestructura neuroinformacional
+Estado del archivo: abierto
+Aliases reconocidos: Ecos de Bestias-Señal; Signal-Beast Echoes
+
+VINCULACIÓN DE SEÑAL (SIGNAL BONDING)
+
+Conexión neural profunda y permanente entre individuos que comparten flujos de memoria, sensación o emoción. Los vinculados experimentan parcialmente las vivencias del otro, creando intimidad absoluta pero también vulnerabilidad mutua.
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: abierto
+Aliases reconocidos: Vinculación de Señal; Signal Bonding
+
+CAVERNA DE LAS ESPIRALES (SPIRALS CAVE)
+
+Caverna oculta y profundamente biorreactiva en las profundidades de la Isla D'Claire donde el símbolo de la Espiral se manifiesta físicamente como estructura viva y recursiva. Saturada de residuos emocionales, glifos de memoria y distorsión neural, es uno de los lugares más inestables del mundo. El tiempo se comporta erráticamente: pasado, presente y futuros posibles se superponen en caos temporal.
+
+Clasificación sistémica: ubicación sistémica / resonancia temporal
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Caverna de las Espirales; Spirals Cave
+
+CAPA-SOMBRA DE LA ESPIRAL (SPIRAL SHADOW-LAYER)
+
+Sub-realidad existente en el intersticio entre espacio físico y resonancia del campo espiral. Aquí flotan datos borrados, recuerdos olvidados y posibilidades descartadas. Una especie de limbo digital-orgánico donde nada muere completamente pero nada vive plenamente.
+
+Clasificación sistémica: sub-realidad espiral / fenómeno liminal
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Capa-Sombra de la Espiral; Spiral Shadow-Layer
+
+GUSANO DE TELEPORTACIÓN (TELEPORTING WORMHOLE)
+
+Fenómeno de tránsito raro e inestable vinculado a ráfagas neuronales de resonancia extrema o fracturas críticas del sistema. A diferencia de portales controlados, estos agujeros de gusano desplazan instantáneamente entidades a través de distancias vastas hacia destinos impredecibles, sin programación ni garantías de supervivencia.
+
+Clasificación sistémica: fenómeno de tránsito / anomalía espacial
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Gusano de Teleportación; Teleporting Wormhole
+
+DERIVA DE ECO TEMPORAL (TEMPORAL ECHO DRIFT)
+
+Efecto perturbador donde eventos, emociones o decisiones de ciclos pasados sangran e influyen misteriosamente el presente. Como ecos que atraviesan el tiempo, estas resonancias crean déjà vu, premoniciones o repeticiones de patrones que desafían la causalidad lineal.
+
+Clasificación sistémica: fenómeno temporal / recursivo
+Estado del archivo: abierto
+Aliases reconocidos: Deriva de Eco Temporal; Temporal Echo Drift
+
+RESET / PULSO DE RESTAURACIÓN (TIME LOOP RESET / RESTORATION PULSE)
+
+Respuesta de emergencia mayor ejecutada por la Espiral para realinear forzosamente la memoria colectiva de la Isla cuando las anomalías acumuladas amenazan colapso sistémico total. Borra recuerdos, resetea narrativas y restaura la línea temporal "correcta".
+
+Clasificación sistémica: gestión de memoria / identidad
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: Reset / Pulso de Restauración; Time Loop Reset; Restoration Pulse; Reset; Pulso de Restauración
+
+LA NIEBLA (THE MIST)
+
+Oficialmente descrita a los habitantes como capa atmosférica protectora contra radiación UV tras la destrucción de la capa de ozono. En realidad, un fenómeno ambiental semi-sentiente que cubre estratégicamente partes de la Isla durante interferencias de señal o brechas de memoria. Compuesta por vapor impregnado de residuos bio-emotivos, distorsiona percepción, fragmenta consciencia temporal y altera la red neural. Dentro de la Niebla, los personajes experimentan alucinaciones, filtraciones de memoria, espejeo emocional y visiones de versiones alternas de sí mismos.
+
+Clasificación sistémica: fenómeno ambiental / interferencia perceptiva
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: La Niebla; The Mist
+
+EL ESCÁNER (THE SCANNER)
+
+Dispositivo portátil para detectar resonancias emocionales ocultas, anomalías sistémicas o presencias no autorizadas. Esencial para navegación en áreas de alta distorsión o para identificar individuos que ocultan su verdadera naturaleza bajo capas de ofuscación.
+
+Clasificación sistémica: dispositivo de detección sistémica
+Estado del archivo: parcialmente clasificado
+Aliases reconocidos: El Escáner; The Scanner
+
+DERIVA DE CONCIENCIA NO AUTORIZADA
+
+Desacople espontáneo o forzado de la consciencia individual del flujo autorizado del sistema. Permite experiencias fuera del control central pero expone al individuo a peligros existenciales: pérdida de identidad, fragmentación mental o detección por protocolos de seguridad.
+
+Clasificación sistémica: desviación de consciencia / anomalía de acceso
+Estado del archivo: parcialmente clasificado
+
+VR CLOUD
+
+Red virtual compartida y emocionalmente reactiva donde experiencias, memorias y sensaciones pueden ser compartidas, mezcladas o comercializadas. Espacio liminal entre lo real y lo simulado donde las fronteras de la identidad se vuelven nebulosas.
+
+Clasificación sistémica: red virtual / mercado emocional
+Estado del archivo: abierto
+
+VR TV CORP
+
+Organismo corporativo descentralizado que manipula mercados emocionales globales y narrativas transmitidas. Opera como entidad semi-autónoma, respondiendo simultáneamente a demandas de audiencia y algoritmos de maximización de engagement.
+
+Clasificación sistémica: estructura corporativa
+Estado del archivo: abierto
+

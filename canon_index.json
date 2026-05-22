@@ -1643,5 +1643,1526 @@
       "identify"
     ],
     "followups": []
+  },
+  {
+    "key": "Protocolo de Anomalía",
+    "normalized_key": "protocolo_de_anomalia",
+    "aliases": [
+      "Protocolo de Anomalía"
+    ],
+    "type": "location",
+    "classification": "protocolo sistémico",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Mecanismo defensivo híbrido —simultáneamente código algorítmico y política institucional— diseñado para detectar, suprimir o eliminar individuos que representen amenazas al delicado equilibrio bio-digital de la Isla. Opera de forma autónoma, identificando desviaciones genéticas, emocionales o conductuales que puedan desestabilizar el sistema.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Mecanismo defensivo híbrido —simultáneamente código algorítmico y política institucional— diseñado para detectar, suprimir o eliminar individuos que representen amenazas al delicado equilibrio bio-digital de la Isla. Opera de forma autónoma, identificando desviaciones genéticas, emocionales o conductuales que puedan desestabilizar el sistema.",
+    "public_summary": "Mecanismo defensivo híbrido —simultáneamente código algorítmico y política institucional— diseñado para detectar, suprimir o eliminar individuos que representen amenazas al delicado equilibrio bio-digital de la Isla. Opera de forma autónoma, identificando desv...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Flor de Atención Attention Bloom",
+    "normalized_key": "flor_de_atencion_attention_bloom",
+    "aliases": [
+      "Flor de Atención Attention Bloom",
+      "Flor de Atención",
+      "Attention Bloom"
+    ],
+    "type": "concept",
+    "classification": "infraestructura neuroinformacional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Técnica psico-sensorial avanzada empleada por agentes de la Capa de Influencia para inducir resonancia emocional en multitudes. Combina un ancla visual hipnótica (como un ojo brillante o espiral flotante) con un Pulso de Señal neural, creando sincronización emocional masiva y susceptibilidad a la sugestión.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Técnica psico-sensorial avanzada empleada por agentes de la Capa de Influencia para inducir resonancia emocional en multitudes. Combina un ancla visual hipnótica (como un ojo brillante o espiral flotante) con un Pulso de Señal neural, creando sincronización emocional masiva y susceptibilidad a la sugestión.",
+    "public_summary": "Técnica psico-sensorial avanzada empleada por agentes de la Capa de Influencia para inducir resonancia emocional en multitudes. Combina un ancla visual hipnótica (como un ojo brillante o espiral flotante) con un Pulso de Señal neural, creando sincronización em...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Matriz de Métricas de Audiencia",
+    "normalized_key": "matriz_de_metricas_de_audiencia",
+    "aliases": [
+      "Matriz de Métricas de Audiencia"
+    ],
+    "type": "system",
+    "classification": "infraestructura neuroinformacional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Sistema global de vigilancia sensorial-emocional que registra y analiza las reacciones de espectadores en tiempo real. Cada suspiro, latido acelerado o lágrima derramada se convierte en datos cuantificables que alimentan los algoritmos de HyperT, convirtiendo la vida humana en contenido medible y monetizable.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Sistema global de vigilancia sensorial-emocional que registra y analiza las reacciones de espectadores en tiempo real. Cada suspiro, latido acelerado o lágrima derramada se convierte en datos cuantificables que alimentan los algoritmos de HyperT, convirtiendo la vida humana en contenido medible y monetizable.",
+    "public_summary": "Sistema global de vigilancia sensorial-emocional que registra y analiza las reacciones de espectadores en tiempo real. Cada suspiro, latido acelerado o lágrima derramada se convierte en datos cuantificables que alimentan los algoritmos de HyperT, convirtiendo...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Enredaderas Biotecnológicas Biotech Vines / Living Filaments",
+    "normalized_key": "enredaderas_biotecnologicas_biotech_vines_living_filaments",
+    "aliases": [
+      "Enredaderas Biotecnológicas Biotech Vines / Living Filaments",
+      "Enredaderas Biotecnológicas",
+      "Biotech Vines",
+      "Living Filaments"
+    ],
+    "type": "location",
+    "classification": "infraestructura neuroinformacional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Infraestructura neural y física viva profundamente integrada en el ecosistema de la Isla. Estos filamentos orgánico-sintéticos fusionan rutas biológicas y tecnológicas, sirviendo simultáneamente como conductos para datos, energía y regulación ambiental. Palpitan con vida propia, respondiendo a estímulos emocionales y neuronales.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Infraestructura neural y física viva profundamente integrada en el ecosistema de la Isla. Estos filamentos orgánico-sintéticos fusionan rutas biológicas y tecnológicas, sirviendo simultáneamente como conductos para datos, energía y regulación ambiental. Palpitan con vida propia, respondiendo a estímulos emocionales y neuronales.",
+    "public_summary": "Infraestructura neural y física viva profundamente integrada en el ecosistema de la Isla. Estos filamentos orgánico-sintéticos fusionan rutas biológicas y tecnológicas, sirviendo simultáneamente como conductos para datos, energía y regulación ambiental. Palpit...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Armadura Biolattice",
+    "normalized_key": "armadura_biolattice",
+    "aliases": [
+      "Armadura Biolattice"
+    ],
+    "type": "concept",
+    "classification": "biotecnología aplicada",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Armadura orgánica de última generación compuesta por filamentos proteicos reactivos, nodos fotosensibles que se adaptan a diferentes longitudes de onda, y gel auto-endurecible que responde instantáneamente al impacto. Se moldea al usuario como una segunda piel consciente.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Armadura orgánica de última generación compuesta por filamentos proteicos reactivos, nodos fotosensibles que se adaptan a diferentes longitudes de onda, y gel auto-endurecible que responde instantáneamente al impacto. Se moldea al usuario como una segunda piel consciente.",
+    "public_summary": "Armadura orgánica de última generación compuesta por filamentos proteicos reactivos, nodos fotosensibles que se adaptan a diferentes longitudes de onda, y gel auto-endurecible que responde instantáneamente al impacto. Se moldea al usuario como una segunda piel...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Código Biolingüístico",
+    "normalized_key": "codigo_biolinguistico",
+    "aliases": [
+      "Código Biolingüístico"
+    ],
+    "type": "system",
+    "classification": "biotecnología aplicada",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Código emocional profundamente incrustado en tonos vocales, microgestos o glifos visuales. Capaz de inducir reacciones inconscientes, despertar recuerdos enterrados o desbloquear capas de seguridad sin que el sujeto sea consciente de estar siendo manipulado. El lenguaje como arma de control subconsciente.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Código emocional profundamente incrustado en tonos vocales, microgestos o glifos visuales. Capaz de inducir reacciones inconscientes, despertar recuerdos enterrados o desbloquear capas de seguridad sin que el sujeto sea consciente de estar siendo manipulado. El lenguaje como arma de control subconsciente.",
+    "public_summary": "Código emocional profundamente incrustado en tonos vocales, microgestos o glifos visuales. Capaz de inducir reacciones inconscientes, despertar recuerdos enterrados o desbloquear capas de seguridad sin que el sujeto sea consciente de estar siendo manipulado. E...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Contingencia Biolingüística",
+    "normalized_key": "contingencia_biolinguistica",
+    "aliases": [
+      "Contingencia Biolingüística"
+    ],
+    "type": "system",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Modo de seguridad radical dentro de la ciberbiología isleña que trasciende lo digital para fusionar emoción, memoria y código en tejido vivo. No existe meramente en archivos o servidores: está literalmente codificada en la carne, el sistema nervioso y el ADN de los habitantes.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Modo de seguridad radical dentro de la ciberbiología isleña que trasciende lo digital para fusionar emoción, memoria y código en tejido vivo. No existe meramente en archivos o servidores: está literalmente codificada en la carne, el sistema nervioso y el ADN de los habitantes.",
+    "public_summary": "Modo de seguridad radical dentro de la ciberbiología isleña que trasciende lo digital para fusionar emoción, memoria y código en tejido vivo. No existe meramente en archivos o servidores: está literalmente codificada en la carne, el sistema nervioso y el ADN d...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Códigos de Aliento Breath Codes",
+    "normalized_key": "codigos_de_aliento_breath_codes",
+    "aliases": [
+      "Códigos de Aliento Breath Codes",
+      "Códigos de Aliento",
+      "Breath Codes"
+    ],
+    "type": "system",
+    "classification": "biotecnología aplicada",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Sistema ancestral de comunicación codificado en ritmos respiratorios específicos. Utilizado por personajes selectos iniciados en artes antiguas para sortear nodos de acceso biométrico o activar tecnología latente sin alertar a sistemas de vigilancia convencionales. El aliento como contraseña viviente.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Sistema ancestral de comunicación codificado en ritmos respiratorios específicos. Utilizado por personajes selectos iniciados en artes antiguas para sortear nodos de acceso biométrico o activar tecnología latente sin alertar a sistemas de vigilancia convencionales. El aliento como contraseña viviente.",
+    "public_summary": "Sistema ancestral de comunicación codificado en ritmos respiratorios específicos. Utilizado por personajes selectos iniciados en artes antiguas para sortear nodos de acceso biométrico o activar tecnología latente sin alertar a sistemas de vigilancia convencion...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Cenáculo",
+    "normalized_key": "cenaculo",
+    "aliases": [
+      "Cenáculo"
+    ],
+    "type": "organization",
+    "classification": "protocolo sistémico",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Cámara de gobierno hermética donde se dictan políticas genéticas, protocolos de nacimiento controlado y órdenes ejecutivas que determinan quién puede nacer, cómo y con qué propósito. Asociado directamente con la élite Postirana, representa el control absoluto sobre la vida misma.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Cámara de gobierno hermética donde se dictan políticas genéticas, protocolos de nacimiento controlado y órdenes ejecutivas que determinan quién puede nacer, cómo y con qué propósito. Asociado directamente con la élite Postirana, representa el control absoluto sobre la vida misma.",
+    "public_summary": "Cámara de gobierno hermética donde se dictan políticas genéticas, protocolos de nacimiento controlado y órdenes ejecutivas que determinan quién puede nacer, cómo y con qué propósito. Asociado directamente con la élite Postirana, representa el control absoluto...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Plaza Ceremonial",
+    "normalized_key": "plaza_ceremonial",
+    "aliases": [
+      "Plaza Ceremonial"
+    ],
+    "type": "location",
+    "classification": "biotecnología aplicada",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Nodo público bio-codificado diseñado específicamente para rituales comunitarios, recepción de señales masivas o eventos de sincronización emocional. Su arquitectura viva responde dinámicamente a las emociones colectivas, amplificándolas o canalizándolas según las necesidades del sistema.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Nodo público bio-codificado diseñado específicamente para rituales comunitarios, recepción de señales masivas o eventos de sincronización emocional. Su arquitectura viva responde dinámicamente a las emociones colectivas, amplificándolas o canalizándolas según las necesidades del sistema.",
+    "public_summary": "Nodo público bio-codificado diseñado específicamente para rituales comunitarios, recepción de señales masivas o eventos de sincronización emocional. Su arquitectura viva responde dinámicamente a las emociones colectivas, amplificándolas o canalizándolas según...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Protocolo de Contención",
+    "normalized_key": "protocolo_de_contencion",
+    "aliases": [
+      "Protocolo de Contención"
+    ],
+    "type": "system",
+    "classification": "protocolo sistémico",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Respuesta automática e inmediata frente a anomalías detectadas o picos emocionales peligrosos. Aplica medidas que van desde supresión conductual y sedación química hasta anulación neural completa. La seguridad del sistema prevalece sobre la autonomía individual.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Respuesta automática e inmediata frente a anomalías detectadas o picos emocionales peligrosos. Aplica medidas que van desde supresión conductual y sedación química hasta anulación neural completa. La seguridad del sistema prevalece sobre la autonomía individual.",
+    "public_summary": "Respuesta automática e inmediata frente a anomalías detectadas o picos emocionales peligrosos. Aplica medidas que van desde supresión conductual y sedación química hasta anulación neural completa. La seguridad del sistema prevalece sobre la autonomía individua...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Vórtice Carmesí Crimson Vortex",
+    "normalized_key": "vortice_carmesi_crimson_vortex",
+    "aliases": [
+      "Vórtice Carmesí Crimson Vortex",
+      "Vórtice Carmesí",
+      "Crimson Vortex"
+    ],
+    "type": "system",
+    "classification": "fenómeno temporal / recursivo",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Evento atmosférico-emocional altamente inestable caracterizado por energía roja en espiral que rasga el cielo. Indica fracturas graves en la realidad, bucles temporales colapsando, o desbordes resonantes que amenazan la integridad del sistema. Presagio de caos inminente.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Evento atmosférico-emocional altamente inestable caracterizado por energía roja en espiral que rasga el cielo. Indica fracturas graves en la realidad, bucles temporales colapsando, o desbordes resonantes que amenazan la integridad del sistema. Presagio de caos inminente.",
+    "public_summary": "Evento atmosférico-emocional altamente inestable caracterizado por energía roja en espiral que rasga el cielo. Indica fracturas graves en la realidad, bucles temporales colapsando, o desbordes resonantes que amenazan la integridad del sistema. Presagio de caos...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Ciclo 64",
+    "normalized_key": "ciclo_64",
+    "aliases": [
+      "Ciclo 64"
+    ],
+    "type": "location",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "El ciclo temporal-broadcast actual en el que se desarrolla la narrativa principal. Compuesto por múltiples temporadas de contenido transmitido, representa la sexagésima cuarta iteración del experimento social de la Isla. ¿Cuántos ciclos han sido borrados de la memoria colectiva?",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "El ciclo temporal-broadcast actual en el que se desarrolla la narrativa principal. Compuesto por múltiples temporadas de contenido transmitido, representa la sexagésima cuarta iteración del experimento social de la Isla. ¿Cuántos ciclos han sido borrados de la memoria colectiva?",
+    "public_summary": "El ciclo temporal-broadcast actual en el que se desarrolla la narrativa principal. Compuesto por múltiples temporadas de contenido transmitido, representa la sexagésima cuarta iteración del experimento social de la Isla. ¿Cuántos ciclos han sido borrados de la...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Emovaults",
+    "normalized_key": "emovaults",
+    "aliases": [
+      "Emovaults"
+    ],
+    "type": "concept",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Archivos de memoria encapsulados y preservados en nodos biológicos vivientes. Se activan exclusivamente mediante combinaciones específicas de glifos o potentes detonadores emocionales, liberando recuerdos que pueden haber sido suprimidos durante décadas.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Archivos de memoria encapsulados y preservados en nodos biológicos vivientes. Se activan exclusivamente mediante combinaciones específicas de glifos o potentes detonadores emocionales, liberando recuerdos que pueden haber sido suprimidos durante décadas.",
+    "public_summary": "Archivos de memoria encapsulados y preservados en nodos biológicos vivientes. Se activan exclusivamente mediante combinaciones específicas de glifos o potentes detonadores emocionales, liberando recuerdos que pueden haber sido suprimidos durante décadas.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Telemetría Emotiva",
+    "normalized_key": "telemetria_emotiva",
+    "aliases": [
+      "Telemetría Emotiva"
+    ],
+    "type": "system",
+    "classification": "registro conceptual del sistema",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Captura exhaustiva y análisis algorítmico de estados emocionales en tiempo real para múltiples propósitos: control conductual preventivo, publicidad hiperpersonalizada, detección de amenazas potenciales antes de que se manifiesten en acciones. La emoción como dato explotable.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Captura exhaustiva y análisis algorítmico de estados emocionales en tiempo real para múltiples propósitos: control conductual preventivo, publicidad hiperpersonalizada, detección de amenazas potenciales antes de que se manifiesten en acciones. La emoción como dato explotable.",
+    "public_summary": "Captura exhaustiva y análisis algorítmico de estados emocionales en tiempo real para múltiples propósitos: control conductual preventivo, publicidad hiperpersonalizada, detección de amenazas potenciales antes de que se manifiesten en acciones. La emoción como...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Núcleo Fractal",
+    "normalized_key": "nucleo_fractal",
+    "aliases": [
+      "Núcleo Fractal"
+    ],
+    "type": "system",
+    "classification": "fenómeno temporal / recursivo",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Motor de inteligencia recursiva enterrado en las profundidades de la infraestructura original de Ecolibrium. Paradójicamente, es tanto la fuente de estabilidad del sistema como el origen de sus anomalías más perturbadoras: fracturas de realidad, bucles temporales y clones no autorizados.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Motor de inteligencia recursiva enterrado en las profundidades de la infraestructura original de Ecolibrium. Paradójicamente, es tanto la fuente de estabilidad del sistema como el origen de sus anomalías más perturbadoras: fracturas de realidad, bucles temporales y clones no autorizados.",
+    "public_summary": "Motor de inteligencia recursiva enterrado en las profundidades de la infraestructura original de Ecolibrium. Paradójicamente, es tanto la fuente de estabilidad del sistema como el origen de sus anomalías más perturbadoras: fracturas de realidad, bucles tempora...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Glifos",
+    "normalized_key": "glifos",
+    "aliases": [
+      "Glifos"
+    ],
+    "type": "system",
+    "classification": "infraestructura neuroinformacional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Símbolos biotecnológicos que encapsulan información neural compleja o cargas emocionales concentradas. Aparecen espontáneamente en sueños, interfaces tecnológicas o durante fracturas de identidad, sirviendo como mensajes del subconsciente colectivo o advertencias del sistema.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Símbolos biotecnológicos que encapsulan información neural compleja o cargas emocionales concentradas. Aparecen espontáneamente en sueños, interfaces tecnológicas o durante fracturas de identidad, sirviendo como mensajes del subconsciente colectivo o advertencias del sistema.",
+    "public_summary": "Símbolos biotecnológicos que encapsulan información neural compleja o cargas emocionales concentradas. Aparecen espontáneamente en sueños, interfaces tecnológicas o durante fracturas de identidad, sirviendo como mensajes del subconsciente colectivo o advertenc...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Holo-transmisiones Holo-Streams",
+    "normalized_key": "holo_transmisiones_holo_streams",
+    "aliases": [
+      "Holo-transmisiones Holo-Streams",
+      "Holo-transmisiones",
+      "Holo-Streams"
+    ],
+    "type": "concept",
+    "classification": "registro conceptual del sistema",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Entornos inmersivos que proyectan eventos emocionales o neuronales como experiencias holográficas completamente vivenciales. Los espectadores no solo observan: sienten, experimentan y viven momentos extraídos directamente de la consciencia de los habitantes.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Entornos inmersivos que proyectan eventos emocionales o neuronales como experiencias holográficas completamente vivenciales. Los espectadores no solo observan: sienten, experimentan y viven momentos extraídos directamente de la consciencia de los habitantes.",
+    "public_summary": "Entornos inmersivos que proyectan eventos emocionales o neuronales como experiencias holográficas completamente vivenciales. Los espectadores no solo observan: sienten, experimentan y viven momentos extraídos directamente de la consciencia de los habitantes.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "HUD Heads-Up Display",
+    "normalized_key": "hud_heads_up_display",
+    "aliases": [
+      "HUD Heads-Up Display",
+      "HUD",
+      "Heads-Up Display"
+    ],
+    "type": "system",
+    "classification": "registro conceptual del sistema",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Artilugio de superposición visual que proporciona métricas emocionales en tiempo real, niveles de resonancia, glifos activos y advertencias del sistema. Para usuarios avanzados, una ventana permanente a la realidad subyacente del mundo.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Artilugio de superposición visual que proporciona métricas emocionales en tiempo real, niveles de resonancia, glifos activos y advertencias del sistema. Para usuarios avanzados, una ventana permanente a la realidad subyacente del mundo.",
+    "public_summary": "Artilugio de superposición visual que proporciona métricas emocionales en tiempo real, niveles de resonancia, glifos activos y advertencias del sistema. Para usuarios avanzados, una ventana permanente a la realidad subyacente del mundo.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Deriva HyperT HyperT Drift",
+    "normalized_key": "deriva_hypert_hypert_drift",
+    "aliases": [
+      "Deriva HyperT HyperT Drift",
+      "Deriva HyperT",
+      "HyperT Drift"
+    ],
+    "type": "concept",
+    "classification": "gestión de memoria / identidad",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Pérdida progresiva de fidelidad en la transmisión neural causada por trauma psicológico intenso o proximidad prolongada a anomalías de alta resonancia. Los afectados experimentan desconexión sensorial, fragmentación de memoria y distorsión perceptual.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Pérdida progresiva de fidelidad en la transmisión neural causada por trauma psicológico intenso o proximidad prolongada a anomalías de alta resonancia. Los afectados experimentan desconexión sensorial, fragmentación de memoria y distorsión perceptual.",
+    "public_summary": "Pérdida progresiva de fidelidad en la transmisión neural causada por trauma psicológico intenso o proximidad prolongada a anomalías de alta resonancia. Los afectados experimentan desconexión sensorial, fragmentación de memoria y distorsión perceptual.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Superposición de Influencers Influencer Overlay",
+    "normalized_key": "superposicion_de_influencers_influencer_overlay",
+    "aliases": [
+      "Superposición de Influencers Influencer Overlay",
+      "Superposición de Influencers",
+      "Influencer Overlay"
+    ],
+    "type": "organization",
+    "classification": "estructura corporativa",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Capa de comentarios en tiempo real superpuesta sobre la realidad transmitida para dirigir la percepción de la audiencia, maximizar engagement emocional y moldear interpretaciones de eventos según agendas corporativas o narrativas.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Capa de comentarios en tiempo real superpuesta sobre la realidad transmitida para dirigir la percepción de la audiencia, maximizar engagement emocional y moldear interpretaciones de eventos según agendas corporativas o narrativas.",
+    "public_summary": "Capa de comentarios en tiempo real superpuesta sobre la realidad transmitida para dirigir la percepción de la audiencia, maximizar engagement emocional y moldear interpretaciones de eventos según agendas corporativas o narrativas.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Multiplexación de IDs de Influencer",
+    "normalized_key": "multiplexacion_de_ids_de_influencer",
+    "aliases": [
+      "Multiplexación de IDs de Influencer"
+    ],
+    "type": "concept",
+    "classification": "registro conceptual del sistema",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Proyección simultánea de una misma consciencia individual en múltiples identidades digitales aparentemente distintas. Permite a megainfluencers omnipresencia aparente y manipulación coordinada de múltiples narrativas paralelas.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Proyección simultánea de una misma consciencia individual en múltiples identidades digitales aparentemente distintas. Permite a megainfluencers omnipresencia aparente y manipulación coordinada de múltiples narrativas paralelas.",
+    "public_summary": "Proyección simultánea de una misma consciencia individual en múltiples identidades digitales aparentemente distintas. Permite a megainfluencers omnipresencia aparente y manipulación coordinada de múltiples narrativas paralelas.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Bloqueo de Memoria Memory Lock",
+    "normalized_key": "bloqueo_de_memoria_memory_lock",
+    "aliases": [
+      "Bloqueo de Memoria Memory Lock",
+      "Bloqueo de Memoria",
+      "Memory Lock"
+    ],
+    "type": "system",
+    "classification": "protocolo sistémico",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Protocolo de seguridad para sellar herméticamente recuerdos traumáticos, prohibidos o que contradigan la narrativa oficial. Los recuerdos permanecen en el subconsciente pero inaccesibles a la consciencia voluntaria sin claves específicas de desbloqueo.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Protocolo de seguridad para sellar herméticamente recuerdos traumáticos, prohibidos o que contradigan la narrativa oficial. Los recuerdos permanecen en el subconsciente pero inaccesibles a la consciencia voluntaria sin claves específicas de desbloqueo.",
+    "public_summary": "Protocolo de seguridad para sellar herméticamente recuerdos traumáticos, prohibidos o que contradigan la narrativa oficial. Los recuerdos permanecen en el subconsciente pero inaccesibles a la consciencia voluntaria sin claves específicas de desbloqueo.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Re-implantación de Memoria",
+    "normalized_key": "re_implantacion_de_memoria",
+    "aliases": [
+      "Re-implantación de Memoria"
+    ],
+    "type": "concept",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Inserción quirúrgica de recuerdos cuidadosamente curados tras un colapso mental severo o reseteo sistémico. Los nuevos recuerdos se integran como si siempre hubieran estado presentes, reescribiendo la historia personal del sujeto.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Inserción quirúrgica de recuerdos cuidadosamente curados tras un colapso mental severo o reseteo sistémico. Los nuevos recuerdos se integran como si siempre hubieran estado presentes, reescribiendo la historia personal del sujeto.",
+    "public_summary": "Inserción quirúrgica de recuerdos cuidadosamente curados tras un colapso mental severo o reseteo sistémico. Los nuevos recuerdos se integran como si siempre hubieran estado presentes, reescribiendo la historia personal del sujeto.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Piel-Espejo / Hueso-Espejo Mirror-Skin / Mirror-Bone",
+    "normalized_key": "piel_espejo_hueso_espejo_mirror_skin_mirror_bone",
+    "aliases": [
+      "Piel-Espejo / Hueso-Espejo Mirror-Skin / Mirror-Bone",
+      "Piel-Espejo / Hueso-Espejo",
+      "Mirror-Skin",
+      "Mirror-Bone",
+      "Piel-Espejo",
+      "Hueso-Espejo"
+    ],
+    "type": "concept",
+    "classification": "registro conceptual del sistema",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Material exótico utilizado en constructs avanzados que distorsiona activamente la percepción e identidad. Refleja y refracta no solo luz, sino también señales neuronales, creando confusión profunda sobre qué es real y qué es reflejo.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Material exótico utilizado en constructs avanzados que distorsiona activamente la percepción e identidad. Refleja y refracta no solo luz, sino también señales neuronales, creando confusión profunda sobre qué es real y qué es reflejo.",
+    "public_summary": "Material exótico utilizado en constructs avanzados que distorsiona activamente la percepción e identidad. Refleja y refracta no solo luz, sino también señales neuronales, creando confusión profunda sobre qué es real y qué es reflejo.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Cascada de Ruido Noise Fall",
+    "normalized_key": "cascada_de_ruido_noise_fall",
+    "aliases": [
+      "Cascada de Ruido Noise Fall",
+      "Cascada de Ruido",
+      "Noise Fall"
+    ],
+    "type": "concept",
+    "classification": "fenómeno temporal / recursivo",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Descarga sensorial masiva y deliberadamente desorientadora generada por Ecko-7 como medida defensiva o de control de multitudes. Sobrecarga todos los sentidos simultáneamente, provocando parálisis temporal o colapso perceptual.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Descarga sensorial masiva y deliberadamente desorientadora generada por Ecko-7 como medida defensiva o de control de multitudes. Sobrecarga todos los sentidos simultáneamente, provocando parálisis temporal o colapso perceptual.",
+    "public_summary": "Descarga sensorial masiva y deliberadamente desorientadora generada por Ecko-7 como medida defensiva o de control de multitudes. Sobrecarga todos los sentidos simultáneamente, provocando parálisis temporal o colapso perceptual.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Corredor Neural / Velo de Datos",
+    "normalized_key": "corredor_neural_velo_de_datos",
+    "aliases": [
+      "Corredor Neural / Velo de Datos",
+      "Corredor Neural",
+      "Velo de Datos"
+    ],
+    "type": "location",
+    "classification": "infraestructura neuroinformacional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Pasajes biotecnológicos caracterizados por superposición constante de vigilancia en tiempo real. Al atravesarlos, cada pensamiento puede ser leído, cada emoción monitoreada, cada intención evaluada por algoritmos invisibles.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Pasajes biotecnológicos caracterizados por superposición constante de vigilancia en tiempo real. Al atravesarlos, cada pensamiento puede ser leído, cada emoción monitoreada, cada intención evaluada por algoritmos invisibles.",
+    "public_summary": "Pasajes biotecnológicos caracterizados por superposición constante de vigilancia en tiempo real. Al atravesarlos, cada pensamiento puede ser leído, cada emoción monitoreada, cada intención evaluada por algoritmos invisibles.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Lattice Neural Neural Lattice",
+    "normalized_key": "lattice_neural_neural_lattice",
+    "aliases": [
+      "Lattice Neural Neural Lattice",
+      "Lattice Neural",
+      "Neural Lattice"
+    ],
+    "type": "location",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "La red neural omnipresente de la Isla que conecta íntimamente memoria, emoción y flujo de datos. Tejido invisible que vincula toda consciencia en un metaorganismo de información compartida, voluntaria o no.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "La red neural omnipresente de la Isla que conecta íntimamente memoria, emoción y flujo de datos. Tejido invisible que vincula toda consciencia en un metaorganismo de información compartida, voluntaria o no.",
+    "public_summary": "La red neural omnipresente de la Isla que conecta íntimamente memoria, emoción y flujo de datos. Tejido invisible que vincula toda consciencia en un metaorganismo de información compartida, voluntaria o no.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Pozos Neuronales Neural Wells",
+    "normalized_key": "pozos_neuronales_neural_wells",
+    "aliases": [
+      "Pozos Neuronales Neural Wells",
+      "Pozos Neuronales",
+      "Neural Wells"
+    ],
+    "type": "location",
+    "classification": "gestión de memoria / identidad",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Cámaras de inmersión diseñadas para extracción forzada o reescritura controlada de memoria. Los sujetos sumergidos emergen transformados, con recuerdos alterados, suprimidos o completamente reemplazados según los objetivos del procedimiento.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Cámaras de inmersión diseñadas para extracción forzada o reescritura controlada de memoria. Los sujetos sumergidos emergen transformados, con recuerdos alterados, suprimidos o completamente reemplazados según los objetivos del procedimiento.",
+    "public_summary": "Cámaras de inmersión diseñadas para extracción forzada o reescritura controlada de memoria. Los sujetos sumergidos emergen transformados, con recuerdos alterados, suprimidos o completamente reemplazados según los objetivos del procedimiento.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Derrame Neural Neural Spillage",
+    "normalized_key": "derrame_neural_neural_spillage",
+    "aliases": [
+      "Derrame Neural Neural Spillage",
+      "Derrame Neural",
+      "Neural Spillage"
+    ],
+    "type": "system",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Emisión no controlada e involuntaria de pensamientos privados o memorias íntimas hacia la red compartida. Como una hemorragia mental, expone lo que debería permanecer oculto, vulnerable a interceptación por entidades externas.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Emisión no controlada e involuntaria de pensamientos privados o memorias íntimas hacia la red compartida. Como una hemorragia mental, expone lo que debería permanecer oculto, vulnerable a interceptación por entidades externas.",
+    "public_summary": "Emisión no controlada e involuntaria de pensamientos privados o memorias íntimas hacia la red compartida. Como una hemorragia mental, expone lo que debería permanecer oculto, vulnerable a interceptación por entidades externas.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Neurovault",
+    "normalized_key": "neurovault",
+    "aliases": [
+      "Neurovault"
+    ],
+    "type": "concept",
+    "classification": "registro conceptual del sistema",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Repositorio blindado y herméticamente sellado para almacenar experiencias volátiles, datos altamente clasificados o recuerdos demasiado peligrosos para permanecer en consciencias individuales. El archivo de secretos que nunca deberían revelarse.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Repositorio blindado y herméticamente sellado para almacenar experiencias volátiles, datos altamente clasificados o recuerdos demasiado peligrosos para permanecer en consciencias individuales. El archivo de secretos que nunca deberían revelarse.",
+    "public_summary": "Repositorio blindado y herméticamente sellado para almacenar experiencias volátiles, datos altamente clasificados o recuerdos demasiado peligrosos para permanecer en consciencias individuales. El archivo de secretos que nunca deberían revelarse.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Piscinas de Nutrientes Nutrient Pools",
+    "normalized_key": "piscinas_de_nutrientes_nutrient_pools",
+    "aliases": [
+      "Piscinas de Nutrientes Nutrient Pools",
+      "Piscinas de Nutrientes",
+      "Nutrient Pools"
+    ],
+    "type": "organization",
+    "classification": "biotecnología aplicada",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Reservorios orgánicos subterráneos utilizados para cultivar, regenerar o reconstruir tejido biológico desde nivel celular. Inmersión en estas piscinas puede sanar heridas catastróficas o permitir modificaciones corporales radicales.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Reservorios orgánicos subterráneos utilizados para cultivar, regenerar o reconstruir tejido biológico desde nivel celular. Inmersión en estas piscinas puede sanar heridas catastróficas o permitir modificaciones corporales radicales.",
+    "public_summary": "Reservorios orgánicos subterráneos utilizados para cultivar, regenerar o reconstruir tejido biológico desde nivel celular. Inmersión en estas piscinas puede sanar heridas catastróficas o permitir modificaciones corporales radicales.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Nube Roja / Espora Biotech Red Swarm / Bio-Spore Mist",
+    "normalized_key": "nube_roja_espora_biotech_red_swarm_bio_spore_mist",
+    "aliases": [
+      "Nube Roja / Espora Biotech Red Swarm / Bio-Spore Mist",
+      "Nube Roja / Espora Biotech",
+      "Red Swarm",
+      "Bio-Spore Mist",
+      "Nube Roja",
+      "Espora Biotech"
+    ],
+    "type": "system",
+    "classification": "biotecnología aplicada",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Neblina aerosolizada auto-replicante capaz de alterar radicalmente estados neuroquímicos en organismos expuestos. Se dispersa como niebla viviente, invadiendo pulmones y cerebros, reescribiendo química mental desde dentro.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Neblina aerosolizada auto-replicante capaz de alterar radicalmente estados neuroquímicos en organismos expuestos. Se dispersa como niebla viviente, invadiendo pulmones y cerebros, reescribiendo química mental desde dentro.",
+    "public_summary": "Neblina aerosolizada auto-replicante capaz de alterar radicalmente estados neuroquímicos en organismos expuestos. Se dispersa como niebla viviente, invadiendo pulmones y cerebros, reescribiendo química mental desde dentro.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Reescritores Rewriters",
+    "normalized_key": "reescritores_rewriters",
+    "aliases": [
+      "Reescritores Rewriters",
+      "Reescritores",
+      "Rewriters"
+    ],
+    "type": "organization",
+    "classification": "gestión de memoria / identidad",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Facción especializada dedicada a la reprogramación sistemática de memorias, identidades o realidades completas. Artistas de la manipulación neural que pueden borrar, modificar o fabricar historias personales con precisión quirúrgica.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Facción especializada dedicada a la reprogramación sistemática de memorias, identidades o realidades completas. Artistas de la manipulación neural que pueden borrar, modificar o fabricar historias personales con precisión quirúrgica.",
+    "public_summary": "Facción especializada dedicada a la reprogramación sistemática de memorias, identidades o realidades completas. Artistas de la manipulación neural que pueden borrar, modificar o fabricar historias personales con precisión quirúrgica.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Laboratorio Secreto de Scient",
+    "normalized_key": "laboratorio_secreto_de_scient",
+    "aliases": [
+      "Laboratorio Secreto de Scient"
+    ],
+    "type": "location",
+    "classification": "infraestructura neuroinformacional",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Instalación clandestina profundamente oculta destinada a experimentos prohibidos que violan incluso los flexibles códigos éticos del régimen. Aquí se exploran los límites más oscuros de la bioingenería y la manipulación neural.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Instalación clandestina profundamente oculta destinada a experimentos prohibidos que violan incluso los flexibles códigos éticos del régimen. Aquí se exploran los límites más oscuros de la bioingenería y la manipulación neural.",
+    "public_summary": "Instalación clandestina profundamente oculta destinada a experimentos prohibidos que violan incluso los flexibles códigos éticos del régimen. Aquí se exploran los límites más oscuros de la bioingenería y la manipulación neural.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Ecos de Bestias-Señal Signal-Beast Echoes",
+    "normalized_key": "ecos_de_bestias_senal_signal_beast_echoes",
+    "aliases": [
+      "Ecos de Bestias-Señal Signal-Beast Echoes",
+      "Ecos de Bestias-Señal",
+      "Signal-Beast Echoes"
+    ],
+    "type": "concept",
+    "classification": "infraestructura neuroinformacional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Distorsiones ambientales inquietantes generadas por implantes HyperT corruptos o degradados. Manifiestan como alucinaciones compartidas: criaturas que existen simultáneamente como señal y percepción, ni completamente reales ni totalmente ilusorias.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Distorsiones ambientales inquietantes generadas por implantes HyperT corruptos o degradados. Manifiestan como alucinaciones compartidas: criaturas que existen simultáneamente como señal y percepción, ni completamente reales ni totalmente ilusorias.",
+    "public_summary": "Distorsiones ambientales inquietantes generadas por implantes HyperT corruptos o degradados. Manifiestan como alucinaciones compartidas: criaturas que existen simultáneamente como señal y percepción, ni completamente reales ni totalmente ilusorias.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Vinculación de Señal Signal Bonding",
+    "normalized_key": "vinculacion_de_senal_signal_bonding",
+    "aliases": [
+      "Vinculación de Señal Signal Bonding",
+      "Vinculación de Señal",
+      "Signal Bonding"
+    ],
+    "type": "concept",
+    "classification": "gestión de memoria / identidad",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Conexión neural profunda y permanente entre individuos que comparten flujos de memoria, sensación o emoción. Los vinculados experimentan parcialmente las vivencias del otro, creando intimidad absoluta pero también vulnerabilidad mutua.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Conexión neural profunda y permanente entre individuos que comparten flujos de memoria, sensación o emoción. Los vinculados experimentan parcialmente las vivencias del otro, creando intimidad absoluta pero también vulnerabilidad mutua.",
+    "public_summary": "Conexión neural profunda y permanente entre individuos que comparten flujos de memoria, sensación o emoción. Los vinculados experimentan parcialmente las vivencias del otro, creando intimidad absoluta pero también vulnerabilidad mutua.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Caverna de las Espirales Spirals Cave",
+    "normalized_key": "caverna_de_las_espirales_spirals_cave",
+    "aliases": [
+      "Caverna de las Espirales Spirals Cave",
+      "Caverna de las Espirales",
+      "Spirals Cave"
+    ],
+    "type": "location",
+    "classification": "ubicación sistémica / resonancia temporal",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Caverna oculta y profundamente biorreactiva en las profundidades de la Isla D'Claire donde el símbolo de la Espiral se manifiesta físicamente como estructura viva y recursiva. Saturada de residuos emocionales, glifos de memoria y distorsión neural, es uno de los lugares más inestables del mundo. El tiempo se comporta erráticamente: pasado, presente y futuros posibles se superponen en caos temporal.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Caverna oculta y profundamente biorreactiva en las profundidades de la Isla D'Claire donde el símbolo de la Espiral se manifiesta físicamente como estructura viva y recursiva. Saturada de residuos emocionales, glifos de memoria y distorsión neural, es uno de los lugares más inestables del mundo. El tiempo se comporta erráticamente: pasado, presente y futuros posibles se superponen en caos temporal.",
+    "public_summary": "Caverna oculta y profundamente biorreactiva en las profundidades de la Isla D'Claire donde el símbolo de la Espiral se manifiesta físicamente como estructura viva y recursiva. Saturada de residuos emocionales, glifos de memoria y distorsión neural, es uno de l...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Capa-Sombra de la Espiral Spiral Shadow-Layer",
+    "normalized_key": "capa_sombra_de_la_espiral_spiral_shadow_layer",
+    "aliases": [
+      "Capa-Sombra de la Espiral Spiral Shadow-Layer",
+      "Capa-Sombra de la Espiral",
+      "Spiral Shadow-Layer"
+    ],
+    "type": "concept",
+    "classification": "sub-realidad espiral / fenómeno liminal",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Sub-realidad existente en el intersticio entre espacio físico y resonancia del campo espiral. Aquí flotan datos borrados, recuerdos olvidados y posibilidades descartadas. Una especie de limbo digital-orgánico donde nada muere completamente pero nada vive plenamente.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Sub-realidad existente en el intersticio entre espacio físico y resonancia del campo espiral. Aquí flotan datos borrados, recuerdos olvidados y posibilidades descartadas. Una especie de limbo digital-orgánico donde nada muere completamente pero nada vive plenamente.",
+    "public_summary": "Sub-realidad existente en el intersticio entre espacio físico y resonancia del campo espiral. Aquí flotan datos borrados, recuerdos olvidados y posibilidades descartadas. Una especie de limbo digital-orgánico donde nada muere completamente pero nada vive plena...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Gusano de Teleportación Teleporting Wormhole",
+    "normalized_key": "gusano_de_teleportacion_teleporting_wormhole",
+    "aliases": [
+      "Gusano de Teleportación Teleporting Wormhole",
+      "Gusano de Teleportación",
+      "Teleporting Wormhole"
+    ],
+    "type": "location",
+    "classification": "fenómeno de tránsito / anomalía espacial",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Fenómeno de tránsito raro e inestable vinculado a ráfagas neuronales de resonancia extrema o fracturas críticas del sistema. A diferencia de portales controlados, estos agujeros de gusano desplazan instantáneamente entidades a través de distancias vastas hacia destinos impredecibles, sin programación ni garantías de supervivencia.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Fenómeno de tránsito raro e inestable vinculado a ráfagas neuronales de resonancia extrema o fracturas críticas del sistema. A diferencia de portales controlados, estos agujeros de gusano desplazan instantáneamente entidades a través de distancias vastas hacia destinos impredecibles, sin programación ni garantías de supervivencia.",
+    "public_summary": "Fenómeno de tránsito raro e inestable vinculado a ráfagas neuronales de resonancia extrema o fracturas críticas del sistema. A diferencia de portales controlados, estos agujeros de gusano desplazan instantáneamente entidades a través de distancias vastas hacia...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Deriva de Eco Temporal Temporal Echo Drift",
+    "normalized_key": "deriva_de_eco_temporal_temporal_echo_drift",
+    "aliases": [
+      "Deriva de Eco Temporal Temporal Echo Drift",
+      "Deriva de Eco Temporal",
+      "Temporal Echo Drift"
+    ],
+    "type": "concept",
+    "classification": "fenómeno temporal / recursivo",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Efecto perturbador donde eventos, emociones o decisiones de ciclos pasados sangran e influyen misteriosamente el presente. Como ecos que atraviesan el tiempo, estas resonancias crean déjà vu, premoniciones o repeticiones de patrones que desafían la causalidad lineal.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Efecto perturbador donde eventos, emociones o decisiones de ciclos pasados sangran e influyen misteriosamente el presente. Como ecos que atraviesan el tiempo, estas resonancias crean déjà vu, premoniciones o repeticiones de patrones que desafían la causalidad lineal.",
+    "public_summary": "Efecto perturbador donde eventos, emociones o decisiones de ciclos pasados sangran e influyen misteriosamente el presente. Como ecos que atraviesan el tiempo, estas resonancias crean déjà vu, premoniciones o repeticiones de patrones que desafían la causalidad...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Reset / Pulso de Restauración Time Loop Reset / Restoration Pulse",
+    "normalized_key": "reset_pulso_de_restauracion_time_loop_reset_restoration_pulse",
+    "aliases": [
+      "Reset / Pulso de Restauración Time Loop Reset / Restoration Pulse",
+      "Reset / Pulso de Restauración",
+      "Time Loop Reset",
+      "Restoration Pulse",
+      "Reset",
+      "Pulso de Restauración"
+    ],
+    "type": "location",
+    "classification": "gestión de memoria / identidad",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Respuesta de emergencia mayor ejecutada por la Espiral para realinear forzosamente la memoria colectiva de la Isla cuando las anomalías acumuladas amenazan colapso sistémico total. Borra recuerdos, resetea narrativas y restaura la línea temporal \"correcta\".",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Respuesta de emergencia mayor ejecutada por la Espiral para realinear forzosamente la memoria colectiva de la Isla cuando las anomalías acumuladas amenazan colapso sistémico total. Borra recuerdos, resetea narrativas y restaura la línea temporal \"correcta\".",
+    "public_summary": "Respuesta de emergencia mayor ejecutada por la Espiral para realinear forzosamente la memoria colectiva de la Isla cuando las anomalías acumuladas amenazan colapso sistémico total. Borra recuerdos, resetea narrativas y restaura la línea temporal \"correcta\".",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "La Niebla The Mist",
+    "normalized_key": "la_niebla_the_mist",
+    "aliases": [
+      "La Niebla The Mist",
+      "La Niebla",
+      "The Mist"
+    ],
+    "type": "location",
+    "classification": "fenómeno ambiental / interferencia perceptiva",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Oficialmente descrita a los habitantes como capa atmosférica protectora contra radiación UV tras la destrucción de la capa de ozono. En realidad, un fenómeno ambiental semi-sentiente que cubre estratégicamente partes de la Isla durante interferencias de señal o brechas de memoria. Compuesta por vapor impregnado de residuos bio-emotivos, distorsiona percepción, fragmenta consciencia temporal y altera la red neural. Dentro de la Niebla, los personajes experimentan alucinaciones, filtraciones de memoria, espejeo emocional y visiones de versiones alternas de sí mismos.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Oficialmente descrita a los habitantes como capa atmosférica protectora contra radiación UV tras la destrucción de la capa de ozono. En realidad, un fenómeno ambiental semi-sentiente que cubre estratégicamente partes de la Isla durante interferencias de señal o brechas de memoria. Compuesta por vapor impregnado de residuos bio-emotivos, distorsiona percepción, fragmenta consciencia temporal y altera la red neural. Dentro de la Niebla, los personajes experimentan alucinaciones, filtraciones de memoria, espejeo emocional y visiones de versiones alternas de sí mismos.",
+    "public_summary": "Oficialmente descrita a los habitantes como capa atmosférica protectora contra radiación UV tras la destrucción de la capa de ozono. En realidad, un fenómeno ambiental semi-sentiente que cubre estratégicamente partes de la Isla durante interferencias de señal...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "El Escáner The Scanner",
+    "normalized_key": "el_escaner_the_scanner",
+    "aliases": [
+      "El Escáner The Scanner",
+      "El Escáner",
+      "The Scanner"
+    ],
+    "type": "system",
+    "classification": "dispositivo de detección sistémica",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "medium",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Dispositivo portátil para detectar resonancias emocionales ocultas, anomalías sistémicas o presencias no autorizadas. Esencial para navegación en áreas de alta distorsión o para identificar individuos que ocultan su verdadera naturaleza bajo capas de ofuscación.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Dispositivo portátil para detectar resonancias emocionales ocultas, anomalías sistémicas o presencias no autorizadas. Esencial para navegación en áreas de alta distorsión o para identificar individuos que ocultan su verdadera naturaleza bajo capas de ofuscación.",
+    "public_summary": "Dispositivo portátil para detectar resonancias emocionales ocultas, anomalías sistémicas o presencias no autorizadas. Esencial para navegación en áreas de alta distorsión o para identificar individuos que ocultan su verdadera naturaleza bajo capas de ofuscació...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "Deriva de Conciencia No Autorizada",
+    "normalized_key": "deriva_de_conciencia_no_autorizada",
+    "aliases": [
+      "Deriva de Conciencia No Autorizada"
+    ],
+    "type": "system",
+    "classification": "desviación de consciencia / anomalía de acceso",
+    "status": "parcialmente clasificado",
+    "access_level": "restricted",
+    "spoiler_risk": "high",
+    "response_style": "ominous",
+    "priority": 0.72,
+    "summary": "Desacople espontáneo o forzado de la consciencia individual del flujo autorizado del sistema. Permite experiencias fuera del control central pero expone al individuo a peligros existenciales: pérdida de identidad, fragmentación mental o detección por protocolos de seguridad.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Desacople espontáneo o forzado de la consciencia individual del flujo autorizado del sistema. Permite experiencias fuera del control central pero expone al individuo a peligros existenciales: pérdida de identidad, fragmentación mental o detección por protocolos de seguridad.",
+    "public_summary": "Desacople espontáneo o forzado de la consciencia individual del flujo autorizado del sistema. Permite experiencias fuera del control central pero expone al individuo a peligros existenciales: pérdida de identidad, fragmentación mental o detección por protocolo...",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "VR Cloud",
+    "normalized_key": "vr_cloud",
+    "aliases": [
+      "VR Cloud"
+    ],
+    "type": "system",
+    "classification": "red virtual / mercado emocional",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Red virtual compartida y emocionalmente reactiva donde experiencias, memorias y sensaciones pueden ser compartidas, mezcladas o comercializadas. Espacio liminal entre lo real y lo simulado donde las fronteras de la identidad se vuelven nebulosas.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Red virtual compartida y emocionalmente reactiva donde experiencias, memorias y sensaciones pueden ser compartidas, mezcladas o comercializadas. Espacio liminal entre lo real y lo simulado donde las fronteras de la identidad se vuelven nebulosas.",
+    "public_summary": "Red virtual compartida y emocionalmente reactiva donde experiencias, memorias y sensaciones pueden ser compartidas, mezcladas o comercializadas. Espacio liminal entre lo real y lo simulado donde las fronteras de la identidad se vuelven nebulosas.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
+  },
+  {
+    "key": "VR TV Corp",
+    "normalized_key": "vr_tv_corp",
+    "aliases": [
+      "VR TV Corp"
+    ],
+    "type": "organization",
+    "classification": "estructura corporativa / medios inmersivos",
+    "status": "abierto",
+    "access_level": "public",
+    "spoiler_risk": "low",
+    "response_style": "clinical",
+    "priority": 0.72,
+    "summary": "Organismo corporativo descentralizado que manipula mercados emocionales globales y narrativas transmitidas. Opera como entidad semi-autónoma, respondiendo simultáneamente a demandas de audiencia y algoritmos de maximización de engagement.",
+    "function_summary": "Registro incorporado desde el glosario técnico tras verificación de presencia en el cuerpo principal del libro.",
+    "about_summary": "Organismo corporativo descentralizado que manipula mercados emocionales globales y narrativas transmitidas. Opera como entidad semi-autónoma, respondiendo simultáneamente a demandas de audiencia y algoritmos de maximización de engagement.",
+    "public_summary": "Organismo corporativo descentralizado que manipula mercados emocionales globales y narrativas transmitidas. Opera como entidad semi-autónoma, respondiendo simultáneamente a demandas de audiencia y algoritmos de maximización de engagement.",
+    "restricted_summary": "El alcance completo de este registro puede depender del contexto narrativo y de los protocolos de acceso del sistema.",
+    "relations": "Registro vinculado a la arquitectura narrativa, tecnológica o institucional de Isla D’Claire según el glosario técnico verificado.",
+    "relation_ids": [],
+    "intent_tags": [
+      "define",
+      "identify",
+      "explain",
+      "followup"
+    ],
+    "followups": [
+      "¿Quieres una definición general o su función dentro del sistema?",
+      "¿Quieres una explicación sin spoilers o más técnica?"
+    ]
   }
 ]
